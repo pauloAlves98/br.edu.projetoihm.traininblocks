@@ -4,7 +4,7 @@ function Camada(){
     this.columns;//colunas do mapa
     this.widthTile;//largura do tile (normalmente 32px)
     this.heightTile;
-    this.camada = new Array();//array com todos os valores da camada.
+    this.camada = new Array();//array com todos os valores da camada. Inteiro. Uqase a matriz
     
     this.tileNaoEntra = 0;
 

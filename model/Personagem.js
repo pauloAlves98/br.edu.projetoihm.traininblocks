@@ -1,3 +1,4 @@
+//tudo que se move com deslocamento faz parte do cenario formas, caixas.
 function Personagem(){
 
     this.largura = 32;
@@ -19,7 +20,7 @@ function Personagem(){
     
 
     this.atualizarForma =function(){
-        this.forma.x = this.x;
+        this.forma.x = this.x+5;
         this.forma.y = this.y+this.forma.altura;
     }
     this.verificacaoEstouroSprite = function (){
@@ -73,23 +74,22 @@ function Personagem(){
      }   
 
      this.checarColisaoCenario =  function (formas, deslocamento,larguraCenario,alturaCenario){
-        console.log("vai chechar "+formas.length);
-        if(this.x <=  0 ){
+        //console.log("vai chechar "+formas.length);
+        if(this.forma.x <=  0 ){
             this.x=0;
             this.atualizarForma();
             
-        }if(this.x > larguraCenario - this.largura){
-            this.x =larguraCenario - this.largura;
+        }if(this.forma.x > larguraCenario - this.forma.largura){
+            this.x = larguraCenario - this.forma.largura - 5;//cinco é do reposicionamento da forma!
             this.atualizarForma();
             
-        }if(this.y<=0){
-            this.y=0;
+        }if(this.forma.y<=0){
+            this.y=0-this.forma.altura;
             this.atualizarForma();
            
-        }if(this.y >= alturaCenario - this.altura){
-            this.y = alturaCenario - this.altura;
+        }if(this.forma.y >= alturaCenario - this.forma.altura){
+            this.y = alturaCenario - this.forma.altura;
             this.atualizarForma();
-           
         }
 
         for (let i = 0;i<formas.length;i++){
@@ -107,15 +107,18 @@ function Personagem(){
     
 }
 
-var ctx, p = new Personagem(), per = new Image(), fase1c1 = new Image(),fase1c2 = new Image(), fase1c3 = new Image();
+var ctx, p = new Personagem(), perImg = new Image(), fase1c1Img = new Image(),fase1c2Img = new Image(), fase1c3Img = new Image();
 var myVar;
 
 var fase1colisao = new Camada();
 var cenario1 = new Cenario();
 var deslocamento = 0;
 var caixa = new Image();
-
-
+var caixaenergia = new Image();
+var formaCaixa = new Rectangle(); //testar o movimento da caixa.
+var caixaC =  new Caixa();
+var encaixe1 = new Rectangle(), encaixe2 = new Rectangle(), encaixe3 = new Rectangle(), encaixe4 = new Rectangle();
+var circuloImg = new Image();
 
 const DIREITA = 39;
 const ESQUERDA = 37;
@@ -126,22 +129,34 @@ function myTimer (){
     p.podeMudarSprite  = true;
 }
 function carregarImagensdoJogo(){
-    per.src = "Truncks.png";
-    fase1c1.src = "camada1fase1.png";
-    fase1c2.src = "camada2fase1.png";
-    fase1c3.src = "camada3fase1.png";
+
+    perImg.src = "Truncks.png";
+    fase1c1Img.src = "camada1fase1.png";
+    fase1c2Img.src = "camada2fase1.png";
+    fase1c3Img.src = "camada3fase1.png";
     caixa.src = "caixa2.png";
-    per.onload = function(){
+    circuloImg.src = "circulo.png";
+    
+    perImg.onload = function(){
         console.log("0");
-        fase1c1.onload = function(){
+        fase1c1Img.onload = function(){
             console.log("1");
-            fase1c2.onload = function(){
+            fase1c2Img.onload = function(){
                 console.log("2");
 
-                fase1c3.onload = function(){
-                    console.log("3");
+                fase1c3Img.onload = function(){
+                    
                     caixa.onload = function(){
-                        initgame();
+                        console.log("3");
+                        caixaenergia.src = "caixaenergia.png";
+                        caixaenergia.onload = function(){
+                           circuloImg.src = "circulo.png";
+                           circuloImg.onload = function(){
+                                initgame();
+                           }
+                            
+                        }
+                        
                     }  
                 }
             }
@@ -165,13 +180,33 @@ function initgame(){
   
     ctx = document.getElementById("canvas").getContext("2d");
     document.getElementById("canvas").style.border = "1px solid #000";
-    
-    
-    fase1colisao.init(10,30,32,32,camada,0, ctx);
-    cenario1.init([fase1c1,fase1c2,fase1c3],fase1c1.naturalHeight,fase1c1.naturalWidth,[fase1colisao]);
 
-    p.sprite.carregarSprite(4,3,per);
-    p.forma.init(0,p.altura/2, p.largura,p.altura/2);
+    
+    fase1colisao.init(10,30,32,32,camada,0, ctx);//inicia a distribuição das forma de colisao
+  
+
+    p.sprite.carregarSprite(4,3,perImg);
+    p.forma.init(0,p.altura/2, p.largura-10,p.altura/2);
+    
+    //caixaC.init(1,1,caixa,312,192 - (3*32),24,24); //caixa 1
+
+    //caixaC.init(1,1,caixa,0,40,32,30);//Caixa 2
+    //caixaC.init(1,1,caixa,600,264,32,30);//Caixa 3
+    caixaC.init(1,1,caixa,864,32,24,24); //caixa 4
+
+    //colocar as 4 caixas no vetor
+    //usando add de cenario.
+
+    cenario1.init([fase1c1Img,fase1c2Img,fase1c3Img],fase1c1Img.naturalHeight,fase1c1Img.naturalWidth,[fase1colisao],caixa);
+    //Encaixe das caixs
+    encaixe1.init(300,100,32,32);
+    encaixe2.init(900,200,32,32);
+    encaixe3.init(400,34,32,32);
+    encaixe4.init(100,200,32,32);
+
+    //posicionar os encaixes.
+    //colocalos no vetor de cenario.
+    //um desses encaices ja tem a medida perfeita em x, o que esta logo no começo;
     //p.atualizaSprite(ctx,p.direcaoAtual);
     loopGame();
    
@@ -192,17 +227,32 @@ function desenha(){
     ctx.fillStyle = "white";
     ctx.fillRect(0,0,926,300);
     //console.log(deslocamento+" DECLA DESENHA");
-
-    ctx.drawImage(cenario1.camadasImg[0],deslocamento,0,cenario1.largura,cenario1.altura);
+    //Camadas
+    ctx.drawImage(cenario1.camadasImg[0],deslocamento,0,cenario1.largura,cenario1.altura)
     ctx.drawImage(cenario1.camadasImg[1],deslocamento,0,cenario1.largura,cenario1.altura);
     ctx.drawImage(cenario1.camadasImg[2],deslocamento,0,cenario1.largura,cenario1.altura);
-    ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,200 - (3*32),32,32);
-    ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 32,32,32);
-    ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 64,32,32);
+   // ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,200 - (3*32),32,32);
+    //ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 32,32,32);
+
+    //Gradiente
+    ctx.font = "30px Verdana";
+    
+    
+    //Encaixes
+    ctx.drawImage(circuloImg,encaixe1.x+deslocamento,encaixe1.y,encaixe1.largura,encaixe1.altura);
+    ctx.drawImage(circuloImg,encaixe2.x+deslocamento,encaixe2.y,encaixe2.largura,encaixe2.altura);
+    ctx.drawImage(circuloImg,encaixe3.x+deslocamento,encaixe3.y,encaixe3.largura,encaixe3.altura);
+    ctx.drawImage(circuloImg,encaixe4.x+deslocamento,encaixe4.y,encaixe4.largura,encaixe4.altura);
+    //Caixas
+    ctx.drawImage(caixaenergia,400 - 50+ deslocamento,200 - (2*32) -10,64,64);//Central
+    //ctx.drawImage(caixaC.sprite.folheto,caixaC.forma.x+deslocamento,caixaC.forma.y,32,32)
+    ctx.drawImage(caixaC.sprite.folheto,caixaC.forma.x+deslocamento,caixaC.forma.y,caixaC.forma.largura,caixaC.forma.altura);
+    ctx.strokeRect(caixaC.forma.x+deslocamento,caixaC.forma.y,caixaC.forma.largura,caixaC.forma.altura);
+    //Personagem
     p.atualizaSprite(ctx, p.direcaoAtual);
     
     ctx.fillStyle = "blue";
-    
+    //formas Cenario.
     ctx.strokeRect(p.forma.x,  p.forma.y, p.forma.largura,  p.forma.altura);
     for(let i = 0;i<fase1colisao.formasTile.length;i++){
         let forma = fase1colisao.formasTile[i];
@@ -213,7 +263,19 @@ function desenha(){
 
 function renderiza(){
    p.checarColisaoCenario(fase1colisao.formasTile,deslocamento,804,cenario1.altura);//pq o canvas eh maior que a altura jogavel do cenario
+   colisaoCaixa();
    moverCamera(p,960,800,deslocamento);
+}
+function colisaoCaixa(){
+  //caixaC.checarColisao([],deslocamento,804,cenario1.altura,p);
+  if(caixaC.checarColisaoPersonagem(p,deslocamento)){
+      p.x+=-p.dx;
+      p.y+=-p.dy;
+      p.atualizarForma();
+  }
+  caixaC.checarColisaoLimites(960,cenario1.altura);
+  caixaC.checarColisaoFormas(fase1colisao.formasTile,deslocamento);
+
 }
 
 function click(evt){
@@ -221,7 +283,7 @@ function click(evt){
 }
 function moverCamera(personagem,larguraMap, larguraVisivel, desl){
     
-    //ta retornado nulo; colocar metodo em alguma classe;
+    //;
     if(personagem.x> larguraVisivel/2){
             if(personagem.x<(larguraMap - larguraVisivel/2))//pega a variação de movimento
                 deslocamento = -(personagem.x-(larguraVisivel/2));
