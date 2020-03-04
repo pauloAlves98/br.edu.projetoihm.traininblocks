@@ -1,0 +1,9 @@
+var perImg = new Image();
+var fase1c1Img = new Image();
+var fase1c2Img = new Image();
+var fase1c3Img = new Image();
+var caixaenergia = new Image();
+var circuloImg = new Image();
+var caixaFalseImg = new Image();
+var bordaInventarioImg = new Image();
+var caixa = new Image();

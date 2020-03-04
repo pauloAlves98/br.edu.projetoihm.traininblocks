@@ -6,6 +6,7 @@ function Cenario(){
     this.camadasColisao = new Array();//camadas que possuem colisoes.
     this.caixas = new Array();//Caixas completas
     this.circulosCaixa = new Array();//circulos de encaixe[apenas rectangles]
+    this.encaixesPerfeitos = new Array();
 
     this.init = function (camadasImg, altura, largura,camadasColisao){
         this.camadasImg = camadasImg;
@@ -14,7 +15,7 @@ function Cenario(){
         this.camadasColisao  = camadasColisao;
     }
 
-    this.addCaixas = function(x,y,tipo, img, rows, columns, altura,largura){
+    this.addCaixas = function(rows,columns,img,x,y,altura,largura,tipo){
         //a caixa nao pode colidir com o cenario
         //a caixa nao pode ficar nas extremidades coladas nas bordas.
         //posicoes é tamnho 16;
@@ -29,9 +30,12 @@ function Cenario(){
          //o circulo nao pode colidir com a caixa;
          let r = new Rectangle();
          r.init(x,y,largura,altura);
-         this.circulosCaixa.psuh(r);
+         this.circulosCaixa.push(r);
     }
-    
+    this.addEncaixes = function (x,y){
+        this.encaixesPerfeitos.push(x);
+        this.encaixesPerfeitos.push(y);
+    }
     this.randomCenario = function getRandomIntInclusive(min, max) {//inclue o minino e maximo
         min = Math.ceil(min);
         max = Math.floor(max);

@@ -26,7 +26,7 @@ function Caixa(){
     }
     this.checarColisaoPersonagem = function(personagem,deslocamento){
         if(personagem.forma.colisao(this.forma.x+deslocamento,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
-            console.log("Colidiu Caixa");
+            console.log("X encaixe:");
             if(personagem.direcaoAtual == DIREITA){
                 this.direcaoAntiga =  DIREITA;
                 this.forma.x+=8;//multiplos de 2
@@ -45,6 +45,8 @@ function Caixa(){
                 this.forma.y+=8;
                
             }
+            console.log("X encaixe:"+this.forma.x);
+            console.log("Y encaixe:"+this.forma.y);
             return true;
         }
         return false;
