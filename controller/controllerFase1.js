@@ -76,18 +76,10 @@ function initgame(){
     
    
     cenario1.init([fase1c1Img,fase1c2Img,fase1c3Img],fase1c1Img.naturalHeight,fase1c1Img.naturalWidth,[fase1colisao]);
-    cenario1.addCaixas(1,1,caixa,312,192 - (3*32),24,24);
-    cenario1.addCaixas(1,1,caixaFalseImg,0,40,24,24);
-    cenario1.addCaixas(1,1,caixa,600,264,24,24);
-    cenario1.addCaixas(1,1,caixaFalseImg,864,32,24,24);
-
-    //c1.init(1,1,caixa,312,192 - (3*32),24,24); //caixa 1
-    //caixaC.init(1,1,caixa,0,40,32,30);//Caixa 2
-    //caixaC.init(1,1,caixa,600,264,32,30);//Caixa 3
-    //caixaC.init(1,1,caixa,864,32,24,24); //caixa 4
-
-    //colocar as 4 caixas no vetor
-    //usando add de cenario.
+    cenario1.addCaixas(1,1,caixa,312,192 - (3*32),24,24,true);
+    cenario1.addCaixas(1,1,caixa,0,40,24,24,true);
+    cenario1.addCaixas(1,1,caixa,600,264,24,24,true);
+    cenario1.addCaixas(1,1,caixaFalseImg,864,32,24,24,false);
 
     
     //Encaixe das caixs
@@ -214,7 +206,75 @@ function colisaoCaixa(){
     caixaC.checarColisaoFormas(fase1colisao.formasTile,deslocamento);
   }
 }
+function verificarRespostas(){//talvez possa ser um metodo de cenariq
+    //olhar se todas as caixas estao instaladas
+    //considerando tabela do OU!
+    //OU
+    // P Q POUQ 
+    // V V V
+    // V F V
+    // F V V
+    // F F F
+   
+    let encaixados = []
+    let erradas = [];
+    let msg = "Os encaixes ";
+    let msgE = "As Caixas ";
+    
+    for(let i = 0;i<cenario1.caixas.length;i++){
+        let caixaC = cenario1.caixas[i];
+        for (let j=0;j<cenario1.circulosCaixa.length;j++){
+            let c = cenario1.circulosCaixa[j];
+            
+            if(caixaC.forma.colisao(c.x,c.y,c.largura,c.altura)){//Se for vdd esse encaixe foi preenchido
+           
+                    
+                    encaixados.push((j+1));
+            
+                if(j==0 && caixaC.tipo!=true){//confere se esta no encaixe certo. 
+                    //encaixe 1
+                    erradas.push(i+1);
+                    if((i+1) in erradas == false)//a caixa i+1 esta posicionada errada!
+                       msgE+=" ,"+(i+1);
+                } //para tabela do ou  v v v f
+                   
+                else if(j==1 && caixaC.tipo!=true){
+                    erradas.push(i+1);
+                    if((i+1) in erradas == false)
+                        msgE+=" ,"+(i+1);
+                } //para tabela do ou  v v v f
+                else if(j==2 && caixaC.tipo!=true){
+                    erradas.push(i+1);
+                    if((i+1) in erradas == false)
+                        msgE+=" ,"+(i+1);
+                } //para tabela do ou  v v v f
+                  
+                else if(j==3 && caixaC.tipo!=false){
+                    erradas.push(i+1);
+                    if((i+1) in erradas == false)
+                        msgE+=" ,"+(i+1);
+                } //para tabela do ou  v v v f
+                    
+                break;
+            }
 
+        }
+    }
+
+    if(encaixados.length<4){
+        if(encaixados.length==0)
+             alert("Nehum Encaixe  foi preenchido!");
+        else
+        alert("Apenas os Encaixes "+ encaixados.toString()+" Foram Preenchidos!");
+    }
+        
+    else if(erradas.length>0)
+        alert(msgE+" Estão Incorretas!");
+    else
+        alert("Parabéns!!!");
+        
+    
+}
 function click(evt){
     
 }
@@ -265,6 +325,9 @@ function keyAdapterPersonagem(event){
         p.dx = 0;
         p.dy = p.velocidade; 
         p.atualizarForma();
+    }
+    else if(event.keyCode == 32){
+        verificarRespostas();
     }
     
     p.velocidade = 0;
