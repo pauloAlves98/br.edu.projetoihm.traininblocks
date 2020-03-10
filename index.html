@@ -22,14 +22,51 @@
                 right: 0px;
                 margin: auto;
             }
+         
+            #overlay{ 
+                position:absolute;
+                background-color:rgba(0,0,0,0.6);
+                top:-200px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                width:800px;
+                height:250px;
+                margin: auto;
+                display: none;
+                
+                
+            }
+            @keyframes animacaoBolada {
+             0%   { 
+             background: black;
+             width: 100px;
+             }
+            25%  { }
+            /* 50%  {  }
+            75%  {  } */
+            100% { }
+            }
+            .motionL{
+		     color:#669900;
+    
+             animation-name: animacaoBolada;
+             animation-duration: 2s;
+             animation-timing-function: ease;
+             animation-delay: 0s;
+             animation-iteration-count: initial;
+             animation-direction: left;
+             animation-play-state: running;
+	        }
         </style>
 
     </head>
     <body>
         <div id="frame">
-            <canvas id="canvas" width="800" height="500" >
+           <canvas id="canvas" width="800" height="500" >
             Se você visualizar esse texto, seu browser não suporta a tag canvas.
-            </canvas>
+            </canvas> 
+            <div class="motionL" id="overlay">Isso eh um alerta</div>
         </div>
         <script>
             var ctx;

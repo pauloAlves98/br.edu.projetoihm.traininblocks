@@ -325,15 +325,45 @@ function keyAdapterPersonagem(event){
         p.dx = 0;
         p.dy = p.velocidade; 
         p.atualizarForma();
+        // var elemento = document.getElementById('overlay');
+        // elemento.style.display="none";
     }
     else if(event.keyCode == 32){
         verificarRespostas();
+        // var elemento = document.getElementById('overlay');
+        
+        // elemento.style.display="block";
+        // delClass('overlay', 'motionL');
+        // addClass('overlay', 'motionL')
+       
+        
     }
     
     p.velocidade = 0;
     //console.log(p.velocidade);
 }
 
+function addClass(id, classe) {
+    var elemento = document.getElementById(id);
+    var classes = elemento.className.split(' ');
+    var getIndex = classes.indexOf(classe);
+  
+    if (getIndex === -1) {
+      classes.push(classe);
+      elemento.className = classes.join(' ');
+    }
+  }
+  //apagar
+  function delClass(id, classe) {
+    var elemento = document.getElementById(id);
+    var classes = elemento.className.split(' ');
+    var getIndex = classes.indexOf(classe);
+  
+    if (getIndex > -1) {
+      classes.splice(getIndex, 1);
+    }
+    elemento.className = classes.join(' ');
+  }
 window.addEventListener("load", main);
 //testar colisão;
 
