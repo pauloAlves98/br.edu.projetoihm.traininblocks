@@ -1,6 +1,8 @@
 //tudo que se move com deslocamento faz parte do cenario formas, caixas.
 function Personagem(){
-
+    
+    this.life = 100;
+    this.dano = 10;
     this.largura = 64;//32;
     this.altura = 45;
     this.x=0;
@@ -11,20 +13,19 @@ function Personagem(){
     this.sy = 0; 
     this.velocidade = 8;
     this.sprite = new Sprite();
-    this.direcaoAtual = 39;
+    this.direcaoAtual = DIREITA;
     this.emMovimento = false;
     this.dxForma = 16;//variacao da forma em relacao ao x do personagem.//multipo de 32//32 pq eh o tamanho do tile
     this.podeMudarSprite = false;//para controlar a velocidade da troca da sprite.
     this.forma = new Rectangle();
+    this.desl = 0;
 
     
-    
-
-    this.atualizarForma =function(){
+   this.atualizarForma =function(){
         this.forma.x = this.x+this.dxForma;
         this.forma.y = this.y+this.forma.altura;
     }
-    this.verificacaoEstouroSprite = function (){
+   this.verificacaoEstouroSprite = function (){
 
         if(this.sprite.aparencia>=this.sprite.columns)
             this.sprite.aparencia = 0;
@@ -32,7 +33,7 @@ function Personagem(){
         this.podeMudarSprite = false;
     }
     
-    this.atualizaSprite = function (context,direcao){
+   this.atualizaSprite = function (context,direcao){
         // i * width, j * height, width, height
         // ( imagem , sx(xdocorte) , sy(do cotre) , sWidth (do corte), sHeight(do corte) , dx (posicao na tela), dy , dWidth , dHeight );
         if(this.emMovimento && this.podeMudarSprite && direcao == DIREITA){
@@ -76,7 +77,7 @@ function Personagem(){
 
      this.checarColisaoCenario =  function (formas, deslocamento,larguraCenario,alturaCenario){
         //console.log("vai chechar "+formas.length);
-        if(this.forma.x <=  0 ){
+        if(this.forma.x <= 0 ){
             this.x=0-this.dxForma;
             this.atualizarForma();
             
@@ -96,14 +97,22 @@ function Personagem(){
         for (let i = 0;i<formas.length;i++){
             if(this.forma.colisao(formas[i].x + deslocamento,formas[i].y,formas[i].largura,formas[i].altura)){
                 console.log("Colisao "+formas[i].x);
-                this.x+=-this.dx;//dx é o que foii andado.
-               
+                this.x+=-this.dx;//dx é o que foi andado.
                 this.y+=-this.dy;
                 this.atualizarForma();
                 //this.y-=2;
                 return true;
             }
 
+        }
+     }
+    
+     this.deslocamento = function(larguraVisivel,larguraMap ){
+        if(this.x> larguraVisivel/2){
+            if(this.x<(larguraMap - larguraVisivel/2))//pega a variação de movimento
+                this.desl = -(this.x-(larguraVisivel/2));
+                //getFase1().setxCena(-(personagem.x-(larguraVisivel/2)));
+                
         }
      }
     
