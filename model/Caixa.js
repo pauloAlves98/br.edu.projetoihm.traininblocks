@@ -3,7 +3,9 @@ function Caixa(){
     this.sprite = new Sprite();
     this.forma = new Rectangle();
     this.direcaoAntiga = 39;
+    this.velocidade = 8; //velocidade a que ela se locomove
     this.tipo = true;
+    
     this.init = function(rows,columns,img,x,y,altura,largura){
         this.sprite.carregarSprite(rows,columns,img);
         this.forma.init(x,y,altura,largura);
@@ -24,25 +26,25 @@ function Caixa(){
         }
         return false;
     }
-    this.checarColisaoPersonagem = function(personagem,deslocamento){
-        if(personagem.forma.colisao(this.forma.x+deslocamento,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
+    this.checarColisaoPersonagem = function(personagem){
+        if(personagem.forma.colisao(this.forma.x+personagem.desl,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
             console.log("X encaixe:");
             if(personagem.direcaoAtual == DIREITA){
                 this.direcaoAntiga =  DIREITA;
-                this.forma.x+=8;//multiplos de 2
+                this.forma.x+=this.velocidade;//multiplos de 2
                 
             }else if(personagem.direcaoAtual ==ESQUERDA){
                 this.direcaoAntiga =  ESQUERDA;
-                this.forma.x-=8;
+                this.forma.x-=this.velocidade;
                 
             }else if(personagem.direcaoAtual == CIMA){
                 this.direcaoAntiga =  CIMA;
-                this.forma.y-=8;
+                this.forma.y-=this.velocidade;
                 
             }
             else if(personagem.direcaoAtual == BAIXO){
                 this.direcaoAntiga = BAIXO;
-                this.forma.y+=8;
+                this.forma.y+=this.velocidade;
                
             }
             console.log("X encaixe:"+this.forma.x);

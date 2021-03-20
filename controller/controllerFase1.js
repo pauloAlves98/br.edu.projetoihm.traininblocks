@@ -4,6 +4,7 @@ var viloes= new Array();
 var fase1colisao = new Camada();
 var cenario1 = new Cenario();
 
+//adiconar logica da 1 fase e imagens
 
 function myTimer (){
     personagem.podeMudarSprite  = true;
@@ -122,9 +123,6 @@ function main(){
     document.addEventListener('keydown', keyAdapterPersonagem);
     myVar = setInterval(myTimer, 1000/10);
     movimentoVilao()
-   
-    
- 
 }
 function movimentoVilao(){
 
@@ -165,7 +163,7 @@ function desenha(){
     ctx.drawImage(cenario1.camadasImg[2],personagem.desl,0,cenario1.largura,cenario1.altura);
    // ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,200 - (3*32),32,32);
     //ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 32,32,32);
-
+    console.log("Deslocamento "+personagem.desl)
     //Gradiente
     ctx.fillStyle = "white";
     ctx.font = "24px sans-serif ";
@@ -224,6 +222,16 @@ function desenha(){
     ctx.fillStyle = "black";
     ctx.fillRect(0,320,926,180);
     ctx.drawImage(bordaInventarioImg,-15,320,830,180);
+    ctx.fillStyle = "white";
+    ctx.font = '12px CENTURY GOTHIC';
+
+    ctx.fillText('LIFE: '+personagem.life, 200, 352);
+    
+    ctx.fillText('ENCAIXE 1: V OU V = ?', 25, 352);
+    ctx.fillText('ENCAIXE 2: V OU V = ?', 25, 364);
+    ctx.fillText('ENCAIXE 3: V OU F = ?', 25, 376);
+    ctx.fillText('ENCAIXE 4: V OU V = ?', 25, 388);
+
 }
 
 function renderiza(){
@@ -235,7 +243,7 @@ function colisaoCaixa(){
   //caixaC.checarColisao([],deslocamento,804,cenario1.altura,personagem);
   for(let i = 0;i<cenario1.caixas.length;i++){
       let caixaC = cenario1.caixas[i];
-    if(caixaC.checarColisaoPersonagem(personagem,personagem.desl)){
+    if(caixaC.checarColisaoPersonagem(personagem)){
         personagem.x+=-personagem.dx;
         personagem.y+=-personagem.dy;
         personagem.atualizarForma();
@@ -268,25 +276,26 @@ function verificarRespostas(){//talvez possa ser um metodo de cenariq
            
                     
                     encaixados.push((j+1));
-            
+                    //corresponde a confição V OU V = ?
                 if(j==0 && caixaC.tipo!=true){//confere se esta no encaixe certo. 
                     //encaixe 1
                     erradas.push(i+1);
                     if((i+1) in erradas == false)//a caixa i+1 esta posicionada errada!
                        msgE+=" ,"+(i+1);
                 } //para tabela do ou  v v v f
-                   
+                    //corresponde a confição V OU V = ?
                 else if(j==1 && caixaC.tipo!=true){
                     erradas.push(i+1);
                     if((i+1) in erradas == false)
                         msgE+=" ,"+(i+1);
                 } //para tabela do ou  v v v f
+                 //corresponde a confição V OU V = ?
                 else if(j==2 && caixaC.tipo!=true){
                     erradas.push(i+1);
                     if((i+1) in erradas == false)
                         msgE+=" ,"+(i+1);
                 } //para tabela do ou  v v v f
-                  
+                   //corresponde a confição V OU F = ?
                 else if(j==3 && caixaC.tipo!=false){
                     erradas.push(i+1);
                     if((i+1) in erradas == false)
@@ -352,11 +361,11 @@ function keyAdapterPersonagem(event){
     }
     else if(event.keyCode == 32){
         verificarRespostas();
-        // var elemento = document.getElementById('overlay');
+    //    var elemento = document.getElementById('overlay');
         
-        // elemento.style.display="block";
-        // delClass('overlay', 'motionL');
-        // addClass('overlay', 'motionL')
+    //      elemento.style.display="block";
+    //      delClass('overlay', 'motionL');
+    //      addClass('overlay', 'motionL')
        
         
     }
@@ -387,11 +396,7 @@ function addClass(id, classe) {
     elemento.className = classes.join(' ');
   }
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-} 
+
 window.addEventListener("load", main);
 //testar colisão;
 

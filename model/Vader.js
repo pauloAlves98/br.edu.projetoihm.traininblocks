@@ -85,6 +85,11 @@ function Vader(){
         if(personagem.forma.colisao(this.forma.x+personagem.desl,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
             this.x+=-this.dx;//dx é o que foii andado.
             this.y+=-this.dy;
+
+            // personagem.x+=-personagem.dx;
+            // personagem.y+=-personagem.dy;
+            personagem.aplicarDano();
+            personagem.atualizarForma();
             this.atualizarForma();
             this.novadirecao();
             return true;

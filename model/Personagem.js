@@ -20,7 +20,9 @@ function Personagem(){
     this.forma = new Rectangle();
     this.desl = 0;
 
-    
+   this.aplicarDano = function (){
+        this.life-=this.dano;
+   }
    this.atualizarForma =function(){
         this.forma.x = this.x+this.dxForma;
         this.forma.y = this.y+this.forma.altura;
