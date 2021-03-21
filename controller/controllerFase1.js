@@ -81,6 +81,7 @@ function initgame(){
   
   
     cenario1.init([fase1c1Img,fase1c2Img,fase1c3Img],fase1c1Img.naturalHeight,fase1c1Img.naturalWidth,[fase1colisao]);
+   
     cenario1.addCaixas(1,1,caixa,312,192 - (3*32),24,24,true);
     cenario1.addCaixas(1,1,caixa,0,40,24,24,true);
     cenario1.addCaixas(1,1,caixa,600,264,24,24,true);
@@ -163,7 +164,7 @@ function desenha(){
     ctx.drawImage(cenario1.camadasImg[2],personagem.desl,0,cenario1.largura,cenario1.altura);
    // ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,200 - (3*32),32,32);
     //ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 32,32,32);
-    console.log("Deslocamento "+personagem.desl)
+    //console.log("Deslocamento "+personagem.desl)
     //Gradiente
     ctx.fillStyle = "white";
     ctx.font = "24px sans-serif ";
