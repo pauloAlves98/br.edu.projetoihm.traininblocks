@@ -4,12 +4,34 @@ var viloes= new Array();
 var fase1colisao = new Camada();
 var cenario1 = new Cenario();
 
-//adiconar logica da 1 fase e imagens
-
-function myTimer (){
-    personagem.podeMudarSprite  = true;
-
+function main(){ //chama todas
+   $(document).ready(function(){
+       $('#frame').append('<div id="loading"></div>');
+       $('#loading').append('<div ></div>');
+       $('#loading').append('<div ></div>');
+       $('#loading').append('<div ></div>');
+       $('#loading').append('<div ></div>');
+       addClass('loading', 'lds-ellipsis');
+       carregarImagensdoJogo();
+       document.addEventListener("mousedown", click);
+       document.addEventListener('keydown', keyAdapterPersonagem);
+       myVar = setInterval(myTimer, 1000/10);
+       movimentoVilao()
+   });
+  
 }
+
+function loopGame(){
+    renderiza();
+    desenha();
+    window.requestAnimationFrame(loopGame);
+}
+
+function myTimer (){//metodo de personagem.
+    personagem.podeMudarSprite  = true;
+}
+
+// ter uma classe main
 function carregarImagensdoJogo(){
 
     perImg.src = "assets/trump.png";
@@ -21,16 +43,11 @@ function carregarImagensdoJogo(){
     bordaInventarioImg.src = "assets/fundo2.png";
 
     perImg.onload = function(){
-        console.log("0");
+        //inicio load
         fase1c1Img.onload = function(){
-            console.log("1");
             fase1c2Img.onload = function(){
-                console.log("2");
-
                 fase1c3Img.onload = function(){
-                    
                     caixa.onload = function(){
-                        console.log("3");
                         caixaenergia.src = "assets/caixaenergia.png";
                         caixaenergia.onload = function(){
                            circuloImg.src = "assets/circulo.png";
@@ -39,7 +56,14 @@ function carregarImagensdoJogo(){
                                 caixaFalseImg.onload = function(){
                                     vilaoImg.src = "assets/vader.png";
                                     vilaoImg.onload = function(){
-                                        initgame();
+                                        setTimeout(function(){
+                                            $("#loading").remove();
+                                            $('#contentCanvas').append('<canvas id="canvas" width="800px" height="500px"></canvas>')
+                                            $('#contentCanvas').addClass("motionL");//transição
+                                            // delClass("contentCanvas","motionL");
+                                            // addClass("contentCanvas","motionL");
+                                            initgame();                                                                            
+                                        }, 2000);
                                     }
                                 }  
                            }
@@ -50,6 +74,9 @@ function carregarImagensdoJogo(){
                 }
             }
         }
+
+        //fim load
+
     }
 }
 
@@ -66,8 +93,6 @@ function initgame(){
         81,82,83,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,
         97,98,99,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0];//camada de colisao fase1
     
-       
-  
     ctx = document.getElementById("canvas").getContext("2d");
     document.getElementById("canvas").style.border = "1px solid gray";
 
@@ -118,13 +143,7 @@ function initgame(){
     
 }
 
-function main(){
-    carregarImagensdoJogo();
-    document.addEventListener("mousedown", click);
-    document.addEventListener('keydown', keyAdapterPersonagem);
-    myVar = setInterval(myTimer, 1000/10);
-    movimentoVilao()
-}
+
 function movimentoVilao(){
 
     
@@ -143,41 +162,23 @@ function movimentoVilao(){
 function click(evt){
 
 }
-function loopGame(){
-    renderiza();
-    desenha();
-    window.requestAnimationFrame(loopGame);
-}
+
 function desenha(){
    
     
     //ctx.font = "30px Arial ";
-    
-    //ctx.shadowOffsetX = 0;
     ctx.fillStyle = "white";
     ctx.fillRect(0,0,926,500);
-   
-    //console.log(deslocamento+" DECLA DESENHA");
+
     //Camadas
     ctx.drawImage(cenario1.camadasImg[0],personagem.desl,0,cenario1.largura,cenario1.altura)
     ctx.drawImage(cenario1.camadasImg[1],personagem.desl,0,cenario1.largura,cenario1.altura);
     ctx.drawImage(cenario1.camadasImg[2],personagem.desl,0,cenario1.largura,cenario1.altura);
-   // ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,200 - (3*32),32,32);
-    //ctx.drawImage(caixa,400-(3*32) +20 +deslocamento,(200 - (3*32)) + 32,32,32);
-    //console.log("Deslocamento "+personagem.desl)
+   
     //Gradiente
     ctx.fillStyle = "white";
     ctx.font = "24px sans-serif ";
    
-
-    //ctx.shadowOffsetX = 0;
-    
-    
-    //colisao encaixe e caixa
-
-
-    //fazer img de caix F
-    //fazer inventario
     //Encaixes
     for(let i=0;i<cenario1.circulosCaixa.length;i++){
        
@@ -202,7 +203,6 @@ function desenha(){
     }
    
     //Personagem
-    
     personagem.atualizaSprite(ctx, personagem.direcaoAtual);
 
     for(let i=0;i<viloes.length;i++){
@@ -213,6 +213,7 @@ function desenha(){
         vilao.atualizaSprite(ctx,vilao.direcaoAtual,personagem.desl);
         
     }
+
     //formas Cenario.
     ctx.strokeRect(personagem.forma.x,  personagem.forma.y, personagem.forma.largura,  personagem.forma.altura);
     for(let i = 0;i<fase1colisao.formasTile.length;i++){
@@ -220,6 +221,7 @@ function desenha(){
         ctx.strokeRect((forma.x + personagem.desl),  forma.y, forma.largura,  forma.altura);//deslocamento ja vem negativo.
         //console.log(i);
     }
+    
     ctx.fillStyle = "black";
     ctx.fillRect(0,320,926,180);
     ctx.drawImage(bordaInventarioImg,-15,320,830,180);

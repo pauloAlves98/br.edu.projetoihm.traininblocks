@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>GAME IHM</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="model/Constantes.js"> </script>
         <script type="text/javascript" src="model/Imagens.js"> </script>
         <script type="text/javascript" src="model/Camada.js"> </script>
@@ -13,10 +14,14 @@
         <script type="text/javascript" src="model/Vader.js"> </script>
         <script type="text/javascript" src="model/Personagem.js"> </script>
        
-        <script type="text/javascript" src="controller/ControllerFase1.js"> </script>
+        <script type="text/javascript" src="controller/ControllerFase1.js"> </script> 
 
         <style>
-           #canvas{
+         #contentCanvas{ 
+                height: 500px;
+                width: 800px;
+          }
+          #canvas,#contentCanvas{
                 position: absolute;
                 top:0px;
                 bottom: 0px;
@@ -25,7 +30,7 @@
                 margin: auto;
             }
          
-            #overlay{ 
+          #overlay{ 
                 position:absolute;
                 background-color:rgba(0,0,0,0.6);
                 top:-200px;
@@ -48,8 +53,8 @@
             100% { }
             }
             .motionL{
-		     color:#669900;
-    
+		         color:#669900;
+             background-color: black;
              animation-name: animacaoBolada;
              animation-duration: 2s;
              animation-timing-function: ease;
@@ -58,19 +63,79 @@
              animation-direction: left;
              animation-play-state: running;
 	        }
-        </style>
+
+            /* load */
+        .lds-ellipsis {
+            position: absolute;
+            top:0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            margin: auto;
+            width: 80px;
+            height: 80px;
+          }
+        .lds-ellipsis div {
+          position: absolute;
+          top: 33px;
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: black;
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis div:nth-child(1) {
+          left: 8px;
+          animation: lds-ellipsis1 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(2) {
+          left: 8px;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(3) {
+          left: 32px;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(4) {
+          left: 56px;
+          animation: lds-ellipsis3 0.6s infinite;
+        }
+        @keyframes lds-ellipsis1 {
+          0% {
+            transform: scale(0);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        @keyframes lds-ellipsis3 {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(0);
+          }
+        }
+        @keyframes lds-ellipsis2 {
+          0% {
+            transform: translate(0, 0);
+          }
+          100% {
+            transform: translate(24px, 0);
+          }
+        }
+
+            /* load */
+      </style>
 
     </head>
     <body>
         <div id="frame">
-           <canvas id="canvas" width="800" height="500" >
-            Se você visualizar esse texto, seu browser não suporta a tag canvas.
-            </canvas> 
-            <div class="motionL" id="overlay">Isso eh um alerta</div>
+          <div id="contentCanvas">
+            <!-- canvas aqui -->
+         </div>
+          <!-- <div class="motionL" id="overlay">Isso eh um alerta</div> -->
         </div>
-        <script>
-            var ctx;
-        </script>
     </body>
 </html>
 
