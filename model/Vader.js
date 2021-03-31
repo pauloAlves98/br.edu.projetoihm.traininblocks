@@ -88,8 +88,6 @@ function Vader(){
 
             // personagem.x+=-personagem.dx;
             // personagem.y+=-personagem.dy;
-            personagem.aplicarDano();
-            personagem.atualizarForma();
             this.atualizarForma();
             this.novadirecao();
             return true;

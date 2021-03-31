@@ -46,12 +46,12 @@ function Cenario(){
         }
      }
 
-    this.addCirculos = function(x,y,largura,altura){
+    this.addCirculos = function(x,y,largura,altura,expressao,valor){
          //o circulo nao pode colidir com o cenario
          //o circulo nao pode colidir com a caixa;
          //circulo nao pode colidir com outro circulo;
-         let r = new Rectangle();
-         r.init(x,y,largura,altura);
+         let r = new Circulo();
+         r.init(x,y,largura,altura,expressao,valor);
          this.circulosCaixa.push(r);
     }
     this.addEncaixes = function (x,y){

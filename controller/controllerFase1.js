@@ -24,9 +24,14 @@ function main(){ //chama todas
 function loopGame(){
     renderiza();
     desenha();
-    window.requestAnimationFrame(loopGame);
+    checarLoop();
 }
-
+function checarLoop(){
+    if(!personagem.checarGameOver())
+        window.requestAnimationFrame(loopGame);
+    else
+        alert("Game Over");
+}
 function myTimer (){//metodo de personagem.
     personagem.podeMudarSprite  = true;
 }
@@ -121,10 +126,10 @@ function initgame(){
     }
 
     //Encaixe das caixs
-    cenario1.addCirculos(300,250,32,32);//304x 256y encaixe
-    cenario1.addCirculos(900,204,32,32);//pos encaixe 904x 208y
-    cenario1.addCirculos(700,34,32,32);//704x 40y encaixe
-    cenario1.addCirculos(4,224,32,32);//8x 224y encaixe.
+    cenario1.addCirculos(300,250,32,32,"V OU V",true);//304x 256y encaixe
+    cenario1.addCirculos(900,204,32,32,"V OU F",true);//pos encaixe 904x 208y
+    cenario1.addCirculos(700,34,32,32,"F OU V",true);//704x 40y encaixe
+    cenario1.addCirculos(4,224,32,32,"F OU F",false);//8x 224y encaixe.
     
     //Encaixes Perfeitos
     cenario1.addEncaixes(304,256);
@@ -147,15 +152,15 @@ function initgame(){
 function movimentoVilao(){
 
     
-    for(let i = 0;i<viloes.length;i++){ //faze andar no cenario. 
+    for(let i = 0;i<viloes.length;i++){ //fazer andar no cenario. 
         let vilao = viloes[i];
         vilao.andar()
-        //vilao.deslocamento(800,960)//800 é a pate visivel e 960 a tla inteira
+        //vilao.deslocamento(800,960)//800 é a parte visivel e 960 a tla inteira
         vilao.checarColisaoCenario(fase1colisao.formasTile,0,960,cenario1.altura)//vilao nao precisa de deslocamento pois pode ser considerado a tela inteira para ele.
-        vilao.checarColisaoPersonagem(personagem)?"aplicar dano":"nao aplicar dano";
+        vilao.checarColisaoPersonagem(personagem)? personagem.aplicarDano():"nao aplicar dano";
     } 
 
-    setTimeout(movimentoVilao,1000/10);
+    setTimeout(movimentoVilao,1000/10);//atualizar sprite
    
     
 }
@@ -230,17 +235,17 @@ function desenha(){
 
     ctx.fillText('LIFE: '+personagem.life, 200, 352);
     
-    ctx.fillText('ENCAIXE 1: V OU V = ?', 25, 352);
-    ctx.fillText('ENCAIXE 2: V OU V = ?', 25, 364);
-    ctx.fillText('ENCAIXE 3: V OU F = ?', 25, 376);
-    ctx.fillText('ENCAIXE 4: V OU V = ?', 25, 388);
-
+    drawValorCaixas(ctx)
+    //funcao para printar valor da caixas na tela.
+    
 }
 
 function renderiza(){
    personagem.checarColisaoCenario(fase1colisao.formasTile,personagem.desl,804,cenario1.altura);//pq o canvas eh maior que a altura jogavel do cenario
    colisaoCaixa();
    personagem.deslocamento(800,960);
+   //verificar encaixes
+   
 }
 function colisaoCaixa(){
   //caixaC.checarColisao([],deslocamento,804,cenario1.altura,personagem);
@@ -254,6 +259,25 @@ function colisaoCaixa(){
     caixaC.checarColisaoLimites(960,cenario1.altura);
     caixaC.checarColisaoFormas(fase1colisao.formasTile,personagem.desl);
   }
+}
+
+function drawValorCaixas(ctx){
+        for (let j=0;j<cenario1.circulosCaixa.length;j++){
+            let c = cenario1.circulosCaixa[j];
+            let colidiu = false;
+            for(let i = 0;i<cenario1.caixas.length;i++){
+                let caixaC = cenario1.caixas[i];
+                if(caixaC.forma.colisao(c.x,c.y,c.largura,c.altura)){//Se for vdd esse encaixe foi preenchido
+                    ctx.fillText('ENCAIXE: '+String(j+1)+" : "+c.expressaoLogica+' = '+caixaC.tipo,25,352+(j*12));
+                    colidiu = true;
+                    break;
+                }
+                  
+            }
+            if(!colidiu)
+                 ctx.fillText('ENCAIXE '+String(j+1)+" : "+c.expressaoLogica+' = ?',25,352+(j*12));
+        }
+    
 }
 function verificarRespostas(){//talvez possa ser um metodo de cenariq
     //olhar se todas as caixas estao instaladas
@@ -270,7 +294,7 @@ function verificarRespostas(){//talvez possa ser um metodo de cenariq
     let msg = "Os encaixes ";
     let msgE = "As Caixas ";
     
-    for(let i = 0;i<cenario1.caixas.length;i++){
+    for(let i = 0;i<cenario1.caixas.length;i++){//AJEITAR - uma classe circulo foi adicionada, adaptar esta função
         let caixaC = cenario1.caixas[i];
         for (let j=0;j<cenario1.circulosCaixa.length;j++){
             let c = cenario1.circulosCaixa[j];

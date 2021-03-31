@@ -22,6 +22,14 @@ function Personagem(){
 
    this.aplicarDano = function (){
         this.life-=this.dano;
+        if(this.life<=0)
+            this.life = 0; 
+        this.atualizarForma(); 
+   }
+   this.checarGameOver = function (){
+        if(this.life<=0)
+            return true;
+        return false;
    }
    this.atualizarForma =function(){
         this.forma.x = this.x+this.dxForma;
