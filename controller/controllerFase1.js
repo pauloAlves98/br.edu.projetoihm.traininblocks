@@ -38,20 +38,17 @@ function myTimer (){//metodo de personagem.
 
 // ter uma classe main
 function carregarImagensdoJogo(){
-
     perImg.src = "assets/trump.png";
-    fase1c1Img.src = "mapas/fase1/camada1fase1.png";
-    fase1c2Img.src = "mapas/fase1/camada2fase1.png";
-    fase1c3Img.src = "mapas/fase1/camada3fase1.png";
-    caixa.src = "assets/caixa2.png";
-    circuloImg.src = "assets/circulo.png";
     bordaInventarioImg.src = "assets/fundo2.png";
-
     perImg.onload = function(){
         //inicio load
+        fase1c1Img.src = "mapas/fase1/camada1fase1.png";
         fase1c1Img.onload = function(){
+            fase1c2Img.src = "mapas/fase1/camada2fase1.png";
             fase1c2Img.onload = function(){
+                fase1c3Img.src = "mapas/fase1/camada3fase1.png";
                 fase1c3Img.onload = function(){
+                    caixa.src = "assets/caixa2.png";
                     caixa.onload = function(){
                         caixaenergia.src = "assets/caixaenergia.png";
                         caixaenergia.onload = function(){
@@ -68,7 +65,7 @@ function carregarImagensdoJogo(){
                                             // delClass("contentCanvas","motionL");
                                             // addClass("contentCanvas","motionL");
                                             initgame();                                                                            
-                                        }, 2000);
+                                        }, 2000);//2 segundos para aparecer tela de carregamento!
                                     }
                                 }  
                            }
@@ -173,13 +170,14 @@ function desenha(){
     
     //ctx.font = "30px Arial ";
     ctx.fillStyle = "white";
-    ctx.fillRect(0,0,926,500);
-
+    //ctx.fillRect(0,0,926,500);
+    
     //Camadas
     ctx.drawImage(cenario1.camadasImg[0],personagem.desl,0,cenario1.largura,cenario1.altura)
     ctx.drawImage(cenario1.camadasImg[1],personagem.desl,0,cenario1.largura,cenario1.altura);
     ctx.drawImage(cenario1.camadasImg[2],personagem.desl,0,cenario1.largura,cenario1.altura);
-   
+    
+   // console.log("Altuta: "+cenario1.altura)
     //Gradiente
     ctx.fillStyle = "white";
     ctx.font = "24px sans-serif ";
@@ -227,10 +225,10 @@ function desenha(){
         //console.log(i);
     }
     
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,320,926,180);
-    ctx.drawImage(bordaInventarioImg,-15,320,830,180);
     ctx.fillStyle = "white";
+    ctx.fillRect(0,cenario1.altura,926,180);
+    ctx.drawImage(bordaInventarioImg,-15,320,830,180);
+    ctx.fillStyle = "black";
     ctx.font = '12px CENTURY GOTHIC';
 
     ctx.fillText('LIFE: '+personagem.life, 200, 352);
@@ -272,82 +270,46 @@ function drawValorCaixas(ctx){
                     colidiu = true;
                     break;
                 }
-                  
             }
             if(!colidiu)
                  ctx.fillText('ENCAIXE '+String(j+1)+" : "+c.expressaoLogica+' = ?',25,352+(j*12));
-        }
-    
+        } 
 }
+//AJEITAR ALERTA E HISTORIAS.
 function verificarRespostas(){//talvez possa ser um metodo de cenariq
-    //olhar se todas as caixas estao instaladas
-    //considerando tabela do OU!
-    //OU
     // P Q POUQ 
     // V V V
     // V F V
     // F V V
     // F F F
-   
-    let encaixados = []
-    let erradas = [];
-    let msg = "Os encaixes ";
-    let msgE = "As Caixas ";
+    let errados = [];
+    let certos = [];
     
-    for(let i = 0;i<cenario1.caixas.length;i++){//AJEITAR - uma classe circulo foi adicionada, adaptar esta função
-        let caixaC = cenario1.caixas[i];
-        for (let j=0;j<cenario1.circulosCaixa.length;j++){
-            let c = cenario1.circulosCaixa[j];
-            
+    //olhar se a caixa colide com algum circulo e nao o circulo com a caixa!
+    for (let j=0;j<cenario1.circulosCaixa.length;j++){
+        let c = cenario1.circulosCaixa[j];
+        let colidiu = false;
+        for(let i = 0;i<cenario1.caixas.length;i++){
+            let caixaC = cenario1.caixas[i];
             if(caixaC.forma.colisao(c.x,c.y,c.largura,c.altura)){//Se for vdd esse encaixe foi preenchido
-           
-                    
-                    encaixados.push((j+1));
-                    //corresponde a confição V OU V = ?
-                if(j==0 && caixaC.tipo!=true){//confere se esta no encaixe certo. 
-                    //encaixe 1
-                    erradas.push(i+1);
-                    if((i+1) in erradas == false)//a caixa i+1 esta posicionada errada!
-                       msgE+=" ,"+(i+1);
-                } //para tabela do ou  v v v f
-                    //corresponde a confição V OU V = ?
-                else if(j==1 && caixaC.tipo!=true){
-                    erradas.push(i+1);
-                    if((i+1) in erradas == false)
-                        msgE+=" ,"+(i+1);
-                } //para tabela do ou  v v v f
-                 //corresponde a confição V OU V = ?
-                else if(j==2 && caixaC.tipo!=true){
-                    erradas.push(i+1);
-                    if((i+1) in erradas == false)
-                        msgE+=" ,"+(i+1);
-                } //para tabela do ou  v v v f
-                   //corresponde a confição V OU F = ?
-                else if(j==3 && caixaC.tipo!=false){
-                    erradas.push(i+1);
-                    if((i+1) in erradas == false)
-                        msgE+=" ,"+(i+1);
-                } //para tabela do ou  v v v f
-                    
+                if(c.verificarRespostas(caixaC))
+                    certos.push(j+1);
+                else
+                    errados.push(j+1)
+                colidiu = true;
                 break;
-            }
-
+            } 
         }
-    }
+    } 
 
-    if(encaixados.length<4){
-        if(encaixados.length==0)
-             alert("Nehum Encaixe  foi preenchido!");
-        else
-        alert("Apenas os Encaixes "+ encaixados.toString()+" Foram Preenchidos!");
-    }
-        
-    else if(erradas.length>0)
-        alert(msgE+" Estão Incorretas!");
+    if(certos.length==0 && errados.length==0)
+         alert("NEUNHUM ENCAIXE FOI PREENCHIDO!");
+    else if(errados.length!=0 && errados.length<4 || certos.length!=0 && certos.length<4)
+         alert('ENCAIXES PREENCHIDOS:'+errados.toString()+","+certos.toString())
+    else if(errados.length!=0)
+         alert('ENCAIXES:'+errados.toString() + " INCORRETOS!")
     else
-        alert("Parabéns!!!");
-        
-    
+         alert("PARABÉNS!!!");   
 }
 function keyAdapterPersonagem(event){
     //console.log("adp");
@@ -388,11 +350,11 @@ function keyAdapterPersonagem(event){
     }
     else if(event.keyCode == 32){
         verificarRespostas();
-    //    var elemento = document.getElementById('overlay');
+        var elemento = document.getElementById('overlay');
         
-    //      elemento.style.display="block";
-    //      delClass('overlay', 'motionL');
-    //      addClass('overlay', 'motionL')
+         elemento.style.display="block";
+        //  delClass('overlay', 'motionL');
+        //  addClass('overlay', 'motionL')
        
         
     }
