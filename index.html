@@ -160,7 +160,7 @@
     #inventario {
       /* vertical-align: top; */
       height: 180px;
-      width: 798px;
+      width: 800px;
       overflow: hidden;
       background-color: white;
       text-align: center;
@@ -168,8 +168,8 @@
       font-size: 30px;
       /* border-bottom-left-radius: 50%; */
       /* border-bottom-right-radius: 50%; */
-      border: 3px solid #1d210b;
-      background-color: rgba(12, 5, 5, 0.193);
+      /* border: 3px solid #1d210b; */
+      background-color: rgb(218, 218, 218);
       font-family: splurge;
       font-weight: bold;
       /* background-color: rgba(17, 9, 9, 0); */
@@ -179,15 +179,25 @@
     padding: -1px; */
     }
 
-    .containerLife {
+    /* container para barra de life */
+
+    .container-inventario-card-barralife {
+      background-color: slateblue;
       margin: 0px auto;
-      width: 200px;
+      width: 250px;
       /* text-align: center; */
       position: absolute;
-      top: 16px;
-      left: 48px;
+      top: 0px;
+      left: 0px;
     }
-
+    .card-barralife{
+      position: absolute;
+      top: 30px;
+      left: 43px;
+      width: 207px;
+      /* 207 px pq o contiane total (.container-inventario-card-barralife) é 250, então 250px menos 43px de deslocamento left.*/
+    }
+    /*  */
     .progress {
       padding: 6px;
       background: rgba(158, 150, 150, 0.288);
@@ -196,27 +206,28 @@
     }
 
     .progress-bar {
-      height: 18px;
-      background-color: #1d1a1a;
+      height: 20px;
+      /* background-color: #1d1a1a; */
+      background-color: rgb(81, 252, 89);
+      width: 100%;
       border-radius: 4px;
       transition: 0.4s linear;
       text-align: top;
       transition-property: width, background-color;
     }
 
-    .progress-striped .progress-bar {
+    /* .progress-striped .progress-bar {
       background-color: rgb(81, 252, 89);
-      width: 100%;
-      /* background-image: linear-gradient(
+      width: 90%; */
+    /* background-image: linear-gradient(
           45deg, rgb(8, 5, 1) 25%, 
           transparent 25%, transparent 50%, 
           rgb(32, 29, 25) 50%, rgb(29, 28, 27) 75%,
           transparent 75%, transparent);  */
-      animation: progressAnimationStrike 6s;
-    }
-
+    /* animation: progressAnimationStrike 6s; */
+    /* } */
+    /* indica o valor do progresso - texto na barra de life */
     .progress-valor {
-
       top: 0px;
       left: 40%;
       text-align: center;
@@ -224,10 +235,25 @@
       font-size: 25px;
     }
 
-    /* Clip arts */
-    .divClip {
-      top: 8px;
-      left: 5px;
+    /* Clip art do personagem */
+    .item-nome-person-clip {
+      /*nome da figura traduzida*/
+      font-family: HVD_Comic_Serif_Pro;
+      position: absolute;
+      top: 0px;
+      left: 58px;
+      /* position: absolute;
+      top: 0px;
+      left: 0px; */
+      width: 190px;
+      /* height: 30%; */
+      font-size: 12px;
+      text-align: left;
+      /* background-color: seagreen; */
+    }
+    .item-img-person-clip{
+      top: 10px;
+      left: 3px;
       position: absolute;
       background-image: linear-gradient(80deg, rgb(117, 117, 129), rgb(218, 218, 218));
       height: 50px;
@@ -236,7 +262,8 @@
       border: 2px solid rgb(54, 54, 68);
     }
 
-    .arrowClip {
+    /* imagem dentro do clipart do personagem */
+    .img-person-clip {
       height: 90%;
       width: 90%;
       border-radius: 360px;
@@ -245,16 +272,15 @@
     }
 
     /* Desafio */
-   
-
     .container-inventario-card-expressao-logica {
       /* vertical-align: bottom; */
-      top: 0px;
+      top: 5px;
       left: 455px;
       position: absolute;
       /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
       /* height: 100px; */
       width: 300px;
+      /* background-color: rgb(189, 0, 0); */
       border-radius: 40px;
       /* border: 2px solid rgb(52, 141, 114); */
       /* border-bottom: 5px solid #1d1f1e; */
@@ -273,24 +299,32 @@
       letter-spacing: 1px;
       animation: mymove 5s;
     } */
-    .card-expressao-logica{
+    .card-expressao-logica {
       font-family: HVD_Comic_Serif_Pro;
-      position: absolute;
+      /* position: absolute; */
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap:wrap;
       /* top: 25px; */
     }
-    .titulo-card-expressao-logica{
+
+    .titulo-card-expressao-logica {
       /*nome da figura traduzida*/
       font-family: HVD_Comic_Serif_Pro;
       /* position: absolute;
       top: 0px;
       left: 0px; */
-      width: 300px;
-      font-size: 24px;
-      text-align: center;
+
+      width: 100%;
+      font-size: 15px;
+      text-align: left;
     }
-    .item-card-expressao-logica{
+
+    .item-card-expressao-logica {
       display: flex;
-      width: 300px;
+      
+      width: 100%;
       margin-bottom: 2px;
       border-top-left-radius: 40px;
       border-top-right-radius: 0px;
@@ -298,24 +332,26 @@
       border-bottom-right-radius: 40px;
       background-color: goldenrod;
     }
+
     .icon-item-card-expressao-logica {
       /* top: 5px;
       left: 0px;
       position: absolute; */
       background-image: linear-gradient(80deg, rgb(117, 117, 129), rgb(218, 218, 218));
       height: 30px;
-      width: 30px;
+      width: 11.1%;
       border-radius: 90%;
       border: 2px solid rgb(52, 141, 114);
     }
 
-    .img-icon-item-card-expressao-logica{
+    .img-icon-item-card-expressao-logica {
       height: 100%;
       width: 100%;
       /* border-radius: 360px; */
       box-align: center;
     }
-    .sintaxe-item-card-expressao-logica { 
+
+    .sintaxe-item-card-expressao-logica {
       /*expressao logica em si*/
       font-family: HVD_Comic_Serif_Pro;
       margin-left: 4px;
@@ -323,12 +359,65 @@
       /* top: 55px;
       left: 30px; */
       height: 30px;
-      width: 270px;
-      font-size: 24px;
+      width: 89.1%;
+      font-size: 20px;
       /* background-color: goldenrod; */
       text-align: start;
       /* text-align: center; */
     }
+
+    /* Cronometro */
+    .container-inventario-card-cronometro{
+      /* vertical-align: bottom; */
+      top: 70px;
+      left: 5px;
+      position: absolute;
+      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
+      /* height: 100px; */
+      width: 250px;
+      /* background-color: rgb(188, 143, 143); */
+      /* background-color: rosybrown;
+      border-radius: 40px; */
+      /* border: 2px solid rgb(52, 141, 114); */
+      /* border-bottom: 5px solid #1d1f1e; */
+      /* text-align: center; */
+      /* font-size: 20px;
+      font-family: HVD_Comic_Serif_Pro; */
+    }
+    .card-cronometro{
+      display:flex-start;
+      font-family: HVD_Comic_Serif_Pro;
+      /* position: absolute; */
+      width: 100%;
+      /* background-color: rgb(143, 59, 59); */
+      /* top: 25px; */
+    }
+    .titulo-card-cronometro {
+      /*nome da figura traduzida*/
+      font-family: HVD_Comic_Serif_Pro;
+      /* position: absolute;
+      top: 0px;
+      left: 0px; */
+      width: 100%;
+      /* height: 30%; */
+      font-size: 15px;
+      text-align: left;
+      /* background-color: seagreen; */
+    }
+    #cronometro {
+      width: 100%;
+      /* height: 30px; */
+      /* height: 70%; */
+      /* background-color: saddlebrown; */
+      text-shadow: 2px 2px  rgb(19, 19, 19);
+      color: goldenrod;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      /* width: 100%; */
+      font-size: 56px;
+      text-align: center;
+    }
+    /* fim cronometro */
+    /* fim inventario */
   </style>
 
 </head>
@@ -340,40 +429,56 @@
     </div>
     <div class="motionL" id="overlay">
       <div id="inventario">
-        <div class="containerLife">
-          <div class="progress progress-striped">
-            <div class="progress-bar">
-              <div class="progress-valor">100%</div>
+        <div class="container-inventario-card-barralife">
+          <div class="card-barralife">
+            <div class="progress">
+              <div class="progress-bar">
+                <div class="progress-valor">100%</div>
+              </div>
             </div>
           </div>
+          <div class="item-img-person-clip"><img class="img-person-clip" src="assets/caixa2.png"></div>
+          <div class="item-nome-person-clip "><p>Mr. Donald Trump </p></div>
         </div>
-        <div class="divClip"><img class="arrowClip" src="assets/caixa2.png"></div>
+        <!-- cronometro -->
+        <div class="container-inventario-card-cronometro">
+          <div class="card-cronometro">
+            <div class="titulo-card-cronometro">Tempo</div>
+            <div id="cronometro">00:00:00</div>
+          </div>
+          <!-- <button onclick="rodando()" id="iniciarpausar">Iniciar</button>
+          <button onclick="reiniciado()" id="zerar">Zerar</button> -->
+       </div>
         <!-- container posicionado no inventario no local adequado -->
         <div class="container-inventario-card-expressao-logica">
           <div class="card-expressao-logica">
-            <div class="titulo-card-expressao-logica">Conjução Lógica "E"</div>
+            <div class="titulo-card-expressao-logica">Conjução Lógica "E:"</div>
             <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"src="assets/caixagame.png" alt=""></div>
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
               <div class="sintaxe-item-card-expressao-logica">1 - V ou F:</div>
               <div class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"src="assets/caixagame.png" alt=""></div>
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
               <div class="sintaxe-item-card-expressao-logica">2 - V ou F:</div>
               <div class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"src="assets/caixagame.png" alt=""></div>
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
               <div class="sintaxe-item-card-expressao-logica">3 - V ou F:</div>
               <div class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"src="assets/caixagame.png" alt=""></div>
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
               <div class="sintaxe-item-card-expressao-logica">4 - V ou F:</div>
               <div class="resultado-item-card-expressao-logica"></div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
