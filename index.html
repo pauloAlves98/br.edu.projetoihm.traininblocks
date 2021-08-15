@@ -29,6 +29,16 @@
       src: local(HVD_Comic_Serif_Pro), url("fonts/HVD_Comic_Serif_Pro.otf");
     }
 
+    body {
+      background-image: linear-gradient(90deg, goldenrod, black);
+    }
+
+    #frame {
+      position: relative;
+      height: 500px;
+      width: 800px;
+    }
+
     #contentCanvas {
       height: 500px;
       width: 800px;
@@ -59,8 +69,9 @@
 
     @keyframes animacaoBolada {
       0% {
-        background: black;
+        background: rgb(187, 75, 75);
         width: 100px;
+
       }
 
       25% {}
@@ -75,7 +86,7 @@
       background-color: black;
       animation-name: animacaoBolada;
       animation-duration: 2s;
-      animation-timing-function: ease;
+      animation-timing-function: ease-in;
       animation-delay: 0s;
       animation-iteration-count: initial;
       animation-direction: left;
@@ -334,7 +345,8 @@
       border-bottom-left-radius: 40px;
       border-bottom-right-radius: 40px;
       background-color: goldenrod;
-      border: 2px solid #3498db;;
+      border: 2px solid #3498db;
+      ;
     }
 
     .icon-item-card-expressao-logica {
@@ -356,7 +368,7 @@
     }
 
     .sintaxe-item-card-expressao-logica {
-      
+
       /*expressao logica em si*/
       font-family: HVD_Comic_Serif_Pro;
       margin-left: 4px;
@@ -373,7 +385,7 @@
 
     /* Cronometro */
     .container-inventario-card-cronometro {
-      
+
       /* vertical-align: bottom; */
       top: 70px;
       left: 5px;
@@ -472,6 +484,7 @@
       display: flex;
       width: 100%;
     }
+
     .btn-item-card-botoes {
       background-color: transparent;
       cursor: pointer;
@@ -488,12 +501,11 @@
       border-bottom-right-radius: 40px;
     }
 
-    .btn-item-card-botoes:hover
-     {
+    .btn-item-card-botoes:hover {
       color: goldenrod;
       outline: 0;
     }
- 
+
 
     .aux-btn-item-card-botoes {
       text-align: center;
@@ -503,10 +515,341 @@
       -webkit-transition: all 150ms ease-in-out;
       transition: all 150ms ease-in-out;
     }
+
     .aux-btn-item-card-botoes:hover {
       border-color: goldenrod;
       box-shadow: 0 0 10px 0 goldenrod inset, 0 0 10px 4px #3498db;
     }
+
+    /* Alert */
+    .alerta-container {
+      /* border:solid black 2px; */
+      /* border-radius: 100px; */
+      border-radius: 10px;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      top: 10px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      width: 500px;
+      height: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* margin: auto; */
+      display: block;
+      overflow: hidden;
+      transition: 1.2s;
+
+    }
+
+    /*animação do span para criar linhas*/
+    .alerta-container span {
+      position: absolute;
+      display: block;
+    }
+
+    /*span 1 - borda do topo*/
+    .alerta-container span:nth-child(1) {
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, transparent, #03e9f4);
+      animation: btn-anim1 2s linear infinite;
+
+    }
+
+    @keyframes btn-anim1 {
+      0% {
+
+        left: -100%;
+
+      }
+
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+
+    /*span  2 - direita borda*/
+    .alerta-container span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #03e9f4);
+      animation: btn-anim2 2s linear infinite;
+      animation-delay: 0.50s
+    }
+
+    @keyframes btn-anim2 {
+      0% {
+        top: -100%;
+      }
+
+      50%,
+      100% {
+        top: 100%;
+      }
+    }
+
+    /*span 3 - borda de baixo*/
+    .alerta-container span:nth-child(3) {
+      bottom: 0;
+      right: -100%;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(270deg, transparent, goldenrod);
+      animation: btn-anim3 2s linear infinite;
+      /* animation-delay: .5s */
+    }
+
+    @keyframes btn-anim3 {
+      0% {
+        right: -100%;
+      }
+
+      50%,
+      100% {
+        right: 100%;
+      }
+    }
+
+    /*span 4 - borda esquerda*/
+    .alerta-container span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(360deg, transparent, goldenrod);
+      animation: btn-anim4 2s linear infinite;
+      animation-delay: 0.50s
+    }
+
+
+    /* borda 4 - bottom */
+    @keyframes btn-anim4 {
+
+      0% {
+        bottom: -100%;
+      }
+
+      50%,
+      100% {
+        bottom: 100%;
+      }
+    }
+
+    .alerta-container-close {
+      position: absolute;
+      content: 'X';
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: #000;
+      color: #fffdd9;
+      text-align: center;
+      border: solid 2px white;
+      background-color: red;
+      color: white;
+      height: 30px;
+      width: 30px;
+      left: 460px;
+      top: 5px;
+      font-size: 25px;
+      margin: auto;
+      border-radius: 100%;
+      font-family: HVD_Comic_Serif_Pro;
+      box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #b61111;
+    }
+
+    .alerta-container-close:hover {
+
+      box-shadow: 0 0 5px #03e9f4,
+
+        0 0 25px #b61111,
+
+        0 0 50px #b61111,
+
+        0 0 100px #b61111;
+      border-color: #615b5b;
+      color: #615b5b;
+    }
+
+    /* Menu -  Resetar Caixas e sair do jogo*/
+    .container-alerta-card-resetar-caixas,
+    .container-alerta-card-sair-jogo {
+      /* vertical-align: bottom; */
+      top: 25%;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      font-family: HVD_Comic_Serif_Pro;
+    }
+
+    .card-resetar-caixas,
+    .card-sair-jogo {
+      font-family: HVD_Comic_Serif_Pro;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .titulo-card-resetar-caixas,
+    .titulo-card-sair-jogo {
+      font-family: HVD_Comic_Serif_Pro;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: #000;
+      color: #fffdd9;
+      color: white;
+      width: 100%;
+      font-size: 50px;
+      text-align: center;
+      text-shadow: 0 0 5px #03e9f4,
+        0 0 15px #03e9f4,
+        0 0 40px #03e9f4,
+        0 0 90px #b61111;
+    }
+
+    .item-card-resetar-caixas,
+    .item-card-sair-jogo {
+      display: flex;
+      width: 100px;
+      padding: 5px;
+      margin: auto;
+
+    }
+
+    .btn-sim-item-card-resetar-caixas,
+    .btn-sim-item-card-sair-jogo,
+    .btn-nao-item-card-resetar-caixas,
+    .btn-nao-item-card-sair-jogo {
+      background-color: #03e9f4;
+      cursor: pointer;
+      font-family: HVD_Comic_Serif_Pro;
+      height: 35px;
+      width: 100%;
+      font-size: 20px;
+      color: white;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: #000;
+      color: #fffdd9;
+      border-color: white;
+      text-align: center;
+      border-radius: 15px;
+      /* margin-bottom: 2px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px; */
+      box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+      animation: animation-pisca-buttom-sim 3s linear infinite;
+      /* animation-delay: 0.50s; */
+    }
+
+    .btn-nao-item-card-resetar-caixas,
+    .btn-nao-item-card-sair-jogo {
+      box-shadow: 0 0 5px #b61111,
+        0 0 25px #b61111,
+        0 0 50px #b61111,
+        0 0 100px #b61111;
+      background-color: #b61111;
+      animation: animation-pisca-buttom-nao 3s linear infinite;
+      animation-delay: 0.50s;
+    }
+
+    .btn-sim-item-card-resetar-caixas:hover,
+    .btn-sim-item-card-sair-jogo:hover,
+    .btn-nao-item-card-resetar-caixas:hover,
+    .btn-nao-item-card-sair-jogo:hover {
+      animation: animation-pisca-buttom-sim 0s linear infinite;
+      box-shadow: 0 0 5px #03e9f4,
+        0 0 25px black,
+        0 0 50px black,
+        0 0 100px black;
+      border-color: #615b5b;
+      color: #615b5b;
+      outline: 0;
+    }
+
+    .aux-btn-item-card-resetar-caixas,
+    .aux-btn-item-card-sair-jogo {
+      text-align: center;
+      border-color: white;
+      color: white;
+      box-shadow: 0 0 40px 40px goldenrod inset, 0 0 0 0 #3498db;
+      -webkit-transition: all 150ms ease-in-out;
+      transition: all 150ms ease-in-out;
+    }
+
+    .aux-btn-item-card-resetar-caixas:hover,
+    .aux-btn-item-card-sair-jogo:hover {
+      border-color: goldenrod;
+      box-shadow: 0 0 10px 0 goldenrod inset, 0 0 10px 4px #3498db;
+    }
+
+    @keyframes animation-pisca-buttom-sim {
+      0% {
+        box-shadow: 0 0 5px #03e9f4,
+          0 0 0px #03e9f4,
+          0 0 0px #03e9f4,
+          0 0 0px #03e9f4;
+
+      }
+
+      25% {}
+
+      50% {
+        box-shadow: 0 0 5px #03e9f4,
+          0 0 25px #03e9f4,
+          0 0 50px #03e9f4,
+          0 0 100px #03e9f4;
+      }
+
+      100% {
+        box-shadow: 0 0 5px #03e9f4,
+          0 0 0px #03e9f4,
+          0 0 0px #03e9f4,
+          0 0 0px #03e9f4;
+      }
+    }
+
+    @keyframes animation-pisca-buttom-nao {
+      0% {
+        box-shadow: 0 0 5px #b61111,
+          0 0 0px #b61111,
+          0 0 0px #b61111,
+          0 0 0px #b61111;
+        background-color: #b61111;
+
+      }
+
+      25% {}
+
+      50% {
+        box-shadow: 0 0 5px #b61111,
+          0 0 25px #b61111,
+          0 0 50px #b61111,
+          0 0 100px #b61111;
+      }
+
+      100% {
+        box-shadow: 0 0 5px #b61111,
+          0 0 0px #b61111,
+          0 0 0px #b61111,
+          0 0 0px #b61111;
+      }
+    }
+
+
 
     /* fim inventario */
   </style>
@@ -514,11 +857,60 @@
 </head>
 
 <body>
+
   <div id="frame">
     <div id="contentCanvas">
       <!-- canvas aqui -->
     </div>
-    <div class="motionL" id="overlay">
+    <!-- Estrutura de um alerta -->
+    <a class="alerta-container motionL" href="#">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <div class="alerta-container-close">X</div>
+
+      <!-- Conteudo do alerta aqui -->
+
+      <!-- Opção resetar caixas -->
+      <!-- <div class="container-alerta-card-resetar-caixas">
+        <div class="card-botoes">
+
+          <div class="titulo-card-resetar-caixas">Resetar Caixas?</div>
+        
+          <div class="item-card-resetar-caixas">
+            <button class="btn-sim-item-card-resetar-caixas aux-btn-card-resetar-caixas">Sim</button>
+          
+          </div>
+        
+          <div class="item-card-resetar-caixas">
+            <button class="btn-nao-item-card-resetar-caixas aux-btn-card-resetar-caixas">Não</button>
+          </div>
+        </div>
+      </div> -->
+      <!-- Opção sair do jogo -->
+      <div class="container-alerta-card-sair-jogo">
+        <div class="card-botoes">
+
+          <div class="titulo-card-sair-jogo">Sair do Jogo?</div>
+
+          <div class="item-card-sair-jogo">
+            <button class="btn-sim-item-card-sair-jogo aux-btn-card-sair-jogos">Sim</button>
+          </div>
+          <div class="item-card-sair-jogo">
+            <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogos">Não</button>
+          </div>
+
+        </div>
+      </div>
+    </a>
+    <div class="motionL " id="overlay">
+
       <div id="inventario">
         <div class="container-inventario-card-barralife">
           <div class="card-barralife">
@@ -586,7 +978,7 @@
             <!-- b2 -->
             <div class="item-card-botoes">
               <button class="btn-item-card-botoes aux-btn-item-card-botoes">Verificar Respostas</button>
-            
+
             </div>
             <!-- b3 -->
             <div class="item-card-botoes">
@@ -595,7 +987,7 @@
             <!-- b4 -->
             <div class="item-card-botoes">
               <button class="btn-item-card-botoes aux-btn-item-card-botoes">Sair do jogo</button>
-              
+
             </div>
 
           </div>
