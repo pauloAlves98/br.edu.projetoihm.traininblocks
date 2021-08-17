@@ -2,7 +2,7 @@
 function Personagem(){
     
     this.life = 100;
-    this.dano = 10;
+    this.dano = 5;
     this.largura = 64;//32;
     this.altura = 45;
     this.x=0;
@@ -11,7 +11,7 @@ function Personagem(){
     this.dy=0;
     this.sx = 0; 
     this.sy = 0; 
-    this.velocidade = 8;
+    this.velocidade = 2;
     this.sprite = new Sprite();
     this.direcaoAtual = DIREITA;
     this.emMovimento = false;
@@ -39,7 +39,7 @@ function Personagem(){
 
         if(this.sprite.aparencia>=this.sprite.columns)
             this.sprite.aparencia = 0;
-        this.emMovimento = false;
+        this.emMovimento = true; //false se quiser para de movimentar!
         this.podeMudarSprite = false;
     }
     
@@ -117,7 +117,7 @@ function Personagem(){
         }
      }
     
-     this.deslocamento = function(larguraVisivel,larguraMap ){
+     this.deslocamento = function(larguraVisivel,larguraMap){
         if(this.x> larguraVisivel/2){
             if(this.x<(larguraMap - larguraVisivel/2))//pega a variação de movimento
                 this.desl = -(this.x-(larguraVisivel/2));
@@ -125,5 +125,6 @@ function Personagem(){
                 
         }
      }
+
     
 }

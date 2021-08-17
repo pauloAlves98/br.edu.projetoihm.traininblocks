@@ -6,6 +6,7 @@ function Vader(){
     this.dxForma = 0;
     this.atualizaSprite = function (context,direcao,deslP){
         // i * width, j * height, width, height
+        
         // ( imagem , sx(xdocorte) , sy(do cotre) , sWidth (do corte), sHeight(do corte) , dx (posicao na tela), dy , dWidth , dHeight );
         if(this.emMovimento && this.podeMudarSprite && direcao == DIREITA){
              context.drawImage(this.sprite.folheto,this.sprite.aparencia*this.sprite.width,2*this.sprite.height,this.sprite.width,this.sprite.height,this.x+deslP,this.y,this.largura,this.altura);
@@ -82,7 +83,7 @@ function Vader(){
         }
      }
      this.checarColisaoPersonagem = function(personagem){
-        if(personagem.forma.colisao(this.forma.x+personagem.desl,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
+        if(personagem.forma.colisao(this.forma.x+0,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
             this.x+=-this.dx;//dx é o que foii andado.
             this.y+=-this.dy;
 

@@ -3,7 +3,7 @@ function Caixa(){
     this.sprite = new Sprite();
     this.forma = new Rectangle();
     this.direcaoAntiga = 39;
-    this.velocidade = 8; //velocidade a que ela se locomove
+    this.velocidade = 16; //velocidade a que ela se locomove
     this.tipo = true;
     
     this.init = function(rows,columns,img,x,y,altura,largura){
@@ -27,7 +27,7 @@ function Caixa(){
         return false;
     }
     this.checarColisaoPersonagem = function(personagem){
-        if(personagem.forma.colisao(this.forma.x+personagem.desl,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
+        if(personagem.forma.colisao(this.forma.x+0,this.forma.y,this.forma.largura,this.forma.altura)){//colisao com personagem
             console.log("X encaixe:");
             if(personagem.direcaoAtual == DIREITA){
                 this.direcaoAntiga =  DIREITA;

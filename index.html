@@ -38,11 +38,15 @@
       height: 500px;
       width: 800px;
     }
-
+    #canvas{
+      position: absolute;
+    }
     #contentCanvas {
       height: 500px;
       width: 800px;
       position: absolute;
+      overflow: hidden;
+      
     }
 
     #canvas,
@@ -376,13 +380,18 @@
       /* top: 55px;
       left: 30px; */
       height: 30px;
-      width: 89.1%;
+      width: 80%;
       font-size: 20px;
       /* background-color: goldenrod; */
       text-align: start;
       /* text-align: center; */
     }
-
+    .resultado-item-card-expressao-logica{
+      text-align: start;
+      width: 30%;
+      color: rgb(18, 156, 168);
+      /* background-color: blue; */
+    }
     /* Cronometro */
     .container-inventario-card-cronometro {
 
@@ -863,7 +872,7 @@
       <!-- canvas aqui -->
     </div>
     <!-- Estrutura de um alerta -->
-    <a class="alerta-container motionL" href="#">
+    <!-- <a class="alerta-container motionL" href="#">
 
       <span></span>
 
@@ -873,7 +882,7 @@
 
       <span></span>
 
-      <div class="alerta-container-close">X</div>
+      <div class="alerta-container-close">X</div> -->
 
       <!-- Conteudo do alerta aqui -->
 
@@ -894,7 +903,7 @@
         </div>
       </div> -->
       <!-- Opção sair do jogo -->
-      <div class="container-alerta-card-sair-jogo">
+      <!-- <div class="container-alerta-card-sair-jogo">
         <div class="card-botoes">
 
           <div class="titulo-card-sair-jogo">Sair do Jogo?</div>
@@ -907,8 +916,8 @@
           </div>
 
         </div>
-      </div>
-    </a>
+      </div> -->
+    <!-- </a> -->
     <div class="motionL " id="overlay">
 
       <div id="inventario">
@@ -916,7 +925,7 @@
           <div class="card-barralife">
             <div class="progress">
               <div class="progress-bar">
-                <div class="progress-valor">100%</div>
+                <div id="valor-life"class="progress-valor">100%</div>
               </div>
             </div>
           </div>
@@ -938,30 +947,30 @@
         <!-- container posicionado no inventario no local adequado -->
         <div class="container-inventario-card-expressao-logica">
           <div class="card-expressao-logica">
-            <div class="titulo-card-expressao-logica">Conjução Lógica "E:"</div>
+            <div class="titulo-card-expressao-logica">Conjução Lógica "OU"</div>
             <div class="item-card-expressao-logica">
               <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
                   src="assets/caixagame.png" alt=""></div>
-              <div class="sintaxe-item-card-expressao-logica">1 - V ou F:</div>
-              <div class="resultado-item-card-expressao-logica"></div>
+              <div id="sintaxe-expressao-1" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-1" class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
               <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
                   src="assets/caixagame.png" alt=""></div>
-              <div class="sintaxe-item-card-expressao-logica">2 - V ou F:</div>
-              <div class="resultado-item-card-expressao-logica"></div>
+              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
               <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
                   src="assets/caixagame.png" alt=""></div>
-              <div class="sintaxe-item-card-expressao-logica">3 - V ou F:</div>
-              <div class="resultado-item-card-expressao-logica"></div>
+              <div id="sintaxe-expressao-3" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-3" class="resultado-item-card-expressao-logica"></div>
             </div>
             <div class="item-card-expressao-logica">
               <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
                   src="assets/caixagame.png" alt=""></div>
-              <div class="sintaxe-item-card-expressao-logica">4 - V ou F:</div>
-              <div class="resultado-item-card-expressao-logica"></div>
+              <div id="sintaxe-expressao-4" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-4" class="resultado-item-card-expressao-logica"></div>
             </div>
           </div>
         </div>
