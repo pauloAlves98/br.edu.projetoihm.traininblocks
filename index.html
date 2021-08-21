@@ -38,15 +38,17 @@
       height: 500px;
       width: 800px;
     }
-    #canvas{
+
+    #canvas {
       position: absolute;
     }
+
     #contentCanvas {
       height: 500px;
       width: 800px;
       position: absolute;
       overflow: hidden;
-      
+
     }
 
     #canvas,
@@ -318,6 +320,7 @@
       animation: mymove 5s;
     } */
     .card-expressao-logica {
+     
       font-family: HVD_Comic_Serif_Pro;
       /* position: absolute; */
       width: 100%;
@@ -386,12 +389,14 @@
       text-align: start;
       /* text-align: center; */
     }
-    .resultado-item-card-expressao-logica{
+
+    .resultado-item-card-expressao-logica {
       text-align: start;
       width: 30%;
       color: rgb(18, 156, 168);
       /* background-color: blue; */
     }
+
     /* Cronometro */
     .container-inventario-card-cronometro {
 
@@ -859,7 +864,73 @@
     }
 
 
+/* Verificar respostas */
+.container-alerta-card-verificar-respostas
+    {
+      /* vertical-align: bottom; */
+      top: 10%;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      font-family: HVD_Comic_Serif_Pro;
+      
+    }
 
+    .card-verificar-respostas
+    {
+      font-family: HVD_Comic_Serif_Pro;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .titulo-card-verificar-respostas {
+      font-family: HVD_Comic_Serif_Pro;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: #000;
+      color: #fffdd9;
+      color: white;
+      width: 100%;
+      font-size: 40px;
+      text-align: center;
+      text-shadow: 0 0 5px #03e9f4,
+        0 0 15px #03e9f4,
+        0 0 40px #03e9f4,
+        0 0 90px #b61111;
+    }
+    .item-card-verificar-respostas{
+      /* margin-left: 10px; */
+      color: rgb(54, 54, 68);
+      width: 50%;
+      align-items: center;
+      vertical-align: center;
+      margin: auto;
+
+    }
+ 
+    .resultado-verificar-respostas-correto, .resultado-verificar-respostas-errado{
+      /* margin-left: 10px; */
+      color: rgb(122, 243, 0);
+     
+      text-align: center;
+      /* background-color: darkgoldenrod; */
+      margin: auto;
+      width: 40%;
+      left: 50%;
+      text-align: center;
+      animation: animation-pisca-buttom-sim 4s linear infinite;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #000;
+    }
+    .resultado-verificar-respostas-errado{
+      /* margin-left: 10px; */
+      color: crimson;
+      margin: auto;
+      animation: animation-pisca-buttom-nao 4s linear infinite
+    }
+   
     /* fim inventario */
   </style>
 
@@ -872,6 +943,49 @@
       <!-- canvas aqui -->
     </div>
     <!-- Estrutura de um alerta -->
+    <a class="alerta-container motionL" href="#">
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+      <div class="alerta-container-close">X</div>
+      <div class="container-alerta-card-verificar-respostas">
+        <div class="card-verificar-respostas">
+          <div class="titulo-card-verificar-respostas">Resultado Expressão "OU"</div>
+            <div class="item-card-expressao-logica item-card-verificar-respostas">
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
+              <div id="sintaxe-expressao-1" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-1" class="resultado-item-card-expressao-logica"></div>
+            </div>
+            <div class="resultado-verificar-respostas-correto">Correto</div>
+            <div class="item-card-expressao-logica item-card-verificar-respostas">
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
+              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
+            </div>
+            <div class="resultado-verificar-respostas-correto">Correto</div>
+            <div class="item-card-expressao-logica item-card-verificar-respostas">
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
+              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
+            </div>
+            <div class="resultado-verificar-respostas-correto">Correto</div>
+            <div class="item-card-expressao-logica item-card-verificar-respostas">
+              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
+                  src="assets/caixagame.png" alt=""></div>
+              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
+              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
+            </div>
+            <div class="resultado-verificar-respostas-errado">Incorreto</div>
+        </div>
+      </div>
+    </a>
     <!-- <a class="alerta-container motionL" href="#">
 
       <span></span>
@@ -884,10 +998,10 @@
 
       <div class="alerta-container-close">X</div> -->
 
-      <!-- Conteudo do alerta aqui -->
+    <!-- Conteudo do alerta aqui -->
 
-      <!-- Opção resetar caixas -->
-      <!-- <div class="container-alerta-card-resetar-caixas">
+    <!-- Opção resetar caixas -->
+    <!-- <div class="container-alerta-card-resetar-caixas">
         <div class="card-botoes">
 
           <div class="titulo-card-resetar-caixas">Resetar Caixas?</div>
@@ -902,8 +1016,8 @@
           </div>
         </div>
       </div> -->
-      <!-- Opção sair do jogo -->
-      <!-- <div class="container-alerta-card-sair-jogo">
+    <!-- Opção sair do jogo -->
+    <!-- <div class="container-alerta-card-sair-jogo">
         <div class="card-botoes">
 
           <div class="titulo-card-sair-jogo">Sair do Jogo?</div>
@@ -925,7 +1039,7 @@
           <div class="card-barralife">
             <div class="progress">
               <div class="progress-bar">
-                <div id="valor-life"class="progress-valor">100%</div>
+                <div id="valor-life" class="progress-valor">100%</div>
               </div>
             </div>
           </div>
