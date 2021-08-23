@@ -930,7 +930,61 @@
       margin: auto;
       animation: animation-pisca-buttom-nao 4s linear infinite
     }
-   
+   /* Controles */
+   .container-alerta-card-controles
+    {
+      /* vertical-align: bottom; */
+      top: 10%;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      font-family: HVD_Comic_Serif_Pro;
+      
+    }
+
+    .card-controles
+    {
+      font-family: HVD_Comic_Serif_Pro;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .titulo-card-controles {
+      font-family: HVD_Comic_Serif_Pro;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: #000;
+      color: #fffdd9;
+      color: white;
+      width: 100%;
+      font-size: 40px;
+      text-align: center;
+      text-shadow: 0 0 5px #03e9f4,
+        0 0 15px #03e9f4,
+        0 0 40px #03e9f4,
+        0 0 90px #b61111;
+    }
+    .item-card-controles{
+      /* margin-left: 10px; */
+      color: rgb(54, 54, 68);
+      width: 70%;
+      height: 200px;
+      background-repeat: no-repeat;
+      /* height: 200px; */
+      align-items: center;
+      vertical-align: center;
+      /* background-color: blueviolet; */
+      margin: auto;
+      /* left: 50%; */
+      /* border: solid 1px violet; */
+      background-position:center;
+      background-size:100% 100%;
+      background-image: url('https://drive.google.com/u/0/uc?id=12_jRxcsDrgvwOrzeLRiVHcyqxOhumIfS&export=download');
+      animation: animation-pisca-buttom-sim 0s linear infinite;
+    }
+ 
     /* fim inventario */
   </style>
 
@@ -943,7 +997,18 @@
       <!-- canvas aqui -->
     </div>
     <!-- Estrutura de um alerta -->
-    <a class="alerta-container motionL" href="#">
+    <!-- <a class="alerta-container motionL" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <div class="alerta-container-close">X</div>
+      <div class="container-alerta-card-controles">
+        <div class="titulo-card-controles">Controles</div>
+        <div class="item-card-controles">
+        </div>
+      </div>
+    </a> -->
+    <!-- <a class="alerta-container motionL" href="#">
       <span></span>
 
       <span></span>
@@ -985,7 +1050,7 @@
             <div class="resultado-verificar-respostas-errado">Incorreto</div>
         </div>
       </div>
-    </a>
+    </a> -->
     <!-- <a class="alerta-container motionL" href="#">
 
       <span></span>
