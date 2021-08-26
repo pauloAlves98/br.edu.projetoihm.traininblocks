@@ -1,19 +1,19 @@
 var TAM_WIDTH_TELA_CANVAS = 960;
+var TAM_HEGTH_TELA_CANVAS = 500;
+var TAM_HEGTH_TELA_CANVAS_JOGAVEL = 320;
 var TAM_WIDTH_CONTENT_CANVAS = 800;
+var QUANTIDADE_DE_VILOES = 5;
 var ctx, personagem = new Personagem();
 var myVar;
 var viloes= new Array();
 var fase1colisao = new Camada();
 var cenario1 = new Cenario();
+var elementos = new ControllerElementos();
+
 
 function main(){ //chama todas
    $(document).ready(function(){
-       $('#frame').append('<div id="loading"></div>');
-       $('#loading').append('<div></div>');
-       $('#loading').append('<div></div>');
-       $('#loading').append('<div></div>');
-       $('#loading').append('<div></div>');
-       addClass('loading', 'lds-ellipsis');
+       elementos.add_loading();
        carregar_imagens_do_jogo();
        document.addEventListener("mousedown", click);
        document.addEventListener('keydown', key_adapter_personagem);
@@ -61,12 +61,26 @@ function carregar_imagens_do_jogo(){
                                     vilaoImg.src = "assets/vader.png";
                                     vilaoImg.onload = function(){
                                         setTimeout(function(){
-                                            $("#loading").remove();
-                                            //TAM_WIDTH
-                                            $('#contentCanvas').append('<canvas id="canvas" width="960px" height="500px"></canvas>')
-                                            $('#contentCanvas').addClass("motionL");//transição
-                                            // delClass("contentCanvas","motionL");
-                                            // addClass("contentCanvas","motionL");
+                                            elementos.remove_id('loading');
+                                            //adicionar Canvas
+                                            elementos.add_canvas(TAM_WIDTH_TELA_CANVAS,TAM_HEGTH_TELA_CANVAS)
+                                            //adicionar iventario
+                                            elementos.add_inventario();
+                                            //Carregar elementos do iventario como nome do persongem!
+                                            elementos.alterar_nome_personagem_iventario("José Donald Trump");
+                                            //refatorar essa parte.!
+                                            $("#item-card-botoes-controles").on("click", function(){
+                                               elementos.add_alerta_menu_controles();
+                                            });
+                                            $("#item-card-botoes-verificar-respostas").on("click", function(){
+                                                elementos.add_alerta_menu_verificar_respostas();
+                                            });
+                                            $("#item-card-botoes-resetar-caixas").on("click", function(){
+                                                alert("Resetar");
+                                            });
+                                            $("#item-card-botoes-sair-jogo").on("click", function(){
+                                                alert("Sair");
+                                            });
                                             initgame();
                                         }, 2000);//2 segundos para aparecer tela de carregamento!
                                     }
@@ -85,7 +99,7 @@ function carregar_imagens_do_jogo(){
     }
 }
 
-function initgame(){
+function initgame(){//FASE 1
 
     let camada = [0,0,0,0,0,0,0,0,0,0,184,185,0,0,0,0,0,0,0,0,0,0,0,0,186,187,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,200,201,0,0,0,0,0,0,0,0,0,0,0,0,202,203,0,0,0,0,
@@ -99,18 +113,14 @@ function initgame(){
         97,98,99,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0];//camada de colisao fase1
 
     ctx = document.getElementById("canvas").getContext("2d");
-    document.getElementById("canvas").style.border = "1px solid gray";
-
-
+    // document.getElementById("canvas").style.border = "1px solid gray";
     fase1colisao.init(10,30,32,32,camada,0, ctx);//inicia a distribuição das forma de colisao
-
-
     personagem.sprite.carregarSprite(4,6,perImg);
     personagem.forma.init(0,personagem.altura/2, personagem.largura/2 - 8,personagem.altura/2);
 
 
 
-    cenario1.init([fase1c1Img,fase1c2Img,fase1c3Img],fase1c1Img.naturalHeight,fase1c1Img.naturalWidth,[fase1colisao]);
+    cenario1.init([fase1c1Img,fase1c2Img,fase1c3Img],TAM_HEGTH_TELA_CANVAS_JOGAVEL,TAM_WIDTH_TELA_CANVAS,[fase1colisao]);
 
     cenario1.addCaixas(1,1,caixa,312,192 - (3*32),24,24,true);
     cenario1.addCaixas(1,1,caixa,0,40,24,24,true);
@@ -118,18 +128,26 @@ function initgame(){
     cenario1.addCaixas(1,1,caixaFalseImg,864,32,24,24,false);
 
     //vilao
-    for(let i = 0;i<5;i++){ //faze andar no cenario.
+    for(let i = 0;i<QUANTIDADE_DE_VILOES;i++){ //Posiciona aleatoriamente os viloes no cenario
         let vilao = new Vader();
         vilao.sprite.carregarSprite(4,4,vilaoImg);
-        vilao.posicionar(fase1colisao.formasTile,960,cenario1.altura)
+        vilao.posicionar(fase1colisao.formasTile,TAM_WIDTH_TELA_CANVAS,TAM_HEGTH_TELA_CANVAS_JOGAVEL)
         viloes.push(vilao);
     }
 
     //Encaixe das caixs
     cenario1.addCirculos(300,250,32,32,"V OU V",true);//304x 256y encaixe
+    elementos.alterar_expressao_iventario(cenario1.circulosCaixa.length, cenario1.circulosCaixa[cenario1.circulosCaixa.length-1].expressaoLogica);
+    elementos.alterar_resultado_expressao_iventario(cenario1.circulosCaixa.length,"?");
     cenario1.addCirculos(900,204,32,32,"V OU F",true);//pos encaixe 904x 208y
+    elementos.alterar_expressao_iventario(cenario1.circulosCaixa.length, cenario1.circulosCaixa[cenario1.circulosCaixa.length-1].expressaoLogica);
+    elementos.alterar_resultado_expressao_iventario(cenario1.circulosCaixa.length,"?");
     cenario1.addCirculos(700,34,32,32,"F OU V",true);//704x 40y encaixe
+    elementos.alterar_expressao_iventario(cenario1.circulosCaixa.length, cenario1.circulosCaixa[cenario1.circulosCaixa.length-1].expressaoLogica);
+    elementos.alterar_resultado_expressao_iventario(cenario1.circulosCaixa.length,"?");
     cenario1.addCirculos(4,224,32,32,"F OU F",false);//8x 224y encaixe.
+    elementos.alterar_expressao_iventario(cenario1.circulosCaixa.length, cenario1.circulosCaixa[cenario1.circulosCaixa.length-1].expressaoLogica);
+    elementos.alterar_resultado_expressao_iventario(cenario1.circulosCaixa.length,"?");
 
     //Encaixes Perfeitos
     cenario1.addEncaixes(304,256);
@@ -137,32 +155,20 @@ function initgame(){
     cenario1.addEncaixes(704,40);
     cenario1.addEncaixes(8,224);
 
-
-    //colocalos no vetor de cenario.V
-    //um desses encaices ja tem a medida perfeita em x, o que esta logo no começo;
-    //personagem.atualizaSprite(ctx,personagem.direcaoAtual);
-
-    //Fazer a logica de quando todasa s caixas ja tiverem posicionadas
-
     loop_game();
-
 }
 
 
 function movimento_vilao_fase1(){
-
-
+ 
     for(let i = 0;i<viloes.length;i++){ //fazer andar no cenario.
         let vilao = viloes[i];
         vilao.andar()
         //vilao.deslocamento(800,960)//800 é a parte visivel e 960 a tla inteira
-        vilao.checarColisaoCenario(fase1colisao.formasTile,0,960,cenario1.altura)//vilao nao precisa de deslocamento pois pode ser considerado a tela inteira para ele.
-        vilao.checarColisaoPersonagem(personagem)? personagem.aplicarDano():"nao aplicar dano";
+        vilao.checarColisaoCenario(fase1colisao.formasTile,0,TAM_WIDTH_TELA_CANVAS,TAM_HEGTH_TELA_CANVAS_JOGAVEL)//vilao nao precisa de deslocamento pois pode ser considerado a tela inteira para ele.
+        vilao.checarColisaoPersonagem(personagem)?personagem.aplicarDano():"nao aplicar dano";
     }
-
     setTimeout(movimento_vilao_fase1,1000/10);//atualizar sprite
-
-
 }
 function click(evt){
 
@@ -207,7 +213,6 @@ function desenha(){
 
     for(let i=0;i<viloes.length;i++){
         let vilao = viloes[i];
-
        //checar se eele esta visivel na tela;
         ctx.strokeRect(vilao.forma.x+0,  vilao.forma.y, vilao.forma.largura,  vilao.forma.altura);
         vilao.atualizaSprite(ctx,vilao.direcaoAtual,0);
@@ -222,13 +227,6 @@ function desenha(){
         //console.log(i);
     }
 
-    ctx.fillStyle = "white";
-    ctx.fillRect(0,cenario1.altura,926,180);
-    ctx.drawImage(bordaInventarioImg,-15,320,830,180);
-    ctx.fillStyle = "black";
-    ctx.font = '12px CENTURY GOTHIC';
-
-    ctx.fillText('LIFE: '+personagem.life, 200, 352);
     draw_life();
     draw_fase1_valor_caixas();
     //funcao para printar valor da caixas na tela.
@@ -243,10 +241,8 @@ function renderiza(){
 }
 function mover_cena_fase1(){
     personagem.deslocamento(800,960);
-    $(document).ready(function(){
-        $("#canvas").css("left",personagem.desl);
-    
-    });
+    elementos.mover_camera(personagem.desl)
+  
 
 }
 function colisao_caixa(){//transferir esse metodo para cenario!
@@ -265,37 +261,26 @@ function colisao_caixa(){//transferir esse metodo para cenario!
 
 function draw_fase1_valor_caixas(){//Ficara dentro do controller inventario!
     $(document).ready(function(){
-        // $('#frame').append('<div id="loading"></div>');
-
         for (let j=0;j<cenario1.circulosCaixa.length;j++){
             let c = cenario1.circulosCaixa[j];
             let colidiu = false;
             for(let i = 0;i<cenario1.caixas.length;i++){ //verifica se houve colisao com alguma caixa!
                 let caixaC = cenario1.caixas[i];
                 if(caixaC.forma.colisao(c.x,c.y,c.largura,c.altura)){//Se for vdd esse encaixe foi preenchido
-                    // ctx.fillText('ENCAIXE: '+String(j+1)+" : "+c.expressaoLogica+' = '+caixaC.tipo,25,352+(j*12));
-                    $("#resultado-expressao-"+String(j+1)).text(caixaC.tipo===true?"V":"F");
+                    elementos.alterar_resultado_expressao_iventario(String(j+1),caixaC.tipo===true?"V":"F");
                     colidiu = true;
                     break;
                 }
             }
-            if(!colidiu){
-                $("#sintaxe-expressao-"+String(j+1)).text(String(j+1)+" - "+c.expressaoLogica+":");
-                $("#resultado-expressao-"+String(j+1)).text("?");
-            }
-
-                //  ctx.fillText('ENCAIXE '+String(j+1)+" : "+c.expressaoLogica+' = ?',25,352+(j*12));
+            if(!colidiu)
+                elementos.alterar_resultado_expressao_iventario(String(j+1),"?");
         }
-        // addClass('loading', 'lds-ellipsis');
     });
 
 }
 
 function draw_life(){ //ficara dentro do controle inventario!
-    $(document).ready(function(){
-        $(".progress-bar").css("width",personagem.life+"%");
-        $('#valor-life').text(""+personagem.life+"%");
-    });
+  elementos.alterar_valor_life_inventario(personagem.life);
 }
 //AJEITAR ALERTA E HISTORIAS.
 function verificar_respostas(){//talvez possa ser um metodo de cenariq

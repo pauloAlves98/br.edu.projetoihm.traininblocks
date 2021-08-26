@@ -15,7 +15,7 @@
   <script type="text/javascript" src="model/Caixa.js"> </script>
   <script type="text/javascript" src="model/Vader.js"> </script>
   <script type="text/javascript" src="model/Personagem.js"> </script>
-
+  <script type="text/javascript" src="controller/controllerElementos.js"> </script>
   <script type="text/javascript" src="controller/ControllerFase1.js"> </script>
 
   <style>
@@ -75,7 +75,8 @@
 
     @keyframes animacaoBolada {
       0% {
-        background: rgb(187, 75, 75);
+        /* background: rgb(187, 75, 75); */
+        opacity: 0%;
         width: 100px;
 
       }
@@ -88,7 +89,7 @@
     }
 
     .motionL {
-      color: #669900;
+      /* color: #669900; */
       background-color: black;
       animation-name: animacaoBolada;
       animation-duration: 2s;
@@ -999,17 +1000,6 @@
     <!-- Estrutura de um alerta -->
     <!-- <a class="alerta-container motionL" href="#">
       <span></span>
-      <span></span>
-      <span></span>
-      <div class="alerta-container-close">X</div>
-      <div class="container-alerta-card-controles">
-        <div class="titulo-card-controles">Controles</div>
-        <div class="item-card-controles">
-        </div>
-      </div>
-    </a> -->
-    <!-- <a class="alerta-container motionL" href="#">
-      <span></span>
 
       <span></span>
 
@@ -1051,6 +1041,7 @@
         </div>
       </div>
     </a> -->
+    
     <!-- <a class="alerta-container motionL" href="#">
 
       <span></span>
@@ -1097,91 +1088,6 @@
         </div>
       </div> -->
     <!-- </a> -->
-    <div class="motionL " id="overlay">
-
-      <div id="inventario">
-        <div class="container-inventario-card-barralife">
-          <div class="card-barralife">
-            <div class="progress">
-              <div class="progress-bar">
-                <div id="valor-life" class="progress-valor">100%</div>
-              </div>
-            </div>
-          </div>
-          <div class="item-img-person-clip"><img class="img-person-clip" src="assets/caixa2.png"></div>
-          <div class="item-nome-person-clip ">
-            <p>Mr. Donald Trump </p>
-          </div>
-        </div>
-        <!-- cronometro -->
-        <div class="container-inventario-card-cronometro">
-          <div class="card-cronometro">
-            <!-- <div class="titulo-card-cronometro">Fase: 1</div> -->
-            <div class="titulo-card-cronometro">Tempo</div>
-            <div id="cronometro">00:00:00</div>
-          </div>
-          <!-- <button onclick="rodando()" id="iniciarpausar">Iniciar</button>
-          <button onclick="reiniciado()" id="zerar">Zerar</button> -->
-        </div>
-        <!-- container posicionado no inventario no local adequado -->
-        <div class="container-inventario-card-expressao-logica">
-          <div class="card-expressao-logica">
-            <div class="titulo-card-expressao-logica">Conjução Lógica "OU"</div>
-            <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-1" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-1" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-3" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-3" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="item-card-expressao-logica">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-4" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-4" class="resultado-item-card-expressao-logica"></div>
-            </div>
-          </div>
-        </div>
-        <!-- card bottoes -->
-        <div class="container-inventario-card-botoes">
-          <div class="card-botoes">
-
-            <div class="titulo-card-botoes">Menu interativo</div>
-            <!-- b1 -->
-            <div class="item-card-botoes">
-              <button class="btn-item-card-botoes aux-btn-item-card-botoes">Controles</button>
-              <!-- <div class="sintaxe-item-card-botoes">Controles</div> -->
-            </div>
-            <!-- b2 -->
-            <div class="item-card-botoes">
-              <button class="btn-item-card-botoes aux-btn-item-card-botoes">Verificar Respostas</button>
-
-            </div>
-            <!-- b3 -->
-            <div class="item-card-botoes">
-              <button class="btn-item-card-botoes aux-btn-item-card-botoes">Resetar caixas</button>
-            </div>
-            <!-- b4 -->
-            <div class="item-card-botoes">
-              <button class="btn-item-card-botoes aux-btn-item-card-botoes">Sair do jogo</button>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </body>
 
