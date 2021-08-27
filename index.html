@@ -15,8 +15,9 @@
   <script type="text/javascript" src="model/Caixa.js"> </script>
   <script type="text/javascript" src="model/Vader.js"> </script>
   <script type="text/javascript" src="model/Personagem.js"> </script>
+  <script type="text/javascript" src="model/Cronometro.js"> </script>
   <script type="text/javascript" src="controller/controllerElementos.js"> </script>
-  <script type="text/javascript" src="controller/ControllerFase1.js"> </script>
+  <script type="text/javascript" src="controller/controllerFase1.js"> </script>
 
   <style>
     @font-face {
@@ -864,7 +865,6 @@
       }
     }
 
-
 /* Verificar respostas */
 .container-alerta-card-verificar-respostas
     {
@@ -988,107 +988,12 @@
  
     /* fim inventario */
   </style>
-
 </head>
-
 <body>
-
   <div id="frame">
     <div id="contentCanvas">
       <!-- canvas aqui -->
     </div>
-    <!-- Estrutura de um alerta -->
-    <!-- <a class="alerta-container motionL" href="#">
-      <span></span>
-
-      <span></span>
-
-      <span></span>
-
-      <span></span>
-      <div class="alerta-container-close">X</div>
-      <div class="container-alerta-card-verificar-respostas">
-        <div class="card-verificar-respostas">
-          <div class="titulo-card-verificar-respostas">Resultado Expressão "OU"</div>
-            <div class="item-card-expressao-logica item-card-verificar-respostas">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-1" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-1" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="resultado-verificar-respostas-correto">Correto</div>
-            <div class="item-card-expressao-logica item-card-verificar-respostas">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="resultado-verificar-respostas-correto">Correto</div>
-            <div class="item-card-expressao-logica item-card-verificar-respostas">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="resultado-verificar-respostas-correto">Correto</div>
-            <div class="item-card-expressao-logica item-card-verificar-respostas">
-              <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"
-                  src="assets/caixagame.png" alt=""></div>
-              <div id="sintaxe-expressao-2" class="sintaxe-item-card-expressao-logica"></div>
-              <div id="resultado-expressao-2" class="resultado-item-card-expressao-logica"></div>
-            </div>
-            <div class="resultado-verificar-respostas-errado">Incorreto</div>
-        </div>
-      </div>
-    </a> -->
-    
-    <!-- <a class="alerta-container motionL" href="#">
-
-      <span></span>
-
-      <span></span>
-
-      <span></span>
-
-      <span></span>
-
-      <div class="alerta-container-close">X</div> -->
-
-    <!-- Conteudo do alerta aqui -->
-
-    <!-- Opção resetar caixas -->
-    <!-- <div class="container-alerta-card-resetar-caixas">
-        <div class="card-botoes">
-
-          <div class="titulo-card-resetar-caixas">Resetar Caixas?</div>
-        
-          <div class="item-card-resetar-caixas">
-            <button class="btn-sim-item-card-resetar-caixas aux-btn-card-resetar-caixas">Sim</button>
-          
-          </div>
-        
-          <div class="item-card-resetar-caixas">
-            <button class="btn-nao-item-card-resetar-caixas aux-btn-card-resetar-caixas">Não</button>
-          </div>
-        </div>
-      </div> -->
-    <!-- Opção sair do jogo -->
-    <!-- <div class="container-alerta-card-sair-jogo">
-        <div class="card-botoes">
-
-          <div class="titulo-card-sair-jogo">Sair do Jogo?</div>
-
-          <div class="item-card-sair-jogo">
-            <button class="btn-sim-item-card-sair-jogo aux-btn-card-sair-jogos">Sim</button>
-          </div>
-          <div class="item-card-sair-jogo">
-            <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogos">Não</button>
-          </div>
-
-        </div>
-      </div> -->
-    <!-- </a> -->
   </div>
 </body>
-
 </html>

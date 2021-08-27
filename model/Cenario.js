@@ -23,7 +23,7 @@ function Cenario(){
         caixa.init(rows, columns,img,x,y,altura,largura);
         //chamar posicionar
         let formas = [];
-        for (let i = 0; i<this.camadasColisao;i++){//todas as formas de colisao;
+        for (let i = 0; i<this.camadasColisao.length;i++){//todas as formas de colisao;
              formas = [].concat(formas, this.camadasColisao[i]);
         }
         //posicionar
@@ -46,6 +46,17 @@ function Cenario(){
         }
      }
 
+    this.resetar_caixas = function(){
+        let formas = [];
+        for (let i = 0; i<this.camadasColisao.length;i++){//todas as formas de colisao;
+             formas = [].concat(formas, this.camadasColisao[i]);
+        }
+
+         for(let i=0;this.caixas;i++){
+            let caixa = this.caixas[i];
+            this.posicionar(caixa, formas, this.altura, this.largura);
+         }
+    }
     this.addCirculos = function(x,y,largura,altura,expressao,valor){
          //o circulo nao pode colidir com o cenario
          //o circulo nao pode colidir com a caixa;

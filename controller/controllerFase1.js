@@ -9,7 +9,8 @@ var viloes= new Array();
 var fase1colisao = new Camada();
 var cenario1 = new Cenario();
 var elementos = new ControllerElementos();
-
+var cronometro = new Cronometro();
+var intervalo_cronometro;
 
 function main(){ //chama todas
    $(document).ready(function(){
@@ -76,10 +77,12 @@ function carregar_imagens_do_jogo(){
                                                 elementos.add_alerta_menu_verificar_respostas();
                                             });
                                             $("#item-card-botoes-resetar-caixas").on("click", function(){
-                                                alert("Resetar");
+                                                cenario1.resetar_caixas();
+                                               //captura todas as formas de colisao do cenario
+                                             
                                             });
                                             $("#item-card-botoes-sair-jogo").on("click", function(){
-                                                alert("Sair");
+                                               elementos.add_alerta_menu_sair_jogo();
                                             });
                                             initgame();
                                         }, 2000);//2 segundos para aparecer tela de carregamento!
@@ -154,7 +157,12 @@ function initgame(){//FASE 1
     cenario1.addEncaixes(904,208);
     cenario1.addEncaixes(704,40);
     cenario1.addEncaixes(8,224);
-
+    //CRONOMETRO
+    cronometro.relogio = elementos.get_cronometro();
+    intervalo_cronometro = setInterval(function(){
+        cronometro.rodando();
+    }, 1000);
+    cronometro.intervalo =  true;
     loop_game();
 }
 
@@ -234,6 +242,7 @@ function desenha(){
 }
 
 function renderiza(){
+    //colocar pausa do cronometro aqui!
    personagem.checarColisaoCenario(fase1colisao.formasTile,0,TAM_WIDTH_TELA_CANVAS,cenario1.altura);//pq o canvas eh maior que a altura jogavel do cenario
    colisao_caixa();
    mover_cena_fase1()

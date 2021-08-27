@@ -176,9 +176,50 @@ function ControllerElementos() {
     $('.sintaxe-expressao-4').text( $('.sintaxe-expressao-4').text());
   }
   this.add_alerta_menu_resetar_caixas = function () {
+      //aguarde!
 
+    //   <!-- <div class="container-alerta-card-resetar-caixas">
+    //   <div class="card-botoes">
+
+    //     <div class="titulo-card-resetar-caixas">Resetar Caixas?</div>
+      
+    //     <div class="item-card-resetar-caixas">
+    //       <button class="btn-sim-item-card-resetar-caixas aux-btn-card-resetar-caixas">Sim</button>
+        
+    //     </div>
+      
+    //     <div class="item-card-resetar-caixas">
+    //       <button class="btn-nao-item-card-resetar-caixas aux-btn-card-resetar-caixas">Não</button>
+    //     </div>
+    //   </div>
+    // </div> -->
   }
   this.add_alerta_menu_sair_jogo = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    $('.alerta-container-close').on('click', function () {
+      $('.alerta-container').remove();
+    });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-sair-jogo">\
+        <div class="titulo-card-sair-jogo">Sair do Jogo?</div>\
+        <div class="card-botoes">\
+            <div class="item-card-sair-jogo">\
+              <button class="btn-sim-item-card-sair-jogo aux-btn-card-sair-jogo">Sim</button>\
+          </div>\
+          <div class="item-card-sair-jogo">\
+             <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+         </div>\
+        </div>\
+    </div>');
+
+    $(".btn-nao-item-card-sair-jogo").on("click",function(){
+      $('.alerta-container').remove();
+    })
 
   }
   this.alterar_nome_personagem_iventario = function (nome) {
@@ -197,6 +238,9 @@ function ControllerElementos() {
   this.alterar_valor_life_inventario = function (life) {
     $(".progress-bar").css("width", life + "%");
     $('#valor-life').text("" + life + "%");
+  }
+  this.get_cronometro = function(){
+    return  $("#cronometro");
   }
 }
 
