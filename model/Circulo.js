@@ -10,8 +10,8 @@ function Circulo (){
        this.valorAceito = valor;
        this.expressaoLogica = expressao;
     }
-    this.verificarRespostas= function (caixa){
-        if(caixa.tipo==this.tipo){
+    this.verificar_respostas= function (caixa){
+        if(caixa.tipo==this.valorAceito){
             return true;
         }
         return false;

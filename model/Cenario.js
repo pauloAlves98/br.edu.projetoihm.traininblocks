@@ -52,7 +52,7 @@ function Cenario(){
              formas = [].concat(formas, this.camadasColisao[i]);
         }
 
-         for(let i=0;this.caixas;i++){
+         for(let i=0;i<this.caixas.length;i++){
             let caixa = this.caixas[i];
             this.posicionar(caixa, formas, this.altura, this.largura);
          }

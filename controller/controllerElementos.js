@@ -9,7 +9,7 @@ function ControllerElementos() {
     $('#loading').append('<div></div>');
     $('#loading').append('<div></div>');
     $('#loading').append('<div></div>');
-    addClass('loading', 'lds-ellipsis');
+    $('#loading').addClass('lds-ellipsis')
   }
 
   this.remove_id = function (id) {
@@ -122,7 +122,7 @@ function ControllerElementos() {
   }
 
 
-  this.add_alerta_menu_verificar_respostas = function () {
+  this.add_alerta_menu_verificar_respostas = function (r1,r2,r3,r4) {
     $('.alerta-container').remove();
 
     $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
@@ -143,7 +143,8 @@ function ControllerElementos() {
     <div class="sintaxe-item-card-expressao-logica sintaxe-expressao-1"></div>\
     <div id="" class="resultado-item-card-expressao-logica resultado-expressao-1"></div>\
     </div>');
-    $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">Correto</div>');
+    if(r1 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r1+'</div>'); 
+    else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r1+'</div>');
     //R2
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
     <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -151,7 +152,9 @@ function ControllerElementos() {
     <div class="sintaxe-item-card-expressao-logica sintaxe-expressao-2"></div>\
     <div class="resultado-item-card-expressao-logica resultado-expressao-2"></div>\
     </div>');
-    $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">Correto</div>');
+    if(r2 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r2+'</div>'); 
+    else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r2+'</div>');
+      
     //R3
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
         <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -159,7 +162,8 @@ function ControllerElementos() {
         <div  class="sintaxe-item-card-expressao-logica sintaxe-expressao-3"></div>\
         <div  class="resultado-item-card-expressao-logica resultado-expressao-3"></div>\
         </div>');
-    $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">Correto</div>');
+        if(r3 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r3+'</div>'); 
+        else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r3+'</div>');
     //R4
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
       <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -167,8 +171,8 @@ function ControllerElementos() {
       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-4"></div>\
       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-4"></div>\
       </div>');
-    $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">Correto</div>');
-
+      if(r4 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r4+'</div>'); 
+      else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r4+'</div>');
 
     $('.sintaxe-expressao-1').text( $('.sintaxe-expressao-1').text());
     $('.sintaxe-expressao-2').text( $('.sintaxe-expressao-2').text());
