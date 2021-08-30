@@ -14,8 +14,24 @@ var intervalo_cronometro; //global!
 var elementos = new ControllerElementos(); //global
 var cronometro = new Cronometro(); //global
 var controllerFase1 = new ControllerFase1();
+//sons
+var sounds = new Howl ({ 
+    src: ["audio\\sprites.mp3"], 
+    volume: 0.25,
+    sprite: {
+        "colisao_caixa": [
+          0,
+          574.6938775510204
+        ]
+      }
+  }); 
 
-
+var sound_fundo = new Howl ({ 
+    src: ["audio\\tema.mp3"], 
+    volume: 0.05,
+    html5: true, 
+    loop: true,
+  }); 
 //direcionador
 function main (){
     elementos.add_loading();
@@ -38,7 +54,6 @@ function checar_loop_game() {
         alert("Game Over");
 
 }
-
 //metodo para todos os controllers
 function movimento_vilao() {
     //fase 1
@@ -88,13 +103,19 @@ function carregar_imagens_fase_1 () {
                                             });
                                             $("#item-card-botoes-resetar-caixas").on("click", function () {
                                                 controllerFase1.resetar_caixas();
+
+                                              
                                                 //captura todas as formas de colisao do cenario
                                             });
                                             $("#item-card-botoes-sair-jogo").on("click", function () {
                                                 elementos.add_alerta_menu_sair_jogo();
+                                                sound_fundo.play()
                                             });
                                             controllerFase1.initgame();
                                             checar_loop_game();
+                                            
+                                           
+                                           
                                         }, 2000);//2 segundos para aparecer tela de carregamento!
                                     }
                                 }
@@ -108,8 +129,5 @@ function carregar_imagens_fase_1 () {
         }
     }
 }
-
-
-
 window.addEventListener("load",main);
 document.addEventListener('keydown', key_adapter_personagem);

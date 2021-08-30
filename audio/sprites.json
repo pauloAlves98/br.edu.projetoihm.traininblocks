@@ -1,0 +1,11 @@
+{
+  "urls": [
+    "audio\\sprites.mp3"
+  ],
+  "sprite": {
+    "colisao_caixa": [
+      0,
+      574.6938775510204
+    ]
+  }
+}

@@ -65,6 +65,7 @@ function ControllerFase1() {
         }, 1000);
         cronometro.intervalo = true;
         this.loop_game();
+       
     }
 
     this.resetar_caixas = function () {
@@ -137,15 +138,24 @@ function ControllerFase1() {
     }
 
     this.colisao_caixa = function () {//transferir esse metodo para cenario!
+       
         for (let i = 0; i < this.cenario1.caixas.length; i++) {
+            let coli_person = false;
+            let coli_cenario = false;
             let caixaC = this.cenario1.caixas[i];
             if (caixaC.checarColisaoPersonagem(personagem)) {
                 personagem.x += -personagem.dx;
                 personagem.y += -personagem.dy;
+                coli_person = true;
                 personagem.atualizarForma();
             }
             caixaC.checarColisaoLimites(960, this.cenario1.altura);
-            caixaC.checarColisaoFormas(this.fase1colisao.formasTile, 0);
+            if(caixaC.checarColisaoFormas(this.fase1colisao.formasTile, 0) == true)
+               coli_cenario = true;
+            
+            if(coli_person && !coli_cenario) sounds.play ('colisao_caixa')
+            coli_person = false;
+            coli_cenario = false;
         }
     }
 
