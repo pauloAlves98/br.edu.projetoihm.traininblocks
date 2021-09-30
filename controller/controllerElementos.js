@@ -24,14 +24,88 @@ function ControllerElementos() {
   }
 
   this.add_inventario = function () {
+    let quem_chamou_o_menu_supenso = "Ninguem"
     $('#frame').append('<div class="motionL" id="overlay">'); //estudar a melhor transição aqui!
     $('#overlay').append('<div id="inventario" class="motionL"></div>');
+
+    //Barra de comandos
+    $('#inventario').append('<div class="container-inventario-comandos"></div>');
+    $('.container-inventario-comandos').append('<div class="titulo-card-comandos">Comandos</div>');
+    $('.container-inventario-comandos').append('<div class="card-comandos"></div>');
+    $('.card-comandos').append('<div class="card-item-comandos">\
+            <div id="b1" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b2" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b3" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b4" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b5" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b6" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b7" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b8" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b9" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b10" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b11" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b12" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b13" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b14" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b15" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b16" type="button" name ="vazio" class="item-card-comandos"></div>\
+            <div id="b17" type="button" name ="vazio" class="item-card-comandos"></div>\
+      </div>');
+    $('.card-comandos').append('<div class="card-button-comandos"><div id="play" type="button" class="item-card-button-comandos"></div>\</div>');
+    //temporario
+    $('#inventario').append('<div class="container-inventario-menu-suspenso"></div>');
+    $('.container-inventario-menu-suspenso').append('<div class="card-menu-suspenso">\
+                <div id="b_esquerda" type="button" class="item-card-menu-suspenso">&#8592</div>\
+                <div id="b_direita" type="button" class="item-card-menu-suspenso">&#8594</div>\
+                <div id="b_cima" type="button" class="item-card-menu-suspenso">&#8593</div>\
+                <div id="b_baixo" type="button" class="item-card-menu-suspenso">&#8595</div>\
+                <div id="b_remove" type="button" class="item-card-menu-suspenso">&#10060</div>\
+          </div>');
+
+    //Functions
+    for (let i = 0; i < 17; i++) {
+      $('#b' + (i + 1)).on('click', function () {
+        $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+        quem_chamou_o_menu_supenso = '#b' + (i + 1);
+        $('.container-inventario-menu-suspenso').css('top', $(this).position().top + $(this).height() + 4)
+        $('.container-inventario-menu-suspenso').css('left', $(this).position().left)
+        $('.container-inventario-menu-suspenso').css("visibility", "visible");
+      });
+    }
+    //menu suspenso
+    $('#b_esquerda').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'esquerda');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+    });
+    $('#b_direita').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'direita');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+    });
+    $('#b_cima').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'cima');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+    });
+    $('#b_baixo').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'baixo');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+    });
+    $('#b_remove').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
+      $(quem_chamou_o_menu_supenso).text('')
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+    });
+
     //Primeiro elemento do iventario! Dados do Persongem e Life
     $('#inventario').append('<div class="container-inventario-card-barralife"></div>');
+    $('.container-inventario-card-barralife').css('top', 80)
     $('.container-inventario-card-barralife').append('<div class="card-barralife">\
             <div class="progress">\
                  <div class="progress-bar">\
-                     <div id="valor-life" class="progress-valor">100%</div>\
+                     <div id="valor-life" class="progress-valor">0s</div>\
                 </div>\
             </div>\
         </div>');
@@ -39,56 +113,76 @@ function ControllerElementos() {
     $('.container-inventario-card-barralife').append('<div class="item-nome-person-clip ">\
              <p id="person-name">Mr. Donald Trump</p>\
          </div>');
-    //Cronometro
+   
+    $('#inventario').append('<div class="container-inventario-card-tempo-restante"></div>');
+    $('.container-inventario-card-tempo-restante').css('top', 80)
+    $('.container-inventario-card-tempo-restante').css('left', 580)
+    $('.container-inventario-card-tempo-restante').append('<div class="card-tempo-restante">\
+                <div class="titulo-card-tempo-restante">O trem passará às</div>\
+                <div id="tempo-restante">00:02:00</div>\
+        </div>');
+
+    //tempo restante
     $('#inventario').append('<div class="container-inventario-card-cronometro"></div>');
+    $('.container-inventario-card-cronometro').css('top', 80)
+    $('.container-inventario-card-cronometro').css('left', 300)
     $('.container-inventario-card-cronometro').append('<div class="card-cronometro">\
-                <div class="titulo-card-cronometro">Tempo</div>\
+                <div class="titulo-card-cronometro">Hora atual</div>\
                 <div id="cronometro">00:00:00</div>\
         </div>');
+    //objetivo
+    $('#inventario').append('<div class="container-inventario-card-objetivo"></div>');
+    $('.container-inventario-card-objetivo').css('top', 150)
+    $('.container-inventario-card-objetivo').css('left', 0)
+    // $('.container-inventario-card-cronometro').css('left', 200)
+    $('.container-inventario-card-objetivo').append('<div class="card-objetivo">\
+                <div class="titulo-card-objetivo">Objetivo</div>\
+                <div class="item-card-objetivo">Vá em direção aos paineis de comando e abra as porteiras necessárias para os veículos atravassarem a via!.</div>\
+        </div>');
     //Expressão Logica Card
-    $('#inventario').append('<div class="container-inventario-card-expressao-logica"></div>');
-    $('.container-inventario-card-expressao-logica').append('<div class="card-expressao-logica"></div>');
-    $('.card-expressao-logica').append('<div id="titulo-card-expressao-logica" class="titulo-card-expressao-logica">Conjução Lógica "OU"</div>');
-    //Item 1 - Expressão Logica Card
-    $('.card-expressao-logica').append('<div id="item-card-expressao-logica-1" class="item-card-expressao-logica"></div>');
-    $('#item-card-expressao-logica-1').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
-       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-1"></div>\
-       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-1"></div>');
-    //Item 2 - Expressão Logica Card
-    $('.card-expressao-logica').append('<div id="item-card-expressao-logica-2" class="item-card-expressao-logica"></div>');
-    $('#item-card-expressao-logica-2').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
-       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-2"></div>\
-       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-2"></div>');
-    //Item 3 - Expressão Logica Card
-    $('.card-expressao-logica').append('<div id="item-card-expressao-logica-3" class="item-card-expressao-logica"></div>');
-    $('#item-card-expressao-logica-3').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
-       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-3"></div>\
-       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-3"></div>');
-    //Item 4 - Expressão Logica Card
-    $('.card-expressao-logica').append('<div id="item-card-expressao-logica-4" class="item-card-expressao-logica"></div>');
-    $('#item-card-expressao-logica-4').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
-       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-4"></div>\
-       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-4"></div>');
-    // Card Bottões
-    $('#inventario').append('<div class="container-inventario-card-botoes"></div>');
-    $('.container-inventario-card-botoes').append('<div class="card-botoes"></div>');
-    $('.card-botoes').append('<div class="titulo-card-botoes">Menu interativo</div></div>');
-    //Bottão 1 - Controles
-    $('.card-botoes').append('<div id="item-card-botoes-controles" class="item-card-botoes">\
-      <button class="btn-item-card-botoes aux-btn-item-card-botoes">Controles</button>\
-      </div>');
-    //Bottão 2 - Verificar Respostas
-    $('.card-botoes').append('<div id="item-card-botoes-verificar-respostas" class="item-card-botoes">\
-      <button class="btn-item-card-botoes aux-btn-item-card-botoes">Verificar Respostas</button>\
-      </div>');
-    //Bottão 3 - Resetar Caixas
-    $('.card-botoes').append('<div id="item-card-botoes-resetar-caixas" class="item-card-botoes">\
-      <button class="btn-item-card-botoes aux-btn-item-card-botoes">Resetar Caixas</button>\
-      </div>');
-    //Bottão 4 - Sair do jogo
-    $('.card-botoes').append('<div id="item-card-botoes-sair-jogo" class="item-card-botoes">\
-      <button class="btn-item-card-botoes aux-btn-item-card-botoes">Sair do jogo</button>\
-      </div>');
+    // $('#inventario').append('<div class="container-inventario-card-expressao-logica"></div>');
+    // $('.container-inventario-card-expressao-logica').append('<div class="card-expressao-logica"></div>');
+    // $('.card-expressao-logica').append('<div id="titulo-card-expressao-logica" class="titulo-card-expressao-logica">Conjução Lógica "OU"</div>');
+    // //Item 1 - Expressão Logica Card
+    // $('.card-expressao-logica').append('<div id="item-card-expressao-logica-1" class="item-card-expressao-logica"></div>');
+    // $('#item-card-expressao-logica-1').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
+    //    <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-1"></div>\
+    //    <div id="" class="resultado-item-card-expressao-logica resultado-expressao-1"></div>');
+    // //Item 2 - Expressão Logica Card
+    // $('.card-expressao-logica').append('<div id="item-card-expressao-logica-2" class="item-card-expressao-logica"></div>');
+    // $('#item-card-expressao-logica-2').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
+    //    <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-2"></div>\
+    //    <div id="" class="resultado-item-card-expressao-logica resultado-expressao-2"></div>');
+    // //Item 3 - Expressão Logica Card
+    // $('.card-expressao-logica').append('<div id="item-card-expressao-logica-3" class="item-card-expressao-logica"></div>');
+    // $('#item-card-expressao-logica-3').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
+    //    <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-3"></div>\
+    //    <div id="" class="resultado-item-card-expressao-logica resultado-expressao-3"></div>');
+    // //Item 4 - Expressão Logica Card
+    // $('.card-expressao-logica').append('<div id="item-card-expressao-logica-4" class="item-card-expressao-logica"></div>');
+    // $('#item-card-expressao-logica-4').append('<div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica" src="assets/caixagame.png" alt=""></div>\
+    //    <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-4"></div>\
+    //    <div id="" class="resultado-item-card-expressao-logica resultado-expressao-4"></div>');
+    // // Card Bottões
+    // $('#inventario').append('<div class="container-inventario-card-botoes"></div>');
+    // $('.container-inventario-card-botoes').append('<div class="card-botoes"></div>');
+    // $('.card-botoes').append('<div class="titulo-card-botoes">Menu interativo</div></div>');
+    // //Bottão 1 - Controles
+    // $('.card-botoes').append('<div id="item-card-botoes-controles" class="item-card-botoes">\
+    //   <button class="btn-item-card-botoes aux-btn-item-card-botoes">Controles</button>\
+    //   </div>');
+    // //Bottão 2 - Verificar Respostas
+    // $('.card-botoes').append('<div id="item-card-botoes-verificar-respostas" class="item-card-botoes">\
+    //   <button class="btn-item-card-botoes aux-btn-item-card-botoes">Verificar Respostas</button>\
+    //   </div>');
+    // //Bottão 3 - Resetar Caixas
+    // $('.card-botoes').append('<div id="item-card-botoes-resetar-caixas" class="item-card-botoes">\
+    //   <button class="btn-item-card-botoes aux-btn-item-card-botoes">Resetar Caixas</button>\
+    //   </div>');
+    // //Bottão 4 - Sair do jogo
+    // $('.card-botoes').append('<div id="item-card-botoes-sair-jogo" class="item-card-botoes">\
+    //   <button class="btn-item-card-botoes aux-btn-item-card-botoes">Sair do jogo</button>\
+    //   </div>');
   }
 
   //elementos do menu controles
@@ -122,7 +216,7 @@ function ControllerElementos() {
   }
 
 
-  this.add_alerta_menu_verificar_respostas = function (r1,r2,r3,r4) {
+  this.add_alerta_menu_verificar_respostas = function (r1, r2, r3, r4) {
     $('.alerta-container').remove();
 
     $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
@@ -143,8 +237,8 @@ function ControllerElementos() {
     <div class="sintaxe-item-card-expressao-logica sintaxe-expressao-1"></div>\
     <div id="" class="resultado-item-card-expressao-logica resultado-expressao-1"></div>\
     </div>');
-    if(r1 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r1+'</div>'); 
-    else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r1+'</div>');
+    if (r1 == 'ERRADO') $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">' + r1 + '</div>');
+    else $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">' + r1 + '</div>');
     //R2
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
     <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -152,9 +246,9 @@ function ControllerElementos() {
     <div class="sintaxe-item-card-expressao-logica sintaxe-expressao-2"></div>\
     <div class="resultado-item-card-expressao-logica resultado-expressao-2"></div>\
     </div>');
-    if(r2 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r2+'</div>'); 
-    else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r2+'</div>');
-      
+    if (r2 == 'ERRADO') $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">' + r2 + '</div>');
+    else $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">' + r2 + '</div>');
+
     //R3
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
         <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -162,8 +256,8 @@ function ControllerElementos() {
         <div  class="sintaxe-item-card-expressao-logica sintaxe-expressao-3"></div>\
         <div  class="resultado-item-card-expressao-logica resultado-expressao-3"></div>\
         </div>');
-        if(r3 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r3+'</div>'); 
-        else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r3+'</div>');
+    if (r3 == 'ERRADO') $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">' + r3 + '</div>');
+    else $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">' + r3 + '</div>');
     //R4
     $(".card-verificar-respostas").append('<div class="item-card-expressao-logica item-card-verificar-respostas">\
       <div class="icon-item-card-expressao-logica"><img class="img-icon-item-card-expressao-logica"\
@@ -171,27 +265,27 @@ function ControllerElementos() {
       <div id="" class="sintaxe-item-card-expressao-logica sintaxe-expressao-4"></div>\
       <div id="" class="resultado-item-card-expressao-logica resultado-expressao-4"></div>\
       </div>');
-      if(r4 =='ERRADO')  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">'+r4+'</div>'); 
-      else  $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">'+r4+'</div>');
+    if (r4 == 'ERRADO') $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-errado">' + r4 + '</div>');
+    else $(".card-verificar-respostas").append('<div class="resultado-verificar-respostas-correto">' + r4 + '</div>');
 
-    $('.sintaxe-expressao-1').text( $('.sintaxe-expressao-1').text());
-    $('.sintaxe-expressao-2').text( $('.sintaxe-expressao-2').text());
-    $('.sintaxe-expressao-3').text( $('.sintaxe-expressao-3').text());
-    $('.sintaxe-expressao-4').text( $('.sintaxe-expressao-4').text());
+    $('.sintaxe-expressao-1').text($('.sintaxe-expressao-1').text());
+    $('.sintaxe-expressao-2').text($('.sintaxe-expressao-2').text());
+    $('.sintaxe-expressao-3').text($('.sintaxe-expressao-3').text());
+    $('.sintaxe-expressao-4').text($('.sintaxe-expressao-4').text());
   }
   this.add_alerta_menu_resetar_caixas = function () {
-      //aguarde!
+    //aguarde!
 
     //   <!-- <div class="container-alerta-card-resetar-caixas">
     //   <div class="card-botoes">
 
     //     <div class="titulo-card-resetar-caixas">Resetar Caixas?</div>
-      
+
     //     <div class="item-card-resetar-caixas">
     //       <button class="btn-sim-item-card-resetar-caixas aux-btn-card-resetar-caixas">Sim</button>
-        
+
     //     </div>
-      
+
     //     <div class="item-card-resetar-caixas">
     //       <button class="btn-nao-item-card-resetar-caixas aux-btn-card-resetar-caixas">Não</button>
     //     </div>
@@ -221,7 +315,7 @@ function ControllerElementos() {
         </div>\
     </div>');
 
-    $(".btn-nao-item-card-sair-jogo").on("click",function(){
+    $(".btn-nao-item-card-sair-jogo").on("click", function () {
       $('.alerta-container').remove();
     })
 
@@ -240,11 +334,11 @@ function ControllerElementos() {
     $("#canvas").css("left", deslocamento);
   }
   this.alterar_valor_life_inventario = function (life) {
-    $(".progress-bar").css("width", life + "%");
-    $('#valor-life').text("" + life + "%");
+    $(".progress-bar").css("width", life +  "s");
+    $('#valor-life').text("" + life + " s");
   }
-  this.get_cronometro = function(){
-    return  $("#cronometro");
+  this.get_cronometro = function () {
+    return $("#cronometro");
   }
 }
 

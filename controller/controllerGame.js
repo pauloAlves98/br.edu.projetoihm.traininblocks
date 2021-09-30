@@ -1,8 +1,8 @@
 //constantes
-var TAM_WIDTH_TELA_CANVAS = 960;
-var TAM_HEGTH_TELA_CANVAS = 500;
+var TAM_WIDTH_TELA_CANVAS = 768;
+var TAM_HEGTH_TELA_CANVAS = 320;
 var TAM_HEGTH_TELA_CANVAS_JOGAVEL = 320;
-var TAM_WIDTH_CONTENT_CANVAS = 800;
+var TAM_WIDTH_CONTENT_CANVAS = 768;
 var QUANTIDADE_DE_VILOES = 5;
 //personagens
 var personagem = new Personagem(); //globalvar
@@ -67,21 +67,21 @@ function carregar_imagens_fase_1 () {
     bordaInventarioImg.src = "assets/fundo2.png";
     perImg.onload = function () {
         //inicio load
-        fase1c1Img.src = "mapas/fase1/camada1fase1.png";
+        fase1c1Img.src = "mapas/fase1_renovada/camada1_livre.png";
         fase1c1Img.onload = function () {
-            fase1c2Img.src = "mapas/fase1/camada2fase1.png";
+            fase1c2Img.src = "mapas/fase1_renovada/camada2_trilhos.png";
             fase1c2Img.onload = function () {
-                fase1c3Img.src = "mapas/fase1/camada3fase1.png";
+                fase1c3Img.src = "mapas/fase1_renovada/camada3_obstaculos.png";
                 fase1c3Img.onload = function () {
                     caixa.src = "assets/caixa2.png";
                     caixa.onload = function () {
-                        caixaenergia.src = "assets/caixaenergia.png";
+                        caixaenergia.src = "assets/pegadas.png";
                         caixaenergia.onload = function () {
-                            circuloImg.src = "assets/circulo.png";
+                            circuloImg.src = "assets/quadrado2.png";
                             circuloImg.onload = function () {
                                 caixaFalseImg.src = "assets/caixaFalse.png";
                                 caixaFalseImg.onload = function () {
-                                    vilaoImg.src = "assets/vader.png";
+                                    vilaoImg.src = "mapas/fase1_renovada/camada_colisao_barreiras.png";
                                     vilaoImg.onload = function () {
                                         setTimeout(function () {
                                             elementos.remove_id('loading');
@@ -112,7 +112,7 @@ function carregar_imagens_fase_1 () {
                                                 sound_fundo.play()
                                             });
                                             controllerFase1.initgame();
-                                            checar_loop_game();
+                                            //checar_loop_game();
                                             
                                            
                                            

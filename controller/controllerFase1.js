@@ -11,19 +11,20 @@ function ControllerFase1() {
 
     this.initgame = function () {//FASE 1
         //camada de colisão!
-        let camada = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 184, 185, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186, 187, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 202, 203, 0, 0, 0, 0,
-            0, 0, 88, 0, 0, 0, 0, 88, 0, 0, 216, 217, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 218, 219, 0, 0, 88, 0,
-            0, 0, 88, 171, 172, 173, 174, 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171, 172, 173, 174, 0, 0, 171, 172, 173, 174, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            88, 88, 88, 171, 172, 173, 174, 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171, 172, 173, 174, 0, 0, 171, 172, 173, 174, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            81, 82, 83, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 88, 0, 0, 0,
-            97, 98, 99, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 88, 0, 0, 0];//camada de colisao fase1
+        let camada_colisao_area_jogavel = [69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,
+            69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69];//camada de colisao fase1
 
+        
         this.contexto = document.getElementById("canvas").getContext("2d");
-        this.fase1colisao.init(10, 30, 32, 32, camada, 0, this.contexto);//inicia a distribuição das formas de colisao
+        this.fase1colisao.init(10, 24, 32, 32, camada_colisao_area_jogavel, 0, this.contexto);//inicia a distribuição das formas de colisao
 
         personagem.sprite.carregarSprite(4, 6, perImg);
         personagem.forma.init(0, personagem.altura / 2, personagem.largura / 2 - 8, personagem.altura / 2);
@@ -84,45 +85,32 @@ function ControllerFase1() {
         this.contexto.fillStyle = "white";
         //Camadas
         this.contexto.drawImage(this.cenario1.camadasImg[0], 0, 0, this.cenario1.largura, this.cenario1.altura)
+        this.contexto.drawImage(vilaoImg, 0, 0, this.cenario1.largura, this.cenario1.altura)
+        //formas Cenario.
+       // this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
+ 
         this.contexto.drawImage(this.cenario1.camadasImg[1], 0, 0, this.cenario1.largura, this.cenario1.altura);
         this.contexto.drawImage(this.cenario1.camadasImg[2], 0, 0, this.cenario1.largura, this.cenario1.altura);
-        //Gradiente
-        this.contexto.fillStyle = "white";
-        this.contexto.font = "24px sans-serif ";
-        //Encaixes
-        for (let i = 0; i < this.cenario1.circulosCaixa.length; i++) {//posso mandar pro cenario pintar
-            let encaixe1 = this.cenario1.circulosCaixa[i];
-            this.contexto.drawImage(circuloImg, encaixe1.x + 0, encaixe1.y, encaixe1.largura, encaixe1.altura);
-            this.contexto.font = "28px sans-serif ";
-            this.contexto.fillStyle = "red";
-            this.contexto.fillText("" + (i + 1), encaixe1.x + 7 + 0, encaixe1.y - 1);//sombra
-            this.contexto.font = "24px sans-serif ";
-            this.contexto.fillStyle = "white";
-            this.contexto.fillText("" + (i + 1), encaixe1.x + 8 + 0, encaixe1.y - 2);
-        }
-        //Caixas
-        this.contexto.drawImage(caixaenergia, 400 - 50 + 0, 200 - (2 * 32) - 10, 64, 64);//Central
-        //this.contexto.drawImage(caixaC.sprite.folheto,caixaC.forma.x+deslocamento,caixaC.forma.y,32,32)
-        for (let i = 0; i < this.cenario1.caixas.length; i++) {
-            let caixaC = this.cenario1.caixas[i];
-            this.contexto.drawImage(caixaC.sprite.folheto, caixaC.forma.x + 0, caixaC.forma.y, caixaC.forma.largura, caixaC.forma.altura);
-            this.contexto.strokeRect(caixaC.forma.x + 0, caixaC.forma.y, caixaC.forma.largura, caixaC.forma.altura);
-        }
-        //Personagem
-        personagem.atualizaSprite(this.contexto, personagem.direcaoAtual);//printa o personagem!
-        for (let i = 0; i < viloes.length; i++) {
-            let vilao = viloes[i];
-            this.contexto.strokeRect(vilao.forma.x + 0, vilao.forma.y, vilao.forma.largura, vilao.forma.altura);
-            vilao.atualizaSprite(this.contexto, vilao.direcaoAtual, 0);//printa o personagem!
-
-        }
-        //formas Cenario.
-        this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
+        this.contexto.globalAlpha = 0.3;
         for (let i = 0; i < this.fase1colisao.formasTile.length; i++) {
             let forma = this.fase1colisao.formasTile[i];
-            this.contexto.strokeRect((forma.x + 0), forma.y, forma.largura, forma.altura);//deslocamento ja vem negativo.
+            
+            this.contexto.globalAlpha = 0.1;
+            this.contexto.drawImage(circuloImg, (forma.x + 0), forma.y, forma.largura , forma.altura);//Central
+            this.contexto.globalAlpha = 0.4;
+            this.contexto.drawImage(caixaenergia, (forma.x + 0)+5, forma.y, forma.largura-6 , forma.altura-5);//Central
+           // this.contexto.strokeRect((forma.x + 0), forma.y, forma.largura, forma.altura);//deslocamento ja vem negativo.
             //console.log(i);
         }
+        //Gradiente
+        
+       this.contexto.globalAlpha = 1.0;
+        this.contexto.fillStyle = "black";
+        this.contexto.font = "24px sans-serif ";
+  
+     
+        //Personagem
+        personagem.atualizaSprite(this.contexto, personagem.direcaoAtual);//printa o personagem!
         this.draw_life(); //estudar se coloca um inventario para isso!
         this.draw_fase1_valor_caixas();
     }
@@ -133,7 +121,7 @@ function ControllerFase1() {
         this.mover_cena_fase1()
     }
     this.mover_cena_fase1 = function () {
-        personagem.deslocamento(800, 960);
+        personagem.deslocamento(TAM_WIDTH_CONTENT_CANVAS, TAM_WIDTH_TELA_CANVAS);
         elementos.mover_camera(personagem.desl)
     }
 
