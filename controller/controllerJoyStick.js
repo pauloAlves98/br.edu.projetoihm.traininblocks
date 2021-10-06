@@ -1,6 +1,5 @@
 function key_adapter_personagem(event){
     let velocidade = personagem.velocidade;
- 
     //console.log("adp");
     if(event.keyCode == DIREITA){
         personagem.emMovimento =true;
@@ -44,8 +43,6 @@ function key_adapter_personagem(event){
          elemento.style.display="block";
         //  delClass('overlay', 'motionL');
         //  addClass('overlay', 'motionL')
-
-
     }
 
     velocidade  = 0;

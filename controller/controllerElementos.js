@@ -24,7 +24,7 @@ function ControllerElementos() {
   }
 
   this.add_inventario = function () {
-    let quem_chamou_o_menu_supenso = "Ninguem"
+    let quem_chamou_o_menu_supenso = ""
     $('#frame').append('<div class="motionL" id="overlay">'); //estudar a melhor transição aqui!
     $('#overlay').append('<div id="inventario" class="motionL"></div>');
 
@@ -63,6 +63,30 @@ function ControllerElementos() {
           </div>');
 
     //Functions
+    //implementar função pause
+    $('#play').attr('name', 'play')
+    $('#play').on('click', function () {
+      $(".card-item-comandos").find("*").prop('disabled', true);
+      $(".card-item-comandos").find("*").prop('opacity', 0.4);
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+
+      if ($(this).attr('name') == 'pause') {
+        $(this).css('background-image', "url('assets/play.png')");
+        $(this).attr('name', 'play')
+        controllerFase1.autorizar_movimento = false;
+        if(controllerFase1.movimentos_validos.length>0)
+           personagem.resetar_movimento();
+        controllerFase1.movimentos_validos = []
+        personagem.emMovimento = false;
+      } else {
+        $(this).css('background-image', "url('assets/pause.png')");
+        $(this).attr('name', 'pause')
+        controllerFase1.autorizar_movimento_personagem();
+      }
+
+
+    });
+    //evento card suspenso
     for (let i = 0; i < 17; i++) {
       $('#b' + (i + 1)).on('click', function () {
         $('.container-inventario-menu-suspenso').css("visibility", "hidden");
@@ -70,33 +94,40 @@ function ControllerElementos() {
         $('.container-inventario-menu-suspenso').css('top', $(this).position().top + $(this).height() + 4)
         $('.container-inventario-menu-suspenso').css('left', $(this).position().left)
         $('.container-inventario-menu-suspenso').css("visibility", "visible");
+
       });
     }
     //menu suspenso
     $('#b_esquerda').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'esquerda');
       $(quem_chamou_o_menu_supenso).text($(this).text())
+      movimentos[quem_chamou_o_menu_supenso] = 'ESQUERDA';
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_direita').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'direita');
       $(quem_chamou_o_menu_supenso).text($(this).text())
+      movimentos[quem_chamou_o_menu_supenso] = 'DIREITA';
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_cima').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'cima');
       $(quem_chamou_o_menu_supenso).text($(this).text())
+      movimentos[quem_chamou_o_menu_supenso] = 'CIMA';
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_baixo').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'baixo');
       $(quem_chamou_o_menu_supenso).text($(this).text())
+      movimentos[quem_chamou_o_menu_supenso] = 'BAIXO';
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+
     });
     $('#b_remove').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
       $(quem_chamou_o_menu_supenso).text('')
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = 'VAZIO';
     });
 
     //Primeiro elemento do iventario! Dados do Persongem e Life
@@ -113,7 +144,7 @@ function ControllerElementos() {
     $('.container-inventario-card-barralife').append('<div class="item-nome-person-clip ">\
              <p id="person-name">Mr. Donald Trump</p>\
          </div>');
-   
+
     $('#inventario').append('<div class="container-inventario-card-tempo-restante"></div>');
     $('.container-inventario-card-tempo-restante').css('top', 80)
     $('.container-inventario-card-tempo-restante').css('left', 580)
@@ -334,7 +365,7 @@ function ControllerElementos() {
     $("#canvas").css("left", deslocamento);
   }
   this.alterar_valor_life_inventario = function (life) {
-    $(".progress-bar").css("width", life +  "s");
+    $(".progress-bar").css("width", life + "s");
     $('#valor-life').text("" + life + " s");
   }
   this.get_cronometro = function () {
