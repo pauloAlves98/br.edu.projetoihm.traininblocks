@@ -8,3 +8,5 @@ var caixaFalseImg = new Image();
 var bordaInventarioImg = new Image();
 var caixa = new Image();
 var vilaoImg = new Image();
+var barreiraImg = new Image();
+var carro1Img = new Image();

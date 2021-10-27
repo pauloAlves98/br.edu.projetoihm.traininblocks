@@ -30,7 +30,7 @@ function ControllerElementos() {
 
     //Barra de comandos
     $('#inventario').append('<div class="container-inventario-comandos"></div>');
-    $('.container-inventario-comandos').append('<div class="titulo-card-comandos">Comandos</div>');
+    $('.container-inventario-comandos').append('<div class="titulo-card-comandos">Comandos - <span class="aviso-painel"> Clique abaixo e obtenha as opções de direção</span> </div>');
     $('.container-inventario-comandos').append('<div class="card-comandos"></div>');
     $('.card-comandos').append('<div class="card-item-comandos">\
             <div id="b1" type="button" name ="vazio" class="item-card-comandos"></div>\
@@ -59,6 +59,7 @@ function ControllerElementos() {
                 <div id="b_direita" type="button" class="item-card-menu-suspenso">&#8594</div>\
                 <div id="b_cima" type="button" class="item-card-menu-suspenso">&#8593</div>\
                 <div id="b_baixo" type="button" class="item-card-menu-suspenso">&#8595</div>\
+                <div id="b_painel" type="button" class="item-card-menu-suspenso">P</div>\
                 <div id="b_remove" type="button" class="item-card-menu-suspenso">&#10060</div>\
           </div>');
 
@@ -99,29 +100,35 @@ function ControllerElementos() {
     }
     //menu suspenso
     $('#b_esquerda').on('click', function () {
-      $(quem_chamou_o_menu_supenso).attr('name', 'esquerda');
+      $(quem_chamou_o_menu_supenso).attr('name', ESQUERDA);
       $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = 'ESQUERDA';
+      movimentos[quem_chamou_o_menu_supenso] = ESQUERDA;
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_direita').on('click', function () {
-      $(quem_chamou_o_menu_supenso).attr('name', 'direita');
+      $(quem_chamou_o_menu_supenso).attr('name', DIREITA);
       $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = 'DIREITA';
+      movimentos[quem_chamou_o_menu_supenso] = DIREITA;
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_cima').on('click', function () {
-      $(quem_chamou_o_menu_supenso).attr('name', 'cima');
+      $(quem_chamou_o_menu_supenso).attr('name', CIMA);
       $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = 'CIMA';
+      movimentos[quem_chamou_o_menu_supenso] = CIMA;
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
     });
     $('#b_baixo').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'baixo');
       $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = 'BAIXO';
+      movimentos[quem_chamou_o_menu_supenso] = BAIXO;
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
 
+    });
+    $('#b_painel').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'painel');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = 'PAINEL';
     });
     $('#b_remove').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
@@ -140,7 +147,7 @@ function ControllerElementos() {
                 </div>\
             </div>\
         </div>');
-    $('.container-inventario-card-barralife').append('<div class="item-img-person-clip"><img class="img-person-clip" src="assets/caixa2.png"></div>');
+    $('.container-inventario-card-barralife').append('<div class="item-img-person-clip"><img class="img-person-clip" src="assets/trump_perfil.png"></div>');
     $('.container-inventario-card-barralife').append('<div class="item-nome-person-clip ">\
              <p id="person-name">Mr. Donald Trump</p>\
          </div>');
@@ -149,7 +156,7 @@ function ControllerElementos() {
     $('.container-inventario-card-tempo-restante').css('top', 80)
     $('.container-inventario-card-tempo-restante').css('left', 580)
     $('.container-inventario-card-tempo-restante').append('<div class="card-tempo-restante">\
-                <div class="titulo-card-tempo-restante">O trem passará às</div>\
+                <div class="titulo-card-tempo-restante">Hora do trem</div>\
                 <div id="tempo-restante">00:02:00</div>\
         </div>');
 
@@ -168,7 +175,7 @@ function ControllerElementos() {
     // $('.container-inventario-card-cronometro').css('left', 200)
     $('.container-inventario-card-objetivo').append('<div class="card-objetivo">\
                 <div class="titulo-card-objetivo">Objetivo</div>\
-                <div class="item-card-objetivo">Vá em direção aos paineis de comando e abra as porteiras necessárias para os veículos atravassarem a via!.</div>\
+                <div class="item-card-objetivo">Vá em direção aos paineis de comando e abra as porteiras necessárias para os veículos atravessarem a via!.</div>\
         </div>');
     //Expressão Logica Card
     // $('#inventario').append('<div class="container-inventario-card-expressao-logica"></div>');

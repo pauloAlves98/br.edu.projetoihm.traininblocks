@@ -1,10 +1,4 @@
-//constantes
-var TAM_WIDTH_TELA_CANVAS = 768;
-var TAM_HEGTH_TELA_CANVAS = 320;
-var TAM_HEGTH_TELA_CANVAS_JOGAVEL = 320;
-var TAM_WIDTH_CONTENT_CANVAS = 768;
-var QUANTIDADE_DE_VILOES = 5;
-var TILE_AREA = 32;
+
 //personagens
 var personagem = new Personagem(); //globalvar
 var viloes = new Array();
@@ -85,48 +79,58 @@ function carregar_imagens_fase_1() {
                         caixaenergia.onload = function () {
                             circuloImg.src = "assets/quadrado2.png";
                             circuloImg.onload = function () {
-                                caixaFalseImg.src = "assets/caixaFalse.png";
+                                caixaFalseImg.src = "assets/circulo.png";
                                 caixaFalseImg.onload = function () {
-                                    vilaoImg.src = "mapas/fase1_renovada/camada_colisao_barreiras.png";
-                                    vilaoImg.onload = function () {
-                                        setTimeout(function () {
-                                            elementos.remove_id('loading');
-                                            //adicionar Canvas
-                                            elementos.add_canvas(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)
-                                            //adicionar iventario
-                                            elementos.add_inventario();
-                                            //Carregar elementos do iventario como nome do persongem!
-                                            elementos.alterar_nome_personagem_iventario("José Donald Trump");
-                                            //refatorar essa parte.!
-                                            $("#item-card-botoes-controles").on("click", function () {
-                                                elementos.add_alerta_menu_controles();
-                                            });
-                                            $("#item-card-botoes-verificar-respostas").on("click", function () {
-                                                elementos.add_alerta_menu_verificar_respostas(controllerFase1.verificar_respostas(0),
-                                                    controllerFase1.verificar_respostas(1),
-                                                    controllerFase1.verificar_respostas(2),
-                                                    controllerFase1.verificar_respostas(3));
-                                            });
-                                            $("#item-card-botoes-resetar-caixas").on("click", function () {
-                                                controllerFase1.resetar_caixas();
+                                    barreiraImg.src = "assets/barreira.png";
+                                    barreiraImg.onload = function () {
+                                        carro1Img.src = "assets/carro1.png";
+                                        carro1Img.onload = function () {
+                                            vilaoImg.src = "mapas/fase1_renovada/camada_colisao_barreiras.png";
+                                            vilaoImg.onload = function () {
+                                                setTimeout(function () {
+                                                    elementos.remove_id('loading');
+                                                    //adicionar Canvas
+                                                    elementos.add_canvas(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)
+                                                    //adicionar iventario
+                                                    elementos.add_inventario();
+                                                    //Carregar elementos do iventario como nome do persongem!
+                                                    elementos.alterar_nome_personagem_iventario("José Donald Trump");
+                                                    //refatorar essa parte.!
+                                                    $("#item-card-botoes-controles").on("click", function () {
+                                                        elementos.add_alerta_menu_controles();
+                                                    });
+                                                    $("#item-card-botoes-verificar-respostas").on("click", function () {
+                                                        elementos.add_alerta_menu_verificar_respostas(controllerFase1.verificar_respostas(0),
+                                                            controllerFase1.verificar_respostas(1),
+                                                            controllerFase1.verificar_respostas(2),
+                                                            controllerFase1.verificar_respostas(3));
+                                                    });
+                                                    $("#item-card-botoes-resetar-caixas").on("click", function () {
+                                                        controllerFase1.resetar_caixas();
 
 
-                                                //captura todas as formas de colisao do cenario
-                                            });
-                                            $("#item-card-botoes-sair-jogo").on("click", function () {
-                                                elementos.add_alerta_menu_sair_jogo();
-                                                sound_fundo.play()
-                                            });
+                                                        //captura todas as formas de colisao do cenario
+                                                    });
+                                                    $("#item-card-botoes-sair-jogo").on("click", function () {
+                                                        elementos.add_alerta_menu_sair_jogo();
+                                                        sound_fundo.play()
+                                                    });
 
-                                            controllerFase1.initgame();
-                                         
-
-                                            checar_loop_game();
+                                                    controllerFase1.initgame();
 
 
+                                                    checar_loop_game();
 
-                                        }, 2000);//2 segundos para aparecer tela de carregamento!
+
+
+                                                }, 2000);//2 segundos para aparecer tela de carregamento!
+                                            }
+                                        }
+
+
                                     }
+
+
                                 }
                             }
 
