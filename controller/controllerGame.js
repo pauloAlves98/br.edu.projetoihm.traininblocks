@@ -14,6 +14,7 @@ var intervalo_cronometro; //global!
 //controlles
 var elementos = new ControllerElementos(); //global
 var cronometro = new Cronometro(); //global
+var cronometroTrem = new Cronometro(); //global
 var controllerFase1 = new ControllerFase1();
 //sons
 var sounds = new Howl({
@@ -41,14 +42,14 @@ function main() {
     intervalo_sprite_persongem = setInterval(function () {
         personagem.podeMudarSprite = true;
     }, 1000 / 10);
-    movimento_personagem()
+    thead_movimento_jogo()
 
     // myVar = setInterval(myTimer, 1000 / 10);
 }
 
 function checar_loop_game() {
     //veridicar fase ativa
-    if (!personagem.checarGameOver()) {
+    if (!personagem.checar_game_over()) {
         controllerFase1.loop_game();
         window.requestAnimationFrame(checar_loop_game);
     }
@@ -57,13 +58,13 @@ function checar_loop_game() {
 
 }
 //metodo para todos os controllers
-function movimento_personagem() {
-    controllerFase1.movimento_personagem();
-    setTimeout(movimento_personagem, 1000 / 10);//atualizar sprite
+function thead_movimento_jogo() {
+    controllerFase1.movimentos();
+    setTimeout(thead_movimento_jogo, 1000 / 10);//atualizar sprite
 }
 
 function carregar_imagens_fase_1() {
-    perImg.src = "assets/trump.png";
+    perImg.src = "assets/polic.png";
     bordaInventarioImg.src = "assets/fundo2.png";
     perImg.onload = function () {
         //inicio load
@@ -73,11 +74,11 @@ function carregar_imagens_fase_1() {
             fase1c2Img.onload = function () {
                 fase1c3Img.src = "mapas/fase1_renovada/camada3_obstaculos.png";
                 fase1c3Img.onload = function () {
-                    caixa.src = "assets/caixa2.png";
+                    caixa.src = "assets/trem.png";
                     caixa.onload = function () {
                         caixaenergia.src = "assets/pegadas.png";
                         caixaenergia.onload = function () {
-                            circuloImg.src = "assets/quadrado2.png";
+                            circuloImg.src = "assets/caixaenergia.png";
                             circuloImg.onload = function () {
                                 caixaFalseImg.src = "assets/circulo.png";
                                 caixaFalseImg.onload = function () {
@@ -96,33 +97,8 @@ function carregar_imagens_fase_1() {
                                                     //Carregar elementos do iventario como nome do persongem!
                                                     elementos.alterar_nome_personagem_iventario("José Donald Trump");
                                                     //refatorar essa parte.!
-                                                    $("#item-card-botoes-controles").on("click", function () {
-                                                        elementos.add_alerta_menu_controles();
-                                                    });
-                                                    $("#item-card-botoes-verificar-respostas").on("click", function () {
-                                                        elementos.add_alerta_menu_verificar_respostas(controllerFase1.verificar_respostas(0),
-                                                            controllerFase1.verificar_respostas(1),
-                                                            controllerFase1.verificar_respostas(2),
-                                                            controllerFase1.verificar_respostas(3));
-                                                    });
-                                                    $("#item-card-botoes-resetar-caixas").on("click", function () {
-                                                        controllerFase1.resetar_caixas();
-
-
-                                                        //captura todas as formas de colisao do cenario
-                                                    });
-                                                    $("#item-card-botoes-sair-jogo").on("click", function () {
-                                                        elementos.add_alerta_menu_sair_jogo();
-                                                        sound_fundo.play()
-                                                    });
-
                                                     controllerFase1.initgame();
-
-
                                                     checar_loop_game();
-
-
-
                                                 }, 2000);//2 segundos para aparecer tela de carregamento!
                                             }
                                         }

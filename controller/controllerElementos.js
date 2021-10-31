@@ -147,7 +147,7 @@ function ControllerElementos() {
                 </div>\
             </div>\
         </div>');
-    $('.container-inventario-card-barralife').append('<div class="item-img-person-clip"><img class="img-person-clip" src="assets/trump_perfil.png"></div>');
+    $('.container-inventario-card-barralife').append('<div class="item-img-person-clip"><img class="img-person-clip" src="assets/police_perfil.png"></div>');
     $('.container-inventario-card-barralife').append('<div class="item-nome-person-clip ">\
              <p id="person-name">Mr. Donald Trump</p>\
          </div>');
@@ -156,7 +156,7 @@ function ControllerElementos() {
     $('.container-inventario-card-tempo-restante').css('top', 80)
     $('.container-inventario-card-tempo-restante').css('left', 580)
     $('.container-inventario-card-tempo-restante').append('<div class="card-tempo-restante">\
-                <div class="titulo-card-tempo-restante">Hora do trem</div>\
+                <div class="titulo-card-tempo-restante">Hora do trem passar:</div>\
                 <div id="tempo-restante">00:02:00</div>\
         </div>');
 
@@ -377,6 +377,9 @@ function ControllerElementos() {
   }
   this.get_cronometro = function () {
     return $("#cronometro");
+  }
+  this.get_cronometro_trem = function () {
+    return $("#tempo-restante");
   }
 }
 

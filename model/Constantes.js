@@ -6,7 +6,10 @@ const PAINEL = 'PAINEL';
 const VAZIO = 'VAZIO';
 const BARREIRA_OPEN = 'ABERTA'
 const BARREIRA_CLOSE = 'FECHADA'
-
+const ATIVO = 'ATIVO'
+const INATIVO = 'DESATIVADO'
+const DANO_COLISAO_VEICULO_TREM = 30; //segundos
+const DANO_MOVIMENTO_ERRADO = 5; //segundos
 
 const TAM_WIDTH_TELA_CANVAS = 768;
 const TAM_HEGTH_TELA_CANVAS = 320;

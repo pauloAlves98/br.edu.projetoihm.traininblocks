@@ -10,7 +10,7 @@ function Sprite(){
   
 
 
-    this.carregarSprite = function (rows,columns,img){
+    this.carregar_sprite = function (rows,columns,img){
         this.rows = rows;
         this.columns = columns;
         this.folheto = img;
