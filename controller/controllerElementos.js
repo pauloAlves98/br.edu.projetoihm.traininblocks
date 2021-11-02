@@ -60,6 +60,7 @@ function ControllerElementos() {
                 <div id="b_cima" type="button" class="item-card-menu-suspenso">&#8593</div>\
                 <div id="b_baixo" type="button" class="item-card-menu-suspenso">&#8595</div>\
                 <div id="b_painel" type="button" class="item-card-menu-suspenso">P</div>\
+                <div id="b_tunel" type="button" class="item-card-menu-suspenso">T</div>\
                 <div id="b_remove" type="button" class="item-card-menu-suspenso">&#10060</div>\
           </div>');
 
@@ -128,13 +129,19 @@ function ControllerElementos() {
       $(quem_chamou_o_menu_supenso).attr('name', 'painel');
       $(quem_chamou_o_menu_supenso).text($(this).text())
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
-      movimentos[quem_chamou_o_menu_supenso] = 'PAINEL';
+      movimentos[quem_chamou_o_menu_supenso] = PAINEL;
+    });
+    $('#b_tunel').on('click', function () {
+      $(quem_chamou_o_menu_supenso).attr('name', 'tunel');
+      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = TUNEL;
     });
     $('#b_remove').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
       $(quem_chamou_o_menu_supenso).text('')
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
-      movimentos[quem_chamou_o_menu_supenso] = 'VAZIO';
+      movimentos[quem_chamou_o_menu_supenso] = VAZIO;
     });
 
     //Primeiro elemento do iventario! Dados do Persongem e Life
@@ -156,7 +163,7 @@ function ControllerElementos() {
     $('.container-inventario-card-tempo-restante').css('top', 80)
     $('.container-inventario-card-tempo-restante').css('left', 580)
     $('.container-inventario-card-tempo-restante').append('<div class="card-tempo-restante">\
-                <div class="titulo-card-tempo-restante">Hora do trem passar:</div>\
+                <div class="titulo-card-tempo-restante">Hora do trem vir</div>\
                 <div id="tempo-restante">00:02:00</div>\
         </div>');
 

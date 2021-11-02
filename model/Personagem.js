@@ -1,7 +1,7 @@
 //tudo que se move com deslocamento faz parte do cenario formas, caixas.
 function Personagem() {
     Elemento.call(this);
-   // this.life = 0;
+    // this.life = 0;
     this.dano = 0;
     this.largura = 64 - 32;//32;
     this.altura = 45 - 10;
@@ -63,7 +63,7 @@ function Personagem() {
 
     }
     this.set_direcao_antiga = function () {
-        if (this.direcaoAtual != PAINEL)
+        if (this.direcaoAtual != PAINEL || this.direcaoAtual != TUNEL)
             this.direcaoAntiga = this.direcaoAtual
         else
             this.emMovimento = false;
@@ -73,7 +73,7 @@ function Personagem() {
         this.y = this.yAntigo;
         this.atualizar_forma()
     }
-    this.checar_colisao_cenario = function (formas, barreiras, veiculos, paineis, larguraCenario, alturaCenario, direcao, tilearea) {
+    this.checar_colisao_cenario = function (formas, barreiras, veiculos, paineis, tuneis, larguraCenario, alturaCenario, direcao, tilearea) {
         if (direcao == DIREITA && (this.forma.x + tilearea - 2 > larguraCenario - this.forma.largura)) {
             return true;
         }
@@ -128,6 +128,13 @@ function Personagem() {
                 return true;
             }
         }
+        //Tuneis
+        for (let i = 0; i < tuneis.length; i++) {
+            let formaV = tuneis[i].forma;
+            if (formaaux.colisao(formaV.x, formaV.y, formaV.largura, formaV.altura)) {
+                return true;
+            }
+        }
         return false;
     }
     this.checar_colisao_paineis = function (barreiras, direcao, deslocamento) {//retorna o indicie da barreira ou null
@@ -151,6 +158,33 @@ function Personagem() {
 
         for (let i = 0; i < barreiras.length; i++) {
             let formaB = barreiras[i].forma;
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura)) {
+                return i;
+            }
+        }
+        return null;
+    }
+    this.checar_colisao_tunel = function (tuneis, direcao, deslocamento) {//retorna o indicie da barreira ou null
+        let valor_previsto_cimabai = 0;
+        let valor_previsto_diresq = 0;
+        if (direcao == DIREITA) {
+            valor_previsto_diresq = deslocamento - 1;//deslocamento futuro.
+        }
+        else if (direcao == ESQUERDA) {
+            valor_previsto_diresq = - deslocamento + 1;
+        }
+        else if (direcao == CIMA) {
+            valor_previsto_cimabai = -deslocamento + 1;
+        }
+        else if (direcao == BAIXO) {
+            valor_previsto_cimabai = deslocamento - 1;
+        }
+
+        let formaaux = new Rectangle();//inicia a projeção de uma forma
+        formaaux.init(this.forma.x + valor_previsto_diresq, this.forma.y + valor_previsto_cimabai, this.forma.largura, this.forma.altura)
+
+        for (let i = 0; i < tuneis.length; i++) {
+            let formaB = tuneis[i].forma;
             if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura)) {
                 return i;
             }

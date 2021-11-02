@@ -9,6 +9,8 @@ function ControllerFase1() {
     this.paineis_barreiras = [];//cenario!
     this.veiculos = [];//cenario
     this.trem = new Trem();//cenario
+    //cenario vetor de tuneis!
+    this.tunels = []
     this.quantidade_veiculos_ultrapassar = 10;
 
     this.loop_game = function () {
@@ -36,17 +38,16 @@ function ControllerFase1() {
             69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
             69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69];//camada de colisao fase1
         let camada_colisao_objetos = [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            57, 57, 0, 0, 0, 0, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            57, 57, 0, 0, 0, 0, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//camada de colisao fase1
-
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            57,57,57,57,0,0,0,0,57,57,57,57,57,57,57,57,0,0,0,0,57,57,57,57,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            57,57,57,57,0,0,0,0,57,57,57,57,57,57,57,57,0,0,0,0,57,57,57,57,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];//camada de colisao fase1
 
         this.contexto = document.getElementById("canvas").getContext("2d");
         this.fase1colisao.init(10, 24, 32, 32, camada_colisao_objetos, 0, this.contexto);//inicia a distribuição das formas de colisao
@@ -56,23 +57,26 @@ function ControllerFase1() {
         //CENARIO
         this.cenario1.init([fase1c1Img, fase1c2Img, fase1c3Img], TAM_HEGTH_TELA_CANVAS_JOGAVEL, TAM_WIDTH_TELA_CANVAS, [this.fase1colisao]);
         //BARREIRAS
-        this.add_barreiras(TILE_AREA * 2, TILE_AREA * 1,ESQUERDA,CIMA);//x e y;
-        this.add_barreiras(TILE_AREA * 18, TILE_AREA * 1,DIREITA,CIMA);//x e y;
-        this.add_barreiras(TILE_AREA * 2, TILE_AREA * 4,ESQUERDA,BAIXO);//x e y;
-        this.add_barreiras(TILE_AREA * 18, TILE_AREA * 4,DIREITA,BAIXO);//x e y;
+        this.add_barreiras(TILE_AREA * 5, TILE_AREA * 1, ESQUERDA, CIMA);//x e y;
+        this.add_barreiras(TILE_AREA * 17, TILE_AREA * 1, DIREITA, CIMA);//x e y;
+        this.add_barreiras(TILE_AREA * 5, TILE_AREA * 4, ESQUERDA, BAIXO);//x e y;
+        this.add_barreiras(TILE_AREA * 17, TILE_AREA * 4, DIREITA, BAIXO);//x e y;
         this.barreiras[2].set_status(BARREIRA_OPEN)
         this.barreiras[2].atualizar_sprite(this.contexto, true)
         //PAINEIS (alavanca)
-        this.add_paineis_barreiras(TILE_AREA * 5, TILE_AREA * 3);//x e y;
-        this.add_paineis_barreiras(TILE_AREA * 17, TILE_AREA * 3);//x e y;
-        this.add_paineis_barreiras(TILE_AREA * 5, TILE_AREA * 6);//x e y;
-        this.add_paineis_barreiras(TILE_AREA * 17, TILE_AREA * 6);//x e y;
+        this.add_paineis_barreiras(TILE_AREA * 4, TILE_AREA * 3);//x e y;
+        this.add_paineis_barreiras(TILE_AREA * 16, TILE_AREA * 3);//x e y;
+        this.add_paineis_barreiras(TILE_AREA * 4, TILE_AREA * 6);//x e y;
+        this.add_paineis_barreiras(TILE_AREA * 16, TILE_AREA * 6);//x e y;
         //VEICULOS
-        this.add_veiculo(TILE_AREA * 3, TILE_AREA * 7, carro1Img, ESQUERDA, CIMA);
-        this.add_veiculo(TILE_AREA * 19, TILE_AREA * 1, carro1Img, DIREITA, BAIXO);
+        this.add_veiculo(TILE_AREA * 6, TILE_AREA * 7, carro1Img, ESQUERDA, CIMA);
+        this.add_veiculo(TILE_AREA * 18, TILE_AREA * 1, carro1Img, DIREITA, BAIXO);
 
         //TREM
         this.add_trem(TILE_AREA * -6, TILE_AREA * 2, caixa, DIREITA);
+        //TUNEL
+        this.add_tunel(TILE_AREA * 22,TILE_AREA*1,tunelImg, ESQUERDA)
+        this.add_tunel(TILE_AREA * 0,TILE_AREA*8,tunelImg, DIREITA)
         //CRONOMETRO
         cronometro.relogio = elementos.get_cronometro();
         cronometroTrem.relogio = elementos.get_cronometro_trem()
@@ -81,14 +85,34 @@ function ControllerFase1() {
         }, 1000);
         cronometro.set_intervalo(true);
         cronometroTrem.incrementa_relogio_intervalo(10)
+    
         this.loop_game();
 
     }
-    this.fechar_barreiras = function() {
-        for(let i=0;i<this.barreiras.length;i++){
+    this.checar_fim_fase = function () {
+        if(this.quantidade_veiculos_ultrapassar<=0)
+            return true;
+        return false;
+    }
+    this.fechar_barreiras = function () {
+        for (let i = 0; i < this.barreiras.length; i++) {
             this.barreiras[i].set_status(BARREIRA_CLOSE)
-           // this.barreiras[i].atualizar_sprite(this.contexto, true)
+            // this.barreiras[i].atualizar_sprite(this.contexto, true)
         }
+    }
+    this.add_tunel = function (x, y, img, direcao) {
+        let tunel = new Tunel()
+        tunel.x = x;
+        tunel.y = y;
+        tunel.altura = TILE_AREA * 2;
+        // this.tunel.dy = this.trem.altura / 2
+        // this.tunel.dx = TILE_AREA
+        tunel.largura = TILE_AREA * 2;
+        tunel.sprite.carregar_sprite(1, 1, img);
+        tunel.direcaoAtual = direcao;
+        tunel.emMovimento = true;
+        tunel.forma.init(tunel.x, tunel.y+tunel.altura/2, tunel.largura ,tunel.altura/2)
+        this.tunels.push(tunel);
     }
     this.add_trem = function (x, y, img, direcao) {
         this.trem.x = x;
@@ -101,6 +125,7 @@ function ControllerFase1() {
         this.trem.direcaoAtual = direcao;
         this.trem.podeMudarSprite = true;
         this.trem.emMovimento = true;
+        this.trem.set_intervalo_trem_passar(60*3)
         this.trem.forma.init(this.trem.x, this.trem.y, this.trem.largura - TILE_AREA * 3, this.trem.altura - TILE_AREA * 2)
         this.trem.set_trem_deve_passar(false)
         this.trem.set_movimento_antigo()
@@ -145,13 +170,12 @@ function ControllerFase1() {
     this.desenha = function () {
         this.contexto.fillStyle = "white";
         //Camadas
-        this.contexto.drawImage(this.cenario1.camadasImg[0], 0, 0, this.cenario1.largura, this.cenario1.altura)
+        this.contexto.drawImage(this.cenario1.camadasImg[0], 0, 0, this.cenario1.largura, this.cenario1.altura)//CHAO
         //this.contexto.drawImage(vilaoImg, 0, 0, this.cenario1.largura, this.cenario1.altura)
         //formas Cenario.
         this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
-
-        this.contexto.drawImage(this.cenario1.camadasImg[1], 0, 0, this.cenario1.largura, this.cenario1.altura);
-        this.contexto.drawImage(this.cenario1.camadasImg[2], 0, 0, this.cenario1.largura, this.cenario1.altura);
+        this.contexto.drawImage(this.cenario1.camadasImg[1], 0, 0, this.cenario1.largura, this.cenario1.altura);//TRILHOS
+        this.contexto.drawImage(this.cenario1.camadasImg[2], 0, 0, this.cenario1.largura, this.cenario1.altura);//CAMADA CONE!
         this.contexto.globalAlpha = 0.3;
 
 
@@ -172,8 +196,7 @@ function ControllerFase1() {
 
 
         this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
-        //Personagem
-        personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO ? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
+       
 
 
         //Veiculos
@@ -186,6 +209,11 @@ function ControllerFase1() {
         this.trem.atualizar_sprite(this.contexto, this.trem.direcaoAtual)
         this.contexto.strokeRect(this.trem.forma.x, this.trem.forma.y, this.trem.forma.largura, this.trem.forma.altura);
         //console.log(i);
+   
+        //Personagem
+      
+        if(personagem.lado==CIMA)
+             personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO  || personagem.direcaoAtual == TUNEL? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
         //Barreiras e paineis
         for (let i = 0; i < this.barreiras.length; i++) {//enquanto for de mesmo tamnaho!
             let barreira = this.barreiras[i];
@@ -194,6 +222,18 @@ function ControllerFase1() {
             painel.atualizar_sprite(this.contexto, false)
             this.contexto.strokeRect((barreira.forma.x + 0), barreira.forma.y, barreira.forma.largura, barreira.forma.altura);//deslocamento ja vem negativo.
             this.contexto.strokeRect((painel.forma.x + 0), painel.forma.y, painel.forma.largura, painel.forma.altura);
+            //console.log(i);
+        }
+          //Personagem
+        if(personagem.lado!=CIMA)
+           personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO  || personagem.direcaoAtual == TUNEL? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
+       
+        //Tunels
+        for (let i = 0; i < this.tunels.length; i++) {//enquanto for de mesmo tamnaho!
+            let tunel = this.tunels[i];
+            tunel.atualizar_sprite(this.contexto)
+            this.contexto.strokeRect((tunel.forma.x), tunel.forma.y, tunel.forma.largura, tunel.forma.altura);//deslocamento ja vem negativo.
+            //this.contexto.strokeRect((painel.forma.x + 0), painel.forma.y, painel.forma.largura, painel.forma.altura);
             //console.log(i);
         }
         this.draw_life(); //estudar se coloca um inventario para isso!;
@@ -252,17 +292,19 @@ function ControllerFase1() {
             }
 
             if (veiculo.checar_saida_cenario(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)) {
-                alert("Veiculo ultrapassou!")
                 veiculo.status = INATIVO
                 index.push(i);
-                this.quantidade_veiculos_ultrapassar=this.quantidade_veiculos_ultrapassar-1;
+                this.quantidade_veiculos_ultrapassar = this.quantidade_veiculos_ultrapassar - 1;
+                alert("Você deve ajudar mais "+ this.quantidade_veiculos_ultrapassar+" veiculos a ultrapassarem a via!")
                 //fechar
             }
-            if (veiculo.checar_colisao_objetos([this.trem])){
+            if (veiculo.checar_colisao_objetos([this.trem])) {
                 veiculo.status = INATIVO
                 index.push(i);
+                personagem.dano=personagem.dano+DANO_COLISAO_VEICULO_TREM;
+                alert("Bateu! +"+DANO_COLISAO_VEICULO_TREM+"s")
             } //ver se colide com o trem!
-             
+
 
         }
 
@@ -271,27 +313,27 @@ function ControllerFase1() {
                 let veiculo = this.veiculos[index[i]];
                 this.veiculos.splice(index[i], 1);
                 this.novo_veiculo(veiculo);
-                alert( index[i] +"Tam c")
+               // alert(index[i] + "Tam c")
                 //outro tem que entrar!
             }
         }
 
     }
-    this.novo_veiculo = function (veiculoAntigo) {
-       // alert('novo veiculo: '+this.barreiras.length)
-        for(let i = 0;i<this.barreiras.length;i++){
+    this.novo_veiculo = function (veiculoAntigo) {//add novo veiculo no cenário!
+        // alert('novo veiculo: '+this.barreiras.length)
+        for (let i = 0; i < this.barreiras.length; i++) {
             let barreira = this.barreiras[i]
-            if(barreira.get_lado() == veiculoAntigo.get_lado() && barreira.direcaoAtual == veiculoAntigo.direcaoAtual){//invertida!
+            if (barreira.get_lado() == veiculoAntigo.get_lado() && barreira.direcaoAtual != personagem.lado) {//invertida!
                 //alert('novo veiculo: '+veiculoAntigo.get_lado())
                 barreira.set_status(BARREIRA_CLOSE)
-                if(barreira.direcaoAtual == CIMA)
-                  this.add_veiculo(veiculoAntigo.x, 0, carro1Img, veiculoAntigo.get_lado(), BAIXO);//INVERTIDO!
+                if (barreira.direcaoAtual == CIMA)
+                    this.add_veiculo(veiculoAntigo.x, 0, carro1Img, veiculoAntigo.get_lado(), BAIXO);//INVERTIDO!
                 else
-                  this.add_veiculo(veiculoAntigo.x, TAM_HEGTH_TELA_CANVAS-veiculoAntigo.altura, carro1Img, veiculoAntigo.get_lado(), CIMA);
+                    this.add_veiculo(veiculoAntigo.x, TAM_HEGTH_TELA_CANVAS - veiculoAntigo.altura, carro1Img, veiculoAntigo.get_lado(), CIMA);
                 return;
             }
         }
-     
+
     }
     this.movimentos_personagem = function () {
         if (this.autorizar_movimento) {//p
@@ -304,7 +346,7 @@ function ControllerFase1() {
                 return;
             } else {
                 let direcao = movimentos[this.movimentos_validos[0][0]];
-                if (personagem.checar_colisao_cenario(this.fase1colisao.formasTile, this.barreiras, this.veiculos, this.paineis_barreiras, TAM_WIDTH_TELA_CANVAS, this.cenario1.altura, direcao, personagem.velocidade)) {
+                if (personagem.checar_colisao_cenario(this.fase1colisao.formasTile, this.barreiras, this.veiculos, this.paineis_barreiras, this.tunels, TAM_WIDTH_TELA_CANVAS, this.cenario1.altura, direcao, personagem.velocidade)) {
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
                     alert("Vai colidir!")
@@ -320,15 +362,49 @@ function ControllerFase1() {
                         this.barreiras[nBarreira].alterar_estado()
                         this.barreiras[nBarreira].atualizar_sprite(this.contexto, true)
                         alert('BARREIRA ' + this.barreiras[nBarreira].status)
-                        $('#play').css('background-image', "url('assets/play.png')");
-                        $('#play').attr('name', 'play')
-                        movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
-                        $(this.movimentos_validos[0][0]).text("")
-                        this.movimentos_validos = []
-                        this.autorizar_movimento = false;
-                        personagem.emMovimento = false;
-                        return;
                     }
+                    $('#play').css('background-image', "url('assets/play.png')");
+                    $('#play').attr('name', 'play')
+                    movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
+                    $(this.movimentos_validos[0][0]).text("")
+                    this.movimentos_validos = []
+                    this.autorizar_movimento = false;
+                    personagem.emMovimento = false;
+                    return;
+                }
+                //tunel
+                if (direcao == TUNEL) {
+                    //OLHAR SE TUNEL É DIREITA OU ESQURDA
+                    nTunel = personagem.checar_colisao_tunel(this.tunels, personagem.direcaoAntiga, personagem.velocidade)
+                    if (nTunel != null) {
+                        //alert('Colisao Tunel com escada a ' + this.tunels[nTunel].direcaoAtual)
+                        if(this.tunels[nTunel].direcaoAtual==ESQUERDA){
+                            personagem.x = personagem.x -TILE_AREA*19
+                            personagem.y = personagem.y + TILE_AREA*7
+                            personagem.atualizar_forma()
+                            personagem.direcaoAtual = DIREITA
+                            personagem.lado=BAIXO
+                            personagem.set_direcao_antiga()
+                            personagem.set_movimento_antigo()
+                        }  
+                        else{
+                            personagem.x = personagem.x + TILE_AREA*19
+                            personagem.y = personagem.y - TILE_AREA*7
+                            personagem.atualizar_forma()
+                            personagem.direcaoAtual = ESQUERDA
+                            personagem.lado=CIMA
+                            personagem.set_direcao_antiga()
+                            personagem.set_movimento_antigo()
+                        }
+                    }
+                    $('#play').css('background-image', "url('assets/play.png')");
+                    $('#play').attr('name', 'play')
+                    movimentos[this.movimentos_validos[0][0]] = VAZIO
+                    $(this.movimentos_validos[0][0]).text("")
+                    this.movimentos_validos = []
+                    this.autorizar_movimento = false;
+                    personagem.emMovimento = false;
+                    return;
                 }
 
                 if (direcao == DIREITA) {

@@ -3,6 +3,7 @@ const ESQUERDA = 'ESQUERDA';
 const CIMA = 'CIMA';
 const BAIXO = 'BAIXO';
 const PAINEL = 'PAINEL';
+const TUNEL = 'TUNEL';
 const VAZIO = 'VAZIO';
 const BARREIRA_OPEN = 'ABERTA'
 const BARREIRA_CLOSE = 'FECHADA'

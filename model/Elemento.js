@@ -13,7 +13,15 @@ function Elemento(){
     this.emMovimento = false;
     this.yAntigo = 0;
     this.xAntigo = 0;
+    this.lado = CIMA;
     this.dxForma = 16;//variacao da forma em relacao ao x do personagem.//multiplo de 32//32 pq eh o tamanho do tile
     this.podeMudarSprite = false;//para controlar a velocidade da troca da sprite.
     this.forma = new Rectangle();
+    
+    this.set_x = function (x) {
+        this.x = x;
+    }
+    this.set_y = function (y) {
+        this.y = y;
+    }
 }

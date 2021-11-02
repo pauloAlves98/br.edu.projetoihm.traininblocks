@@ -10,3 +10,4 @@ var caixa = new Image();
 var vilaoImg = new Image();
 var barreiraImg = new Image();
 var carro1Img = new Image();
+var tunelImg = new Image()
