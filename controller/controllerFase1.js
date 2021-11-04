@@ -38,16 +38,16 @@ function ControllerFase1() {
             69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69,
             69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69];//camada de colisao fase1
         let camada_colisao_objetos = [
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            57,57,57,57,0,0,0,0,57,57,57,57,57,57,57,57,0,0,0,0,57,57,57,57,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            57,57,57,57,0,0,0,0,57,57,57,57,57,57,57,57,0,0,0,0,57,57,57,57,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];//camada de colisao fase1
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57, 57, 57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57, 57,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57, 57, 57, 57, 57, 57, 0, 0, 0, 0, 57, 57, 57, 57,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//camada de colisao fase1
 
         this.contexto = document.getElementById("canvas").getContext("2d");
         this.fase1colisao.init(10, 24, 32, 32, camada_colisao_objetos, 0, this.contexto);//inicia a distribuição das formas de colisao
@@ -62,7 +62,7 @@ function ControllerFase1() {
         this.add_barreiras(TILE_AREA * 5, TILE_AREA * 4, ESQUERDA, BAIXO);//x e y;
         this.add_barreiras(TILE_AREA * 17, TILE_AREA * 4, DIREITA, BAIXO);//x e y;
         this.barreiras[2].set_status(BARREIRA_OPEN)
-        this.barreiras[2].atualizar_sprite(this.contexto, true)
+        this.barreiras[2].atualizar_sprite(this.contexto, true,TILE_AREA*3-TILE_AREA/2)
         //PAINEIS (alavanca)
         this.add_paineis_barreiras(TILE_AREA * 4, TILE_AREA * 3);//x e y;
         this.add_paineis_barreiras(TILE_AREA * 16, TILE_AREA * 3);//x e y;
@@ -75,8 +75,8 @@ function ControllerFase1() {
         //TREM
         this.add_trem(TILE_AREA * -6, TILE_AREA * 2, caixa, DIREITA);
         //TUNEL
-        this.add_tunel(TILE_AREA * 22,TILE_AREA*1,tunelImg, ESQUERDA)
-        this.add_tunel(TILE_AREA * 0,TILE_AREA*8,tunelImg, DIREITA)
+        this.add_tunel(TILE_AREA * 22, TILE_AREA * 1, tunelImg, ESQUERDA)
+        this.add_tunel(TILE_AREA * 0, TILE_AREA * 8, tunelImg, DIREITA)
         //CRONOMETRO
         cronometro.relogio = elementos.get_cronometro();
         cronometroTrem.relogio = elementos.get_cronometro_trem()
@@ -85,12 +85,12 @@ function ControllerFase1() {
         }, 1000);
         cronometro.set_intervalo(true);
         cronometroTrem.incrementa_relogio_intervalo(10)
-    
+
         this.loop_game();
 
     }
     this.checar_fim_fase = function () {
-        if(this.quantidade_veiculos_ultrapassar<=0)
+        if (this.quantidade_veiculos_ultrapassar <= 0)
             return true;
         return false;
     }
@@ -111,7 +111,7 @@ function ControllerFase1() {
         tunel.sprite.carregar_sprite(1, 1, img);
         tunel.direcaoAtual = direcao;
         tunel.emMovimento = true;
-        tunel.forma.init(tunel.x, tunel.y+tunel.altura/2, tunel.largura ,tunel.altura/2)
+        tunel.forma.init(tunel.x, tunel.y + tunel.altura / 2, tunel.largura, tunel.altura / 2)
         this.tunels.push(tunel);
     }
     this.add_trem = function (x, y, img, direcao) {
@@ -125,7 +125,7 @@ function ControllerFase1() {
         this.trem.direcaoAtual = direcao;
         this.trem.podeMudarSprite = true;
         this.trem.emMovimento = true;
-        this.trem.set_intervalo_trem_passar(60*3)
+        this.trem.set_intervalo_trem_passar(60 * 3)
         this.trem.forma.init(this.trem.x, this.trem.y, this.trem.largura - TILE_AREA * 3, this.trem.altura - TILE_AREA * 2)
         this.trem.set_trem_deve_passar(false)
         this.trem.set_movimento_antigo()
@@ -148,7 +148,7 @@ function ControllerFase1() {
         barreira1.y = y;
         barreira1.altura = 32 * 1;
         barreira1.largura = 32 * 1;
-        barreira1.sprite.carregar_sprite(1, 1, caixaFalseImg);
+        barreira1.sprite.carregar_sprite(1, 2, caixaFalseImg);
         barreira1.forma.init(barreira1.x, barreira1.y, barreira1.largura, 32)
         this.paineis_barreiras.push(barreira1);
     }
@@ -183,9 +183,9 @@ function ControllerFase1() {
             for (let i = 0; i < this.camada_livre.formasTile.length; i++) {
                 let forma = this.camada_livre.formasTile[i];
                 this.contexto.globalAlpha = 0.1;
-                this.contexto.drawImage(circuloImg, (forma.x + 0), forma.y, forma.largura, forma.altura);//Central
-                this.contexto.globalAlpha = 0.4;
-                this.contexto.drawImage(caixaenergia, (forma.x + 0) + 5, forma.y, forma.largura - 6, forma.altura - 5);//Central
+               this.contexto.drawImage(circuloImg, (forma.x + 5), forma.y+5, forma.largura-10, forma.altura-10);//Central
+                this.contexto.globalAlpha = 0.2;
+                this.contexto.drawImage(caixaenergia, (forma.x + 0) + 3, forma.y+5, forma.largura - 6, forma.altura - 10);//Central
                 this.contexto.strokeRect((forma.x + 0), forma.y, forma.largura, forma.altura);//deslocamento ja vem negativo.
                 //console.log(i);
             }
@@ -196,7 +196,7 @@ function ControllerFase1() {
 
 
         this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
-       
+
 
 
         //Veiculos
@@ -209,25 +209,25 @@ function ControllerFase1() {
         this.trem.atualizar_sprite(this.contexto, this.trem.direcaoAtual)
         this.contexto.strokeRect(this.trem.forma.x, this.trem.forma.y, this.trem.forma.largura, this.trem.forma.altura);
         //console.log(i);
-   
+
         //Personagem
-      
-        if(personagem.lado==CIMA)
-             personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO  || personagem.direcaoAtual == TUNEL? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
+
+        if (personagem.lado == CIMA)
+            personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO || personagem.direcaoAtual == TUNEL ? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
         //Barreiras e paineis
         for (let i = 0; i < this.barreiras.length; i++) {//enquanto for de mesmo tamnaho!
             let barreira = this.barreiras[i];
             let painel = this.paineis_barreiras[i]
-            barreira.atualizar_sprite(this.contexto, false)
-            painel.atualizar_sprite(this.contexto, false)
+            barreira.atualizar_sprite(this.contexto, false,TILE_AREA*3-TILE_AREA/2)
+            painel.atualizar_sprite(this.contexto, false,TILE_AREA)
             this.contexto.strokeRect((barreira.forma.x + 0), barreira.forma.y, barreira.forma.largura, barreira.forma.altura);//deslocamento ja vem negativo.
             this.contexto.strokeRect((painel.forma.x + 0), painel.forma.y, painel.forma.largura, painel.forma.altura);
             //console.log(i);
         }
-          //Personagem
-        if(personagem.lado!=CIMA)
-           personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO  || personagem.direcaoAtual == TUNEL? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
-       
+        //Personagem
+        if (personagem.lado != CIMA)
+            personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO || personagem.direcaoAtual == TUNEL ? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
+
         //Tunels
         for (let i = 0; i < this.tunels.length; i++) {//enquanto for de mesmo tamnaho!
             let tunel = this.tunels[i];
@@ -246,6 +246,9 @@ function ControllerFase1() {
     this.autorizar_movimento_personagem = function () {//validar movimentos personagem.(coleta do painel)
         for (var key in movimentos) {//variavel movimentos em controller geral
             var value = movimentos[key];
+            $(key).css('background-color', "white");
+            // $(key).css('background-size', '95% 95%');
+           // $(key+' div').css('background-image', 'url()');
             //aqui na andada!
             if (movimentos[key] != 'VAZIO')
                 this.movimentos_validos.push([key, TILE_AREA])//metodo em personagem!
@@ -295,14 +298,14 @@ function ControllerFase1() {
                 veiculo.status = INATIVO
                 index.push(i);
                 this.quantidade_veiculos_ultrapassar = this.quantidade_veiculos_ultrapassar - 1;
-                alert("Você deve ajudar mais "+ this.quantidade_veiculos_ultrapassar+" veiculos a ultrapassarem a via!")
+                alert("Você deve ajudar mais " + this.quantidade_veiculos_ultrapassar + " veiculos a ultrapassarem a via!")
                 //fechar
             }
             if (veiculo.checar_colisao_objetos([this.trem])) {
                 veiculo.status = INATIVO
                 index.push(i);
-                personagem.dano=personagem.dano+DANO_COLISAO_VEICULO_TREM;
-                alert("Bateu! +"+DANO_COLISAO_VEICULO_TREM+"s")
+                personagem.dano = personagem.dano + DANO_COLISAO_VEICULO_TREM;
+                alert("Bateu! +" + DANO_COLISAO_VEICULO_TREM + "s")
             } //ver se colide com o trem!
 
 
@@ -313,7 +316,7 @@ function ControllerFase1() {
                 let veiculo = this.veiculos[index[i]];
                 this.veiculos.splice(index[i], 1);
                 this.novo_veiculo(veiculo);
-               // alert(index[i] + "Tam c")
+                // alert(index[i] + "Tam c")
                 //outro tem que entrar!
             }
         }
@@ -349,10 +352,14 @@ function ControllerFase1() {
                 if (personagem.checar_colisao_cenario(this.fase1colisao.formasTile, this.barreiras, this.veiculos, this.paineis_barreiras, this.tunels, TAM_WIDTH_TELA_CANVAS, this.cenario1.altura, direcao, personagem.velocidade)) {
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
-                    alert("Vai colidir!")
+
+                    $(this.movimentos_validos[0][0]).css('background-color', "red");
                     this.movimentos_validos = []
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
+                    personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
+                    
+                    alert("Colisão + " + DANO_MOVIMENTO_ERRADO + " s")
                     return;
                 }
                 if (direcao == PAINEL) {
@@ -360,13 +367,24 @@ function ControllerFase1() {
                     nBarreira = personagem.checar_colisao_paineis(this.paineis_barreiras, personagem.direcaoAntiga, personagem.velocidade)
                     if (nBarreira != null) {
                         this.barreiras[nBarreira].alterar_estado()
-                        this.barreiras[nBarreira].atualizar_sprite(this.contexto, true)
+                        this.barreiras[nBarreira].atualizar_sprite(this.contexto, true,TILE_AREA*3-TILE_AREA/2)
+                        this.paineis_barreiras[nBarreira].alterar_estado()
+                        this.paineis_barreiras[nBarreira].atualizar_sprite(this.contexto, true,TILE_AREA)
+                        // $(this.movimentos_validos[0][0] +' div').css("visibility", "hidden");
+                        $(this.movimentos_validos[0][0] +' div').remove()
+                        movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
+                        $(this.movimentos_validos[0][0]).text("")
                         alert('BARREIRA ' + this.barreiras[nBarreira].status)
+                        
+                    } else {
+                        personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
+                        alert("Movimento errado! + " + DANO_MOVIMENTO_ERRADO + " s")
+                        $(this.movimentos_validos[0][0]).css('background-color', "red");
                     }
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
-                    movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
-                    $(this.movimentos_validos[0][0]).text("")
+                    //movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
+                    //$(this.movimentos_validos[0][0]).text("")
                     this.movimentos_validos = []
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
@@ -378,29 +396,38 @@ function ControllerFase1() {
                     nTunel = personagem.checar_colisao_tunel(this.tunels, personagem.direcaoAntiga, personagem.velocidade)
                     if (nTunel != null) {
                         //alert('Colisao Tunel com escada a ' + this.tunels[nTunel].direcaoAtual)
-                        if(this.tunels[nTunel].direcaoAtual==ESQUERDA){
-                            personagem.x = personagem.x -TILE_AREA*19
-                            personagem.y = personagem.y + TILE_AREA*7
+                        if (this.tunels[nTunel].direcaoAtual == ESQUERDA) {
+                            personagem.x = personagem.x - TILE_AREA * 19
+                            personagem.y = personagem.y + TILE_AREA * 7
                             personagem.atualizar_forma()
                             personagem.direcaoAtual = DIREITA
-                            personagem.lado=BAIXO
-                            personagem.set_direcao_antiga()
-                            personagem.set_movimento_antigo()
-                        }  
-                        else{
-                            personagem.x = personagem.x + TILE_AREA*19
-                            personagem.y = personagem.y - TILE_AREA*7
-                            personagem.atualizar_forma()
-                            personagem.direcaoAtual = ESQUERDA
-                            personagem.lado=CIMA
+                            personagem.lado = BAIXO
                             personagem.set_direcao_antiga()
                             personagem.set_movimento_antigo()
                         }
+                        else {
+                            personagem.x = personagem.x + TILE_AREA * 19
+                            personagem.y = personagem.y - TILE_AREA * 7
+                            personagem.atualizar_forma()
+                            personagem.direcaoAtual = ESQUERDA
+                            personagem.lado = CIMA
+                            personagem.set_direcao_antiga()
+                            personagem.set_movimento_antigo()
+                        }
+                        $(this.movimentos_validos[0][0] +' div').remove()
+                        $(this.movimentos_validos[0][0]).text("")
+                        movimentos[this.movimentos_validos[0][0]] = VAZIO
+                    } else {
+                        //mudar cor da barra!
+                        personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
+                        alert("Movimento executado errado + " + DANO_MOVIMENTO_ERRADO + " s")
+                         $(this.movimentos_validos[0][0]).css('background-color', "red");
+
                     }
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
-                    movimentos[this.movimentos_validos[0][0]] = VAZIO
-                    $(this.movimentos_validos[0][0]).text("")
+                   // movimentos[this.movimentos_validos[0][0]] = VAZIO
+                   // $(this.movimentos_validos[0][0]).text("")
                     this.movimentos_validos = []
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
@@ -430,6 +457,7 @@ function ControllerFase1() {
                 this.movimentos_validos[0][1] = this.movimentos_validos[0][1] - personagem.velocidade;//subtrai do movimento ativo!Peccore o tile area tdo
                 console.log(this.movimentos_validos[0][1])
                 if (this.movimentos_validos[0][1] <= 0) {
+                    //aqui visibility
                     movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
                     $(this.movimentos_validos[0][0]).text("")
                     this.movimentos_validos.shift()

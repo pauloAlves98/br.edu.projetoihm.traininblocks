@@ -2,7 +2,7 @@ function Veiculo (){
     Elemento.call(this);
     //criar pelo menos a forma!
     this.status = ATIVO;
-    this.velocidade  = TILE_AREA/8
+    this.velocidade  = TILE_AREA/4
     this.atualizar_forma = function () {
         this.forma.x = this.x+this.dx;
         this.forma.y = this.y +this.dy;

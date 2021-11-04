@@ -80,7 +80,7 @@ function carregar_imagens_fase_1() {
                         caixaenergia.onload = function () {
                             circuloImg.src = "assets/caixaenergia.png";
                             circuloImg.onload = function () {
-                                caixaFalseImg.src = "assets/circulo.png";
+                                caixaFalseImg.src = "assets/painel.png";
                                 caixaFalseImg.onload = function () {
                                     barreiraImg.src = "assets/barreira.png";
                                     barreiraImg.onload = function () {

@@ -55,13 +55,13 @@ function ControllerElementos() {
     //temporario
     $('#inventario').append('<div class="container-inventario-menu-suspenso"></div>');
     $('.container-inventario-menu-suspenso').append('<div class="card-menu-suspenso">\
-                <div id="b_esquerda" type="button" class="item-card-menu-suspenso">&#8592</div>\
-                <div id="b_direita" type="button" class="item-card-menu-suspenso">&#8594</div>\
-                <div id="b_cima" type="button" class="item-card-menu-suspenso">&#8593</div>\
-                <div id="b_baixo" type="button" class="item-card-menu-suspenso">&#8595</div>\
-                <div id="b_painel" type="button" class="item-card-menu-suspenso">P</div>\
-                <div id="b_tunel" type="button" class="item-card-menu-suspenso">T</div>\
-                <div id="b_remove" type="button" class="item-card-menu-suspenso">&#10060</div>\
+                <div id="b_esquerda" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_direita" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_cima" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_baixo" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_painel" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_tunel" type="button" class="item-card-menu-suspenso"></div>\
+                <div id="b_remove" type="button" class="item-card-menu-suspenso"></div>\
           </div>');
 
     //Functions
@@ -102,43 +102,74 @@ function ControllerElementos() {
     //menu suspenso
     $('#b_esquerda').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', ESQUERDA);
-      $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = ESQUERDA;
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = ESQUERDA;
     });
     $('#b_direita').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', DIREITA);
-      $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = DIREITA;
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = DIREITA;
     });
     $('#b_cima').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', CIMA);
-      $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = CIMA;
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = CIMA;
     });
     $('#b_baixo').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'baixo');
-      $(quem_chamou_o_menu_supenso).text($(this).text())
-      movimentos[quem_chamou_o_menu_supenso] = BAIXO;
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
+      movimentos[quem_chamou_o_menu_supenso] = BAIXO;
 
     });
     $('#b_painel').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'painel');
-      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = PAINEL;
     });
     $('#b_tunel').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'tunel');
-      $(quem_chamou_o_menu_supenso).text($(this).text())
+      $(quem_chamou_o_menu_supenso).text("")
+      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
+      let bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = TUNEL;
     });
     $('#b_remove').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
+      $(quem_chamou_o_menu_supenso+' div').remove();
       $(quem_chamou_o_menu_supenso).text('')
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = VAZIO;
@@ -231,6 +262,19 @@ function ControllerElementos() {
   }
 
   //elementos do menu controles
+  // this.set_backgorund_comando = function (id) {
+  //   $(id).css("background-color", "red");
+  // }
+  this.get_url_bakcground_image = function (id) {
+      let bg = $(id).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      alert(bg)
+      return bg;
+  }
+  this.set_background_image = function (id,url) {
+    $(id).css('background-size', '95% 95%');
+    $(id).css('background-image', 'url(' + url + ')');
+  }
   this.add_alerta_menu_controles = function () {
     $('.alerta-container').remove();
     $("#frame").append('<a class="alerta-container motionL" href="#"></a>');

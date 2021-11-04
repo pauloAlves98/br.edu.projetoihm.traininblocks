@@ -54,7 +54,9 @@ function Personagem() {
             row = 0;
         context.drawImage(this.sprite.folheto, this.sprite.aparencia * this.sprite.width, row * this.sprite.height, this.sprite.width, this.sprite.height, this.x + this.largura / 2, this.y, this.largura, this.altura);
     }
-
+    this.acrecentar_dano = function (dano) {
+        this.dano = this.dano + dano;
+    }
     this.set_movimento_antigo = function () {
 
         this.xAntigo = this.x;

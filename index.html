@@ -1,1273 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>GAME IHM</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-  <script type="text/javascript" src="model/Constantes.js"> </script>
-  <script type="text/javascript" src="model/Imagens.js"> </script>
-  <script type="text/javascript" src="model/Camada.js"> </script>
-  <script type="text/javascript" src="model/Sprite.js"> </script>
-  <script type="text/javascript" src="model/Rectangle.js"> </script>
-  <script type="text/javascript" src="model/Circulo.js"> </script>
-  <script type="text/javascript" src="model/Cenario.js"> </script>
-  <script type="text/javascript" src="model/Caixa.js"> </script>
-  <script type="text/javascript" src="model/Vader.js"> </script>
-  <script type="text/javascript" src="model/Tunel.js"> </script>
-  <script type="text/javascript" src="model/Barreira.js"> </script>
-  <script type="text/javascript" src="model/Elemento.js"> </script>
-  <script type="text/javascript" src="model/Personagem.js"> </script>
-  <script type="text/javascript" src="model/Veiculo.js"> </script>
-  <script type="text/javascript" src="model/Trem.js"> </script>
-  <script type="text/javascript" src="model/Cronometro.js"> </script>
-  <script type="text/javascript" src="controller/controllerElementos.js"> </script>
-  <script type="text/javascript" src="controller/controllerFase1.js"> </script>
-  <script type="text/javascript" src="controller/controllerJoyStick.js"> </script>
-  <script type="text/javascript" src="controller/controllerGame.js"> </script>
-
-
-  <style>
-    @font-face {
-    font-family: 'ApexNew-Book';
-    font-style: normal;
-    font-weight: normal;
-    src: local('ApexNew-Book'), url('fonts/ufonts.com_apexnew-book-opentype.woff') format('woff');
-    }
-    @font-face {
-      font-family: splurge;
-      src: local(splurge), url("fonts/splurge.ttf");
-    }
-
-    @font-face {
-      font-family: HVD_Comic_Serif_Pro;
-      src: local(HVD_Comic_Serif_Pro), url("fonts/HVD_Comic_Serif_Pro.otf");
-    }
-    @font-face {
-      font-family:Coves_Light;
-      src: local(Coves_Light), url("fonts/Coves_Light.otf");
-    }
-  
-    body {
-    background-image: linear-gradient(90deg, rgba(239, 236, 255, 0.754), rgb(255, 255, 255));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    }
-
-    #frame {
-      position: relative;
-      height: 580px;
-      /* background-color: turquoise; */
-      width: 768px;
-    }
-
-    #canvas {
-    
-    }
-
-    #contentCanvas {
-      height: 580px;
-      width: 768px;
-      position: absolute;
-      overflow: hidden;
-      /* background-color: blue */
-    }
-
-    #contentCanvas {
-      top: 0px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      margin: auto;
-    }
-
-    #overlay {
-      position: absolute;
-      background-color: transparent;
-      top: 320px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      width: 768px;
-      height: 260px;
-      margin: auto;
-      display: block;
-      /* background-color: brown; */
-    }
-
-    @keyframes animacaoBolada {
-      0% {
-        /* background: rgb(187, 75, 75); */
-        opacity: 0%;
-        width: 100px;
-
-      }
-
-      25% {}
-
-      /* 50%  {  }
-            75%  {  } */
-      100% {}
-    }
-
-    .motionL {
-      /* color: #669900; */
-      background-color: transparent;
-      animation-name: animacaoBolada;
-      animation-duration: 2s;
-      animation-timing-function: ease-in;
-      animation-delay: 0s;
-      animation-iteration-count: initial;
-      animation-direction: left;
-      animation-play-state: running;
-    }
-
-    /* load */
-    .lds-ellipsis {
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      margin: auto;
-      width: 80px;
-      height: 80px;
-    }
-
-    .lds-ellipsis div {
-      position: absolute;
-      top: 33px;
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: rgb(61, 55, 55);
-      animation-timing-function: cubic-bezier(0, 1, 1, 0);
-    }
-
-    .lds-ellipsis div:nth-child(1) {
-      left: 8px;
-      animation: lds-ellipsis1 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(2) {
-      left: 8px;
-      animation: lds-ellipsis2 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(3) {
-      left: 32px;
-      animation: lds-ellipsis2 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(4) {
-      left: 56px;
-      animation: lds-ellipsis3 0.6s infinite;
-    }
-
-    @keyframes lds-ellipsis1 {
-      0% {
-        transform: scale(0);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes lds-ellipsis3 {
-      0% {
-        transform: scale(1);
-      }
-
-      100% {
-        transform: scale(0);
-      }
-    }
-
-    @keyframes lds-ellipsis2 {
-      0% {
-        transform: translate(0, 0);
-      }
-
-      100% {
-        transform: translate(24px, 0);
-      }
-    }
-
-    /* load */
-
-    /* inventario*/
-    #inventario {
-      /* vertical-align: top; */
-      margin-top: 4px;;
-      height: 200px;
-      width: 764px;
-      overflow: hidden;
-      background-color: blACK;
-      text-align: center;
-      color: rgb(0, 0, 0);
-      font-size: 30px;
-      border-radius: 10px;
-      /* border-bottom-left-radius: 50%;
-      border-bottom-right-radius: 50%; */
-      border: 3px solid rgb(3, 166, 241);;
-     
-      font-family: splurge;
-      font-weight: bold;
-      /* background-color: rgba(17, 9, 9, 0); */
-      /* -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: rgba(14, 233, 112, 0.945);     */
-      /* margin:0px;
-    padding: -1px; */
-    }
-
-    /* container para barra de life */
-
-    .container-inventario-card-barralife {
-      background-color: slateblue;
-      margin: 0px auto;
-      width: 250px;
-      /* text-align: center; */
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      /* border: 2px solid blue; */
-      
-    
-    }
-
-    .card-barralife {
-      position: absolute;
-      top: 30px;
-      left: 43px;
-      width: 150px;
-      /* 207 px pq o container total (.container-inventario-card-barralife) é 250, então 250px menos 43px de deslocamento left.*/
-    }
-
-    /*  */
-    .progress {
-      padding: 6px;
-      background: rgba(158, 150, 150, 0.288);
-      border-radius: 6px;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-    }
-
-    .progress-bar {
-      height: 20px;
-      /* background-color: #1d1a1a; */
-      background-color: rgb(2, 201, 220);
-      width: 100%;
-      color: rgb(67, 66, 66);
-text-shadow:rgb(255, 250, 250) 1px -1px, rgb(255, 249, 249) -1px 1px, rgb(255, 255, 255) 1px 1px, rgb(255, 255, 255) -1px -1px;
-      border-radius: 4px;
-      transition: 0.4s linear;
-      text-align: top;
-      transition-property: width, background-color;
-    }
-
-    /* .progress-striped .progress-bar {
-      background-color: rgb(81, 252, 89);
-      width: 90%; */
-    /* background-image: linear-gradient(
-          45deg, rgb(8, 5, 1) 25%, 
-          transparent 25%, transparent 50%, 
-          rgb(32, 29, 25) 50%, rgb(29, 28, 27) 75%,
-          transparent 75%, transparent);  */
-    /* animation: progressAnimationStrike 6s; */
-    /* } */
-    /* indica o valor do progresso - texto na barra de life */
-    .progress-valor {
-      top: 4px;
-      left: 40%;
-      text-align: center;
-      position: absolute;
-      font-size: 20px;
-    }
-
-    /* Clip art do personagem */
-    .item-nome-person-clip {
-      
-      
-      color:rgb(255, 255, 255);
-      /*nome da figura traduzida*/
-      font-family:Coves_Light;
-      position: absolute;
-      top: -10px;
-      left: 0px;
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-      width: 190px;
-      /* background-color: tomato; */
-      /* height: 30%; */
-      font-size: 12px;
-      text-align: left;
-      /* background-color: seagreen; */
-    }
-
-    .item-img-person-clip {
-      top: 16px;
-      left: 3px;
-      position: absolute;
-      background-image: linear-gradient(80deg, rgb(67, 67, 68), rgb(2, 201, 220));
-      height: 46px;
-      width: 50px;
-      border-radius: 360px;
-      border: 2px solid rgb(54, 54, 68);
-    }
-
-    /* imagem dentro do clipart do personagem */
-    .img-person-clip {
-      height: 90%;
-      width: 90%;
-      border-radius: 360px;
-      -webkit-text-stroke-width: 10px;
-      -webkit-text-stroke-color: rgb(2, 201, 220);
-    }
-
-    /* Desafio */
-    .container-inventario-card-expressao-logica {
-      /* vertical-align: bottom; */
-      top: 0px;
-      left: 290px;
-      position: absolute;
-      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
-      /* height: 100px; */
-      width: 190px;
-      /* background-color: rgb(189, 0, 0); */
-      border-radius: 40px;
-      /* border: 2px solid rgb(52, 141, 114); */
-      /* border-bottom: 5px solid #1d1f1e; */
-      text-align: center;
-      font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
-    }
-
-    /* #containerItemExpressaoLogica {
-     
-      position: absolute;
-      font-family: splurge;
-      height: 40px;
-      text-shadow: 0 0 3px rgb(31, 163, 108); 
-      text-shadow: -1px 0 black, 0 1px black;
-      letter-spacing: 1px;
-      animation: mymove 5s;
-    } */
-    .card-expressao-logica {
-     
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-
-    .titulo-card-expressao-logica {
-      /*nome da figura traduzida*/
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-
-      width: 100%;
-      font-size: 15px;
-      text-align: left;
-    }
-
-    .item-card-expressao-logica {
-      display: flex;
-
-      width: 100%;
-      margin-bottom: 2px;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-      background-color: transparent;
-      border: 2px solid #3498db;
-      ;
-    }
-
-    .icon-item-card-expressao-logica {
-      /* top: 5px;
-      left: 0px;
-      position: absolute; */
-      background-image: linear-gradient(80deg, rgb(117, 117, 129), rgb(218, 218, 218));
-      height: 25px;
-      width: 11.1%;
-      border-radius: 90%;
-      border: 2px solid rgb(52, 141, 114);
-    }
-
-    .img-icon-item-card-expressao-logica {
-      height: 100%;
-      width: 100%;
-      /* border-radius: 360px; */
-      box-align: center;
-    }
-
-    .sintaxe-item-card-expressao-logica {
-
-      /*expressao logica em si*/
-      font-family: HVD_Comic_Serif_Pro;
-      margin-left: 4px;
-      color: rgb(73, 73, 70);
-      /* position: absolute; */
-      /* top: 55px;
-      left: 30px; */
-      height: 30px;
-      width: 80%;
-      font-size: 20px;
-      /* background-color: goldenrod; */
-      text-align: start;
-      /* text-align: center; */
-    }
-
-    .resultado-item-card-expressao-logica {
-      text-align: start;
-      width: 30%;
-      color: rgb(2, 201, 220);
-      /* background-color: blue; */
-    }
-
-    /* Cronometro */
-    .container-inventario-card-cronometro {
-      /* vertical-align: bottom; */
-      top: 70px;
-      left: 5px;
-      position: absolute;
-      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
-      /* height: 100px; */
-      width: 150px;
-      
-      /* background-color: tomato; */
-    }
-    .card-cronometro {
-      display: flex-start;
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 100%;
-      /* background-color: rgb(143, 59, 59); */
-      /* top: 25px; */
-      
-    }
-    .titulo-card-cronometro {
-      color: rgb(255, 255, 255);
-      /*nome da figura traduzida*/
-      font-family: Coves_Light;
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-      width: 100%;
-      /* height: 30%; */
-      font-size: 20px;
-      text-align: left;
-      
-      /* background-color: seagreen; */
-    }
-    @keyframes animation-pisca-cronometro-trem{
-      0% {
-        text-shadow: 0 0 5px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4;
-
-      }
-
-      25% {}
-
-      50% {
-        text-shadow: 0 0 5px #03e9f4,
-          0 0 25px #03e9f4,
-          0 0 50px #03e9f4,
-          0 0 100px #03e9f4;
-      }
-
-      100% {
-       text-shadow: 0 0 5px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4;
-      }
-    }
-    /* Fazer piscar quando faltar 10s */
-    #cronometro, #tempo-restante {
-      width: 100%;
-      /* height: 30px; */
-      /* height: 70%; */
-      /* background-color: saddlebrown; */
-      text-shadow: 2px 2px rgb(19, 19, 19);
-      color: rgb(5, 40, 56);
-      text-shadow: 0 0 5px #d5e2e2,
-        0 0 5px #d5e2e2,
-        0 0 5px #d5e2e2,
-        0 0 10px #d5e2e2;
-      font-family: HVD_Comic_Serif_Pro;
-      /* animation: animation-pisca-cronometro-trem 3s linear infinite; */
-      /* width: 100%; */
-      font-size: 40px;
-      text-align: center;
-    }
-
-    /* fim cronometro */
-
-    /* Bottoes opcionais */
-    .container-inventario-card-botoes {
-      /* vertical-align: bottom; */
-      top: 0px;
-      left: 520px;
-      position: absolute;
-      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
-      /* height: 100px; */
-      width: 270px;
-      /* background-color: rgb(189, 0, 0); */
-      border-radius: 40px;
-      /* border: 2px solid rgb(52, 141, 114); */
-      /* border-bottom: 5px solid #1d1f1e; */
-      text-align: center;
-      font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
-    }
-
-    .card-botoes {
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-
-    .titulo-card-botoes {
-      /*nome da figura traduzida*/
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-
-      width: 100%;
-      font-size: 15px;
-      text-align: left;
-    }
-
-    .item-card-botoes {
-      display: flex;
-      width: 100%;
-    }
-
-    .btn-item-card-botoes {
-      background-color: transparent;
-      cursor: pointer;
-      font-family: HVD_Comic_Serif_Pro;
-      height: 35px;
-      width: 100%;
-      font-size: 20px;
-      /* background-color: goldenrod; */
-      text-align: center;
-      margin-bottom: 2px;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-    }
-
-    .btn-item-card-botoes:hover {
-      color: goldenrod;
-      outline: 0;
-    }
-
-
-    .aux-btn-item-card-botoes {
-      text-align: center;
-      border-color: #3498db;
-      color: rgb(59, 59, 60);
-      box-shadow: 0 0 40px 40px transparent inset, 0 0 0 0 #3498db;
-      -webkit-transition: all 150ms ease-in-out;
-      transition: all 150ms ease-in-out;
-    }
-
-    .aux-btn-item-card-botoes:hover {
-      border-color: goldenrod;
-      box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
-    }
-
-    /* Alert */
-    .alerta-container {
-      /* border:solid black 2px; */
-      /* border-radius: 100px; */
-      border-radius: 10px;
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.6);
-      top: 10px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      width: 500px;
-      height: 300px;
-      left: 50%;
-      transform: translateX(-50%);
-      /* margin: auto; */
-      display: block;
-      overflow: hidden;
-      transition: 1.2s;
-
-    }
-
-    /*animação do span para criar linhas*/
-    .alerta-container span {
-      position: absolute;
-      display: block;
-    }
-
-    /*span 1 - borda do topo*/
-    .alerta-container span:nth-child(1) {
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(90deg, transparent, #03e9f4);
-      animation: btn-anim1 2s linear infinite;
-
-    }
-
-    @keyframes btn-anim1 {
-      0% {
-
-        left: -100%;
-
-      }
-
-      50%,
-      100% {
-        left: 100%;
-      }
-    }
-
-    /*span  2 - direita borda*/
-    .alerta-container span:nth-child(2) {
-      top: -100%;
-      right: 0;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(180deg, transparent, #03e9f4);
-      animation: btn-anim2 2s linear infinite;
-      animation-delay: 0.50s
-    }
-
-    @keyframes btn-anim2 {
-      0% {
-        top: -100%;
-      }
-
-      50%,
-      100% {
-        top: 100%;
-      }
-    }
-
-    /*span 3 - borda de baixo*/
-    .alerta-container span:nth-child(3) {
-      bottom: 0;
-      right: -100%;
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(270deg, transparent, goldenrod);
-      animation: btn-anim3 2s linear infinite;
-      /* animation-delay: .5s */
-    }
-
-    @keyframes btn-anim3 {
-      0% {
-        right: -100%;
-      }
-
-      50%,
-      100% {
-        right: 100%;
-      }
-    }
-
-    /*span 4 - borda esquerda*/
-    .alerta-container span:nth-child(4) {
-      bottom: -100%;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(360deg, transparent, goldenrod);
-      animation: btn-anim4 2s linear infinite;
-      animation-delay: 0.50s
-    }
-
-
-    /* borda 4 - bottom */
-    @keyframes btn-anim4 {
-
-      0% {
-        bottom: -100%;
-      }
-
-      50%,
-      100% {
-        bottom: 100%;
-      }
-    }
-
-    .alerta-container-close {
-      position: absolute;
-      content: 'X';
-      -webkit-text-stroke-width: 2px;
-      -webkit-text-stroke-color: #000;
-      color: #fffdd9;
-      text-align: center;
-      border: solid 2px white;
-      background-color: red;
-      color: white;
-      height: 30px;
-      width: 30px;
-      left: 460px;
-      top: 5px;
-      font-size: 25px;
-      margin: auto;
-      border-radius: 100%;
-      font-family: HVD_Comic_Serif_Pro;
-      box-shadow: 0 0 5px #03e9f4,
-        0 0 25px #03e9f4,
-        0 0 50px #03e9f4,
-        0 0 100px #b61111;
-    }
-
-    .alerta-container-close:hover {
-
-      box-shadow: 0 0 5px #03e9f4,
-
-        0 0 25px #b61111,
-
-        0 0 50px #b61111,
-
-        0 0 100px #b61111;
-      border-color: #615b5b;
-      color: #615b5b;
-    }
-
-    /* Menu -  Resetar Caixas e sair do jogo*/
-    .container-alerta-card-resetar-caixas,
-    .container-alerta-card-sair-jogo {
-      /* vertical-align: bottom; */
-      top: 25%;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
-    }
-
-    .card-resetar-caixas,
-    .card-sair-jogo {
-      font-family: HVD_Comic_Serif_Pro;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    .titulo-card-resetar-caixas,
-    .titulo-card-sair-jogo {
-      font-family: HVD_Comic_Serif_Pro;
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: #000;
-      color: #fffdd9;
-      color: white;
-      width: 100%;
-      font-size: 50px;
-      text-align: center;
-      text-shadow: 0 0 5px #03e9f4,
-        0 0 15px #03e9f4,
-        0 0 40px #03e9f4,
-        0 0 90px #b61111;
-    }
-
-    .item-card-resetar-caixas,
-    .item-card-sair-jogo {
-      display: flex;
-      width: 100px;
-      padding: 5px;
-      margin: auto;
-
-    }
-
-    .btn-sim-item-card-resetar-caixas,
-    .btn-sim-item-card-sair-jogo,
-    .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo {
-      background-color: #03e9f4;
-      cursor: pointer;
-      font-family: HVD_Comic_Serif_Pro;
-      height: 35px;
-      width: 100%;
-      font-size: 20px;
-      color: white;
-      -webkit-text-stroke-width: 2px;
-      -webkit-text-stroke-color: #000;
-      color: #fffdd9;
-      border-color: white;
-      text-align: center;
-      border-radius: 15px;
-      /* margin-bottom: 2px;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px; */
-      box-shadow: 0 0 5px #03e9f4,
-        0 0 25px #03e9f4,
-        0 0 50px #03e9f4,
-        0 0 100px #03e9f4;
-      animation: animation-pisca-buttom-sim 3s linear infinite;
-      /* animation-delay: 0.50s; */
-    }
-
-    .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo {
-      box-shadow: 0 0 5px #b61111,
-        0 0 25px #b61111,
-        0 0 50px #b61111,
-        0 0 100px #b61111;
-      background-color: #b61111;
-      animation: animation-pisca-buttom-nao 3s linear infinite;
-      animation-delay: 0.50s;
-    }
-
-    .btn-sim-item-card-resetar-caixas:hover,
-    .btn-sim-item-card-sair-jogo:hover,
-    .btn-nao-item-card-resetar-caixas:hover,
-    .btn-nao-item-card-sair-jogo:hover {
-      animation: animation-pisca-buttom-sim 0s linear infinite;
-      box-shadow: 0 0 5px #03e9f4,
-        0 0 25px black,
-        0 0 50px black,
-        0 0 100px black;
-      border-color: #615b5b;
-      color: #615b5b;
-      outline: 0;
-    }
-
-    .aux-btn-item-card-resetar-caixas,
-    .aux-btn-item-card-sair-jogo {
-      text-align: center;
-      border-color: white;
-      color: white;
-      box-shadow: 0 0 40px 40px goldenrod inset, 0 0 0 0 #3498db;
-      -webkit-transition: all 150ms ease-in-out;
-      transition: all 150ms ease-in-out;
-    }
-
-    .aux-btn-item-card-resetar-caixas:hover,
-    .aux-btn-item-card-sair-jogo:hover {
-      border-color: goldenrod;
-      box-shadow: 0 0 10px 0 goldenrod inset, 0 0 10px 4px #3498db;
-    }
-
-    @keyframes animation-pisca-buttom-sim {
-      0% {
-        box-shadow: 0 0 5px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4;
-
-      }
-
-      25% {}
-
-      50% {
-        box-shadow: 0 0 5px #03e9f4,
-          0 0 25px #03e9f4,
-          0 0 50px #03e9f4,
-          0 0 100px #03e9f4;
-      }
-
-      100% {
-        box-shadow: 0 0 5px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4,
-          0 0 0px #03e9f4;
-      }
-    }
-
-    @keyframes animation-pisca-buttom-nao {
-      0% {
-        box-shadow: 0 0 5px #b61111,
-          0 0 0px #b61111,
-          0 0 0px #b61111,
-          0 0 0px #b61111;
-        background-color: #b61111;
-
-      }
-
-      25% {}
-
-      50% {
-        box-shadow: 0 0 5px #b61111,
-          0 0 25px #b61111,
-          0 0 50px #b61111,
-          0 0 100px #b61111;
-      }
-
-      100% {
-        box-shadow: 0 0 5px #b61111,
-          0 0 0px #b61111,
-          0 0 0px #b61111,
-          0 0 0px #b61111;
-      }
-    }
-
-/* Verificar respostas */
-.container-alerta-card-verificar-respostas
-    {
-      /* vertical-align: bottom; */
-      top: 10%;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
-      
-    }
-
-    .card-verificar-respostas
-    {
-      font-family: HVD_Comic_Serif_Pro;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    .titulo-card-verificar-respostas {
-      font-family: HVD_Comic_Serif_Pro;
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: #000;
-      color: #fffdd9;
-      color: white;
-      width: 100%;
-      font-size: 40px;
-      text-align: center;
-      text-shadow: 0 0 5px #03e9f4,
-        0 0 15px #03e9f4,
-        0 0 40px #03e9f4,
-        0 0 90px #b61111;
-    }
-    .item-card-verificar-respostas{
-      /* margin-left: 10px; */
-      color: rgb(54, 54, 68);
-      width: 50%;
-      align-items: center;
-      vertical-align: center;
-      margin: auto;
-
-    }
- 
-    .resultado-verificar-respostas-correto, .resultado-verificar-respostas-errado{
-      /* margin-left: 10px; */
-      color: rgb(122, 243, 0);
-     
-      text-align: center;
-      /* background-color: darkgoldenrod; */
-      margin: auto;
-      width: 40%;
-      left: 50%;
-      text-align: center;
-      animation: animation-pisca-buttom-sim 4s linear infinite;
-      -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: #000;
-    }
-    .resultado-verificar-respostas-errado{
-      /* margin-left: 10px; */
-      color: crimson;
-      margin: auto;
-      animation: animation-pisca-buttom-nao 4s linear infinite
-    }
-   /* Controles */
-   .container-alerta-card-controles
-    {
-      /* vertical-align: bottom; */
-      top: 10%;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
-      
-    }
-
-    .card-controles
-    {
-      font-family: HVD_Comic_Serif_Pro;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    .titulo-card-controles {
-      font-family: HVD_Comic_Serif_Pro;
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: #000;
-      color: #fffdd9;
-      color: white;
-      width: 100%;
-      font-size: 40px;
-      text-align: center;
-      text-shadow: 0 0 5px #03e9f4,
-        0 0 15px #03e9f4,
-        0 0 40px #03e9f4,
-        0 0 90px #b61111;
-    }
-    .item-card-controles{
-      /* margin-left: 10px; */
-      color: rgb(54, 54, 68);
-      width: 70%;
-      height: 200px;
-      background-repeat: no-repeat;
-      /* height: 200px; */
-      align-items: center;
-      vertical-align: center;
-      /* background-color: blueviolet; */
-      margin: auto;
-      /* left: 50%; */
-      /* border: solid 1px violet; */
-      background-position:center;
-      background-size:100% 100%;
-      background-image: url('https://drive.google.com/u/0/uc?id=12_jRxcsDrgvwOrzeLRiVHcyqxOhumIfS&export=download');
-      animation: animation-pisca-buttom-sim 0s linear infinite;
-    }
-    /* Barra de comandos */
-    .container-inventario-comandos {
-      /* vertical-align: bottom; */
-      top: 5px;
-      left: 0px;
-      position: absolute;
-      width: 768px;
-      text-align: center;
-      font-family: HVD_Comic_Serif_Pro;
-      display: inline;
-     
-      /* flex-direction: column */
-    }
-
-    
-    .card-comandos {
-      font-family: Coves_Light;
-      /* position: absolute; */
-      width: 100%;
-      border-radius: 5px;
-      /* border: 2px solid rgb(52, 141, 114);  */
-      /* height: 100%; */
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-    .card-item-comandos {
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 700px;
-      border-radius: 5px;
-      border: 2px solid  rgb(3, 166, 241);;
-      /* height: 100%; */
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-    .card-button-comandos {
-      font-family: HVD_Comic_Serif_Pro;
-      font-weight: bold;
-      /* position: absolute; */
-      margin-left: 4px;
-      width: 55px;
-      border-radius: 5px;
-      /* border: 2px solid rgb(52, 141, 114);  */
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-    .titulo-card-comandos{
-      color: rgb(255, 255, 255);
-      font-family: Coves_Light;
-      width: 100%;
-      font-size: 20px;
-      text-align: left;
-      margin-left: 10px;
-      /* text-shadow:rgb(3, 166, 241) 1px -1px, rgb(3, 166, 241) -1px 1px, rgb(3, 166, 241) 1px 1px, rgb(3, 166, 241) -1px -1px */
-    }
-
-    .item-card-comandos,.item-card-button-comandos{
-      /* display: flex; */
-      width: 35px;
-      height: 40px;
-      margin: 1px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      background-color: white;
-      border: 2px solid #3498db;
-      ;
-    }
-    .item-card-button-comandos{
-      /* display: flex; */
-      width: 100%;
-      /* background-color: white; */
-      border: 2px solid;
-      background: url('assets/play.png') no-repeat top left;
-      background-size: 100% 100%;
-      ;
-    }
-    /* Menu suspenso de direções */
-    .container-inventario-menu-suspenso {
-      /* vertical-align: bottom; */
-      top: 100px;
-      left: 0px;
-      position: absolute;
-      width: 240px;
-      text-align: center;
-      font-family: HVD_Comic_Serif_Pro;
-      display: inline;
-      visibility: hidden;
-      background-color: rgb(3, 166, 241);
-      z-index: 1;
-      /* flex-direction: column */
-    }
-    .card-menu-suspenso {
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 100%;
-      border-radius: 5px;
-      border: 2px solid rgb(245, 245, 245); 
-      /* height: 100%; */
-      display: flex;
-      background-color: rgb(3, 166, 241);
-      flex-direction: row;
-      flex-wrap: wrap;
-      /* top: 25px; */
-    }
-    .item-card-menu-suspenso{
-      /* display: flex; */
-      margin: 2px;
-      width: 40px;
-      height: 40px;
-      /* background-color: white; */
-      border: 2px solid;
-      cursor: pointer;
-      color: white;
-      text-shadow:rgb(0, 0, 0) 1px -1px, rgb(0, 0, 0) -1px 1px, rgb(0, 0, 0) 1px 1px, rgb(0, 0, 0) -1px -1px;
-      font-weight: bold;
- 
-      /* background: url('assets/play.png') no-repeat top left; */
-      /* background-size: 100% 100%; */
-    }
-    /* Tempo restante */
-    .container-inventario-card-tempo-restante {
-      /* vertical-align: bottom; */
-      top: 70px;
-      left: 5px;
-      position: absolute;
-      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
-      /* height: 100px; */
-      width: 150px;
-      /* background-color: tomato; */
-    }
-    .card-tempo-restante {
-      display: flex-start;
-      font-family: HVD_Comic_Serif_Pro;
-      /* position: absolute; */
-      width: 100%;
-      /* background-color: rgb(143, 59, 59); */
-      /* top: 25px; */
-    }
-    .titulo-card-tempo-restante {
-      /*nome da figura traduzida*/
-      color: rgb(255, 255, 255);
-      font-family: Coves_Light;
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-      width: 100%;
-      /* height: 30%; */
-      font-size: 20px;
-      text-align: left;
-      
-      /* background-color: seagreen; */
-    }
-    #tempo-restante {
-      width: 100%;
-      color: rgb(168, 18, 25);
-    }
-    /* Objetivo */
-    .container-inventario-card-objetivo {
-      /* vertical-align: bottom; */
-      /* top: 80px; */
-       /*left: 370px; */
-      position: absolute;
-      /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
-      /* height: 100px; */
-      width: 100%;
-      height: 70px;
-      /* left: 20px; */
-      /* background-color: tomato; */
-    }
-    .card-objetivo {
-      display: flex-start;
-      font-family: Coves_Light;
-      /* position: absolute; */
-      width: 100%;
-      /* background-color: rgb(143, 59, 59); */
-      /* top: 25px; */
-    }
-    .item-card-objetivo{
-      width: 100%;
-      font-size: 15px;
-      /* border: solid 1px rgb(52, 141, 114); */
-      color: rgb(197, 196, 201);
-      font-family: ApexNew-Book;
-    }
-    .titulo-card-objetivo {
-      /*nome da figura traduzida*/
-      color: rgb(255, 255, 255);
-      /* position: absolute;
-      top: 0px;
-      left: 0px; */
-      margin-left: 10px;
-      width: 100%;
-      /* height: 30%; */
-      font-size: 20px;
-      text-align: left;
-     
-      /* background-color: seagreen; */
-    }
-    .aviso-painel{
-      width: 100%;
-      font-size: 15px;
-      /* border: solid 1px rgb(52, 141, 114); */
-      color: rgb(85, 84, 85);
-      font-family: ApexNew-Book;
-    }
-    /* fim inventario */
-  </style>
+    <meta charset="UTF-8">
+    <title>GAME IHM</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: 'wheaton_capitals';
+            font-style: normal;
+            font-weight: normal;
+            src: local('wheaton_capitals'), url('fonts/wheaton_capitals.otf') format('woff');
+        }
+
+        @font-face {
+            font-family: HVD_Comic_Serif_Pro;
+            src: local(HVD_Comic_Serif_Pro), url("fonts/HVD_Comic_Serif_Pro.otf");
+        }
+
+        html,
+        body {
+            /* background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.754), rgb(0, 0, 0)); */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container_menu {
+            height: 100%;
+            width: 100vw;
+            /* background-color: black; */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* visibility: hidden; */
+        }
+
+        .container_imagem_fundo {
+            height: 100%;
+            width: 100%;
+            background-color: rgb(7, 7, 7);
+            position: absolute;
+            opacity: 0.80;
+        }
+
+        .imagem_fundo {
+            height: 100vh;
+            width: 100vw;
+            background-size: 100% 100%;
+            background-image: url('https://data.1freewallpapers.com/download/fantastic-steam-train-in-winter-s-sunset-hdr.jpg');
+            position: absolute;
+            /* z-index: -1; */
+
+        }
+
+        .container_menu_opcoes {
+            /* height: 500px;
+            width: 500px; */
+            /* background-color: black; */
+            position: relative;
+            /* border: rgb(253, 253, 253) 2px solid; */
+            font-family: HVD_Comic_Serif_Pro;
+            /* position: absolute; */
+            /* width: 100%; */
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-top: 40px;
+
+        }
+
+        .titulo_menu {
+            color: white;
+            font-weight: bold;
+            position: relative;
+            font-family: wheaton_capitals;
+            /* font-weight: bold; */
+            font-size: 80px;
+            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
+            margin: 8px;
+        }
+
+        .titulo_span {
+            color: rgb(2, 201, 220);
+            font-weight: bold;
+            position: relative;
+            font-family: wheaton_capitals;
+            /* font-weight: bold; */
+            font-size: 80px;
+            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
+        }
+
+        /* botoes menu */
+        .btn-item-card-botoes-menu {
+            background-color: transparent;
+            cursor: pointer;
+            font-family: wheaton_capitals;
+            height: 60px;
+            width: 200px;
+            border: 4px rgb(255, 255, 255) solid;
+            /* background-color: goldenrod; */
+            text-align: center;
+            margin-bottom: 2px;
+            border-radius: 20px;
+            /* position: relative; */
+            text-align: center;
+            /* border-color: #3498db; */
+            color: rgb(2, 201, 220);
+            box-shadow: 0 0 40px 40px transparent inset, 0 0 0 0 #3498db;
+            -webkit-transition: all 150ms ease-in-out;
+            transition: all 150ms ease-in-out;
+            font-size: 40px;
+            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
+            box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+            margin-bottom: 8px;
+        }
+
+        .btn-item-card-botoes-menu:hover {
+            height: 100px;
+            width: 330px;
+            font-size: 65px;
+            background-color: transparent;
+            border-color: rgb(255, 255, 255);
+            box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+
+        }
+
+        a {
+            color: rgb(2, 201, 220);
+            text-decoration: none
+        }
+        /* mouse over link */
+        a:hover {
+            color: rgb(250, 250, 250);
+            text-decoration: none;
+        }
+
+        /* selected link */
+        a:active {
+            color:  rgb(2, 201, 220);
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-  <div id="frame">
-    <div id="contentCanvas">
-      <!-- canvas aqui -->
+    <div class="container_menu">
+        <div class="imagem_fundo"></div>
+        <div class="container_imagem_fundo"></div>
+        <!-- Opções menu -->
+        <div class="titulo_menu">Train in <span class="titulo_span">Blocks</span></div>
+        <div class="container_menu_opcoes">
+            <div class="btn-item-card-botoes-menu">
+                <a href="game.html">Jogar</a>
+            </div>
+            <div class="btn-item-card-botoes-menu">
+                <a href="#">CRÉDITOS</a>
+            </div>
+            <div class="btn-item-card-botoes-menu">
+                <a href="#">RANKING</a>
+            </div>
+        </div>
+
     </div>
-  </div>
 </body>
+
 </html>

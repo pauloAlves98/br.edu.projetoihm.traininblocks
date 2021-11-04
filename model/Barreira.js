@@ -21,7 +21,7 @@ function Barreira() {
         else
             this.status = BARREIRA_OPEN
     }
-    this.atualizar_sprite = function (context, alterar_estado) {//TIRAR ATT ALTERAR ESTADO!
+    this.atualizar_sprite = function (context, alterar_estado,vdx) {//TIRAR ATT ALTERAR ESTADO!
         if (alterar_estado)
             this.sprite.aparencia++;
         this.verificar_estouro_sprite();
@@ -29,7 +29,7 @@ function Barreira() {
         if (this.status == BARREIRA_CLOSE)
             context.drawImage(this.sprite.folheto, 0 * this.sprite.width, 0 * this.sprite.height, this.sprite.width, this.sprite.height, this.x, this.y, this.largura, this.altura);
         else {
-            let posX = -this.x-TILE_AREA*2-TILE_AREA/2 //O SPRITE NAO É EXATO/6 É O DOBRO DO TAMANHO DA SPRITE VISIVEL.
+            let posX = -this.x-vdx; //O SPRITE NAO É EXATO/6 É O DOBRO DO TAMANHO DA SPRITE VISIVEL.
             context.save(); // Save the current state
             context.scale(-1, 1); // TIVE QUE FAZER UM FLIP HORIZONTAL POR CAUSA DA SPRITE.
             context.drawImage(this.sprite.folheto, 1 * this.sprite.width, 0 * this.sprite.height, this.sprite.width, this.sprite.height, posX, this.y, this.largura, this.altura);
