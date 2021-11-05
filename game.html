@@ -85,7 +85,7 @@
 
     }
 
-    #canvas {}
+    /* #canvas {} */
 
     #contentCanvas {
       height: 580px;
@@ -926,25 +926,30 @@
 
     @keyframes animation-pisca-buttom-nao {
       0% {
-        box-shadow: 0 0 5px #b61111,
+        text-shadow: 0 0 5px #b61111,
           0 0 0px #b61111,
           0 0 0px #b61111,
           0 0 0px #b61111;
-        background-color: #b61111;
+       /* // background-color: #b61111; */
 
       }
 
-      25% {}
+      25% {
+        text-shadow: 0 0 5px #b61111,
+          0 0 0px #b61111,
+          0 0 5px #b61111,
+          0 0 10px #b61111;
+      }
 
       50% {
-        box-shadow: 0 0 5px #b61111,
-          0 0 25px #b61111,
-          0 0 50px #b61111,
-          0 0 100px #b61111;
+        text-shadow: 0 0 5px #b61111,
+          0 0 5px #b61111,
+          0 0 10px #b61111,
+          0 0 15px #b61111;
       }
 
       100% {
-        box-shadow: 0 0 5px #b61111,
+        text-shadow: 0 0 5px #b61111,
           0 0 0px #b61111,
           0 0 0px #b61111,
           0 0 0px #b61111;
@@ -1371,6 +1376,21 @@
       background-size: 95% 95%;
       background-repeat: no-repeat;
     }
+    .alerta-trem-vindo{
+      animation: animation-pisca-buttom-nao;
+      /* background-color: transparent; */
+      /* animation-name: animacaoBolada; */
+      animation-duration: 10s;
+      animation-timing-function: ease-in;
+      animation-delay: 0s;
+      animation-iteration-count: initial;
+      animation-direction: left;
+      animation-play-state: running;
+    }
+    /* #b1{
+      
+      opacity: 0.5;
+    } */
     /* fim inventario */
   </style>
 </head>

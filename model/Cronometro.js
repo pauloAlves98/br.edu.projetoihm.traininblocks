@@ -5,36 +5,41 @@ function Cronometro() {
     this.intervalo = false;//pause!
     this.relogio = document.getElementById("cronometro");;
 
-    this.set_tempo = function(h,m,s){
+    this.construtor_cronometro = function (hora, min, s) {
+        this.hora = hora;
+        this.minuto = min;
+        this.segundo = s;
+    }
+    this.set_tempo = function (h, m, s) {
         this.hora = h;
         this.minuto = m;
         this.segundo = s;
-        this.organiza_relogio(h,m,s)
+        this.organiza_relogio(h, m, s)
     }
-    this.get_tempo = function(){
-        let horaT = h<=9?"0"+h.toString():h.toString();
-        let minutoT = m<=9?"0"+m.toString():m.toString();
-        let segundoT = s<=9?"0"+s.toString():s.toString();
-        return horaT+":"+minutoT.toString()+":"+segundoT.toString();
+    this.get_tempo = function () {
+        let horaT = h <= 9 ? "0" + h.toString() : h.toString();
+        let minutoT = m <= 9 ? "0" + m.toString() : m.toString();
+        let segundoT = s <= 9 ? "0" + s.toString() : s.toString();
+        return horaT + ":" + minutoT.toString() + ":" + segundoT.toString();
     }
-    this.comparar_tempo = function(h,m,s){
-        return this.hora==h && this.minuto == m && this.segundo == s?true:false;    
+    this.comparar_tempo = function (h, m, s) {
+        return this.hora == h && this.minuto == m && this.segundo == s ? true : false;
     }
-    this.set_intervalo = function(interval){
+    this.set_intervalo = function (interval) {
         this.intervalo = interval;
     }
-    this.get_hora = function(){
+    this.get_hora = function () {
         return this.hora;
     }
-    this.get_minuto = function(){
+    this.get_minuto = function () {
         return this.minuto;
     }
-    this.get_segundo = function(){
+    this.get_segundo = function () {
         return this.segundo;
     }
     this.rodando = function () {
         if (this.intervalo) //eh pq era pra pausar!
-             this.incrementa_relogio();
+            this.incrementa_relogio();
         // }  else
         //    //nao incrementa!
         //  else//iniciou
@@ -51,11 +56,11 @@ function Cronometro() {
     //     }
     //     this.organiza_relogio(this.hora,this.minuto,this.segundo);
     // }
-   this.organiza_relogio = function (h,m,s){
-        let horaT = h<=9?"0"+h.toString():h.toString();
-        let minutoT = m<=9?"0"+m.toString():m.toString();
-        let segundoT = s<=9?"0"+s.toString():s.toString();
-        this.relogio.text(horaT+":"+minutoT.toString()+":"+segundoT.toString());
+    this.organiza_relogio = function (h, m, s) {
+        let horaT = h <= 9 ? "0" + h.toString() : h.toString();
+        let minutoT = m <= 9 ? "0" + m.toString() : m.toString();
+        let segundoT = s <= 9 ? "0" + s.toString() : s.toString();
+        this.relogio.text(horaT + ":" + minutoT.toString() + ":" + segundoT.toString());
     }
 
     this.incrementa_relogio = function () {
@@ -68,11 +73,34 @@ function Cronometro() {
             this.hora += 1;
             this.minuto = 0;
         }
-       this.organiza_relogio(this.hora,this.minuto,this.segundo);
+        this.organiza_relogio(this.hora, this.minuto, this.segundo);
     }
-    this.incrementa_relogio_intervalo = function(intervalo){//em segundos!
-        for(let i = 0;i<intervalo;i++){
+    this.incrementa_relogio_intervalo = function (intervalo) {//em segundos!
+        for (let i = 0; i < intervalo; i++) {
             this.incrementa_relogio()
         }
+    }
+    this.comparar_tempo_intervalo_decrementado = function (hora, minuto, segundo, intervalo) {//em segundos!
+        let h = hora;
+        let m = minuto;
+        let s = segundo;
+
+        for (let i = 0; i < intervalo; i++) {
+            s -= 1;
+            if (s < 0) {
+                if (m > 0){
+                    m -= 1;
+                    s = 59;
+                }
+            }
+            if (m <= 0) {
+                if (h > 0){
+                    h -= 1;
+                    m = 59;
+                }     
+            }
+        }
+       
+        return  this.comparar_tempo(h,m,s);
     }
 }

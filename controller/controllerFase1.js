@@ -23,6 +23,18 @@ function ControllerFase1() {
             this.trem.set_trem_deve_passar(true);
             this.fechar_barreiras()
         }
+        //remover classe de alerta
+        if (cronometro.comparar_tempo_intervalo_decrementado(cronometroTrem.hora, cronometroTrem.minuto, cronometroTrem.segundo,15)) {
+            $('#tempo-restante').removeClass('alerta-trem-vindo')
+           // alert("Vem")
+        }
+        //add classe alerta
+        if (cronometro.comparar_tempo_intervalo_decrementado(cronometroTrem.hora, cronometroTrem.minuto, cronometroTrem.segundo,12)) {
+            $('#tempo-restante').removeClass('alerta-trem-vindo')
+            $('#tempo-restante').addClass('alerta-trem-vindo')
+           // alert("Vem")
+        }
+        //se faltar 10 segundos pro trem vir
 
     }
     this.initgame = function () {//FASE 1
@@ -62,7 +74,7 @@ function ControllerFase1() {
         this.add_barreiras(TILE_AREA * 5, TILE_AREA * 4, ESQUERDA, BAIXO);//x e y;
         this.add_barreiras(TILE_AREA * 17, TILE_AREA * 4, DIREITA, BAIXO);//x e y;
         this.barreiras[2].set_status(BARREIRA_OPEN)
-        this.barreiras[2].atualizar_sprite(this.contexto, true,TILE_AREA*3-TILE_AREA/2)
+        this.barreiras[2].atualizar_sprite(this.contexto, true, TILE_AREA * 3 - TILE_AREA / 2)
         //PAINEIS (alavanca)
         this.add_paineis_barreiras(TILE_AREA * 4, TILE_AREA * 3);//x e y;
         this.add_paineis_barreiras(TILE_AREA * 16, TILE_AREA * 3);//x e y;
@@ -84,7 +96,7 @@ function ControllerFase1() {
             cronometro.rodando();
         }, 1000);
         cronometro.set_intervalo(true);
-        cronometroTrem.incrementa_relogio_intervalo(10)
+        cronometroTrem.incrementa_relogio_intervalo(30)
 
         this.loop_game();
 
@@ -97,6 +109,7 @@ function ControllerFase1() {
     this.fechar_barreiras = function () {
         for (let i = 0; i < this.barreiras.length; i++) {
             this.barreiras[i].set_status(BARREIRA_CLOSE)
+            this.paineis_barreiras[i].set_status(BARREIRA_CLOSE)
             // this.barreiras[i].atualizar_sprite(this.contexto, true)
         }
     }
@@ -125,7 +138,7 @@ function ControllerFase1() {
         this.trem.direcaoAtual = direcao;
         this.trem.podeMudarSprite = true;
         this.trem.emMovimento = true;
-        this.trem.set_intervalo_trem_passar(60 * 3)
+        this.trem.set_intervalo_trem_passar(10 * 3)
         this.trem.forma.init(this.trem.x, this.trem.y, this.trem.largura - TILE_AREA * 3, this.trem.altura - TILE_AREA * 2)
         this.trem.set_trem_deve_passar(false)
         this.trem.set_movimento_antigo()
@@ -183,9 +196,9 @@ function ControllerFase1() {
             for (let i = 0; i < this.camada_livre.formasTile.length; i++) {
                 let forma = this.camada_livre.formasTile[i];
                 this.contexto.globalAlpha = 0.1;
-               this.contexto.drawImage(circuloImg, (forma.x + 5), forma.y+5, forma.largura-10, forma.altura-10);//Central
+                this.contexto.drawImage(circuloImg, (forma.x + 5), forma.y + 5, forma.largura - 10, forma.altura - 10);//Central
                 this.contexto.globalAlpha = 0.2;
-                this.contexto.drawImage(caixaenergia, (forma.x + 0) + 3, forma.y+5, forma.largura - 6, forma.altura - 10);//Central
+                this.contexto.drawImage(caixaenergia, (forma.x + 0) + 3, forma.y + 5, forma.largura - 6, forma.altura - 10);//Central
                 this.contexto.strokeRect((forma.x + 0), forma.y, forma.largura, forma.altura);//deslocamento ja vem negativo.
                 //console.log(i);
             }
@@ -206,10 +219,11 @@ function ControllerFase1() {
             this.contexto.strokeRect((veiculo.forma.x + 0), veiculo.forma.y, veiculo.forma.largura, veiculo.forma.altura);//deslocamento ja vem negativo.
             //console.log(i);
         }
+
+        //console.log(i);
+        //trem
         this.trem.atualizar_sprite(this.contexto, this.trem.direcaoAtual)
         this.contexto.strokeRect(this.trem.forma.x, this.trem.forma.y, this.trem.forma.largura, this.trem.forma.altura);
-        //console.log(i);
-
         //Personagem
 
         if (personagem.lado == CIMA)
@@ -218,12 +232,13 @@ function ControllerFase1() {
         for (let i = 0; i < this.barreiras.length; i++) {//enquanto for de mesmo tamnaho!
             let barreira = this.barreiras[i];
             let painel = this.paineis_barreiras[i]
-            barreira.atualizar_sprite(this.contexto, false,TILE_AREA*3-TILE_AREA/2)
-            painel.atualizar_sprite(this.contexto, false,TILE_AREA)
+            barreira.atualizar_sprite(this.contexto, false, TILE_AREA * 3 - TILE_AREA / 2)
+            painel.atualizar_sprite(this.contexto, false, TILE_AREA)
             this.contexto.strokeRect((barreira.forma.x + 0), barreira.forma.y, barreira.forma.largura, barreira.forma.altura);//deslocamento ja vem negativo.
             this.contexto.strokeRect((painel.forma.x + 0), painel.forma.y, painel.forma.largura, painel.forma.altura);
             //console.log(i);
         }
+
         //Personagem
         if (personagem.lado != CIMA)
             personagem.atualizar_sprite(this.contexto, personagem.direcaoAtual == PAINEL || personagem.direcaoAtual == VAZIO || personagem.direcaoAtual == TUNEL ? personagem.direcaoAntiga : personagem.direcaoAtual);//printa o personagem!
@@ -248,7 +263,7 @@ function ControllerFase1() {
             var value = movimentos[key];
             $(key).css('background-color', "white");
             // $(key).css('background-size', '95% 95%');
-           // $(key+' div').css('background-image', 'url()');
+            // $(key+' div').css('background-image', 'url()');
             //aqui na andada!
             if (movimentos[key] != 'VAZIO')
                 this.movimentos_validos.push([key, TILE_AREA])//metodo em personagem!
@@ -346,19 +361,19 @@ function ControllerFase1() {
                 personagem.emMovimento = false;
                 $('#play').css('background-image', "url('assets/play.png')");
                 $('#play').attr('name', 'play')
+                this.resetar_cor_barra_comandos()
                 return;
             } else {
                 let direcao = movimentos[this.movimentos_validos[0][0]];
                 if (personagem.checar_colisao_cenario(this.fase1colisao.formasTile, this.barreiras, this.veiculos, this.paineis_barreiras, this.tunels, TAM_WIDTH_TELA_CANVAS, this.cenario1.altura, direcao, personagem.velocidade)) {
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
-
+                    this.resetar_cor_barra_comandos()
                     $(this.movimentos_validos[0][0]).css('background-color', "red");
                     this.movimentos_validos = []
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
                     personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
-                    
                     alert("Colisão + " + DANO_MOVIMENTO_ERRADO + " s")
                     return;
                 }
@@ -367,15 +382,15 @@ function ControllerFase1() {
                     nBarreira = personagem.checar_colisao_paineis(this.paineis_barreiras, personagem.direcaoAntiga, personagem.velocidade)
                     if (nBarreira != null) {
                         this.barreiras[nBarreira].alterar_estado()
-                        this.barreiras[nBarreira].atualizar_sprite(this.contexto, true,TILE_AREA*3-TILE_AREA/2)
+                        this.barreiras[nBarreira].atualizar_sprite(this.contexto, true, TILE_AREA * 3 - TILE_AREA / 2)
                         this.paineis_barreiras[nBarreira].alterar_estado()
-                        this.paineis_barreiras[nBarreira].atualizar_sprite(this.contexto, true,TILE_AREA)
+                        this.paineis_barreiras[nBarreira].atualizar_sprite(this.contexto, true, TILE_AREA)
                         // $(this.movimentos_validos[0][0] +' div').css("visibility", "hidden");
-                        $(this.movimentos_validos[0][0] +' div').remove()
+                        $(this.movimentos_validos[0][0] + ' div').remove()
                         movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
                         $(this.movimentos_validos[0][0]).text("")
                         alert('BARREIRA ' + this.barreiras[nBarreira].status)
-                        
+
                     } else {
                         personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
                         alert("Movimento errado! + " + DANO_MOVIMENTO_ERRADO + " s")
@@ -383,6 +398,7 @@ function ControllerFase1() {
                     }
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
+                    this.resetar_cor_barra_comandos()
                     //movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
                     //$(this.movimentos_validos[0][0]).text("")
                     this.movimentos_validos = []
@@ -414,20 +430,21 @@ function ControllerFase1() {
                             personagem.set_direcao_antiga()
                             personagem.set_movimento_antigo()
                         }
-                        $(this.movimentos_validos[0][0] +' div').remove()
+                        $(this.movimentos_validos[0][0] + ' div').remove()
                         $(this.movimentos_validos[0][0]).text("")
                         movimentos[this.movimentos_validos[0][0]] = VAZIO
                     } else {
                         //mudar cor da barra!
                         personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
                         alert("Movimento executado errado + " + DANO_MOVIMENTO_ERRADO + " s")
-                         $(this.movimentos_validos[0][0]).css('background-color', "red");
+                        $(this.movimentos_validos[0][0]).css('background-color', "red");
 
                     }
                     $('#play').css('background-image', "url('assets/play.png')");
                     $('#play').attr('name', 'play')
-                   // movimentos[this.movimentos_validos[0][0]] = VAZIO
-                   // $(this.movimentos_validos[0][0]).text("")
+                    this.resetar_cor_barra_comandos()
+                    // movimentos[this.movimentos_validos[0][0]] = VAZIO
+                    // $(this.movimentos_validos[0][0]).text("")
                     this.movimentos_validos = []
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
@@ -464,10 +481,17 @@ function ControllerFase1() {
                     personagem.sprite.aparencia = 0;
                     personagem.emMovimento = false;
                     personagem.set_movimento_antigo()
+                    //resetar opacity
+
                 }
 
             }
 
+        }
+    }
+    this.resetar_cor_barra_comandos = function () {
+        for (let i = 0; i < 17; i++) {
+            $('#b' + (i + 1)).css('opacity', 1.0)
         }
     }
     this.movimentos = function () {

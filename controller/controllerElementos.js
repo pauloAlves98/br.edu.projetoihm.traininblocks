@@ -67,26 +67,32 @@ function ControllerElementos() {
     //Functions
     //implementar função pause
     $('#play').attr('name', 'play')
-    $('#play').on('click', function () {
+
+    $('#play').on('click', function () {//em menugame!
       $(".card-item-comandos").find("*").prop('disabled', true);
       $(".card-item-comandos").find("*").prop('opacity', 0.4);
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
-
       if ($(this).attr('name') == 'pause') {
         $(this).css('background-image', "url('assets/play.png')");
         $(this).attr('name', 'play')
+        for (let i = 0; i < 17; i++) {
+          $('#b' + (i + 1)).css('opacity',1.0)
+        }
         controllerFase1.autorizar_movimento = false;
         if(controllerFase1.movimentos_validos.length>0)
            personagem.resetar_movimento();
         controllerFase1.movimentos_validos = []
         personagem.emMovimento = false;
+    
       } else {
         $(this).css('background-image', "url('assets/pause.png')");
         $(this).attr('name', 'pause')
         controllerFase1.autorizar_movimento_personagem();
+        //MUDAR COR PARA CINZA 
+        for (let i = 0; i < 17; i++) {
+          $('#b' + (i + 1)).css('opacity',0.7)
+        }
       }
-
-
     });
     //evento card suspenso
     for (let i = 0; i < 17; i++) {
@@ -95,7 +101,9 @@ function ControllerElementos() {
         quem_chamou_o_menu_supenso = '#b' + (i + 1);
         $('.container-inventario-menu-suspenso').css('top', $(this).position().top + $(this).height() + 4)
         $('.container-inventario-menu-suspenso').css('left', $(this).position().left)
-        $('.container-inventario-menu-suspenso').css("visibility", "visible");
+        if($('#play').attr('name') != 'pause')
+          $('.container-inventario-menu-suspenso').css("visibility", "visible");
+         // alert($(quem_chamou_o_menu_supenso).css('background-color')=='rgb(255, 255, 259)')
 
       });
     }
