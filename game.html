@@ -143,7 +143,17 @@
       animation-direction: left;
       animation-play-state: running;
     }
-
+    .motionL-alerta-comum {
+      /* color: #669900; */
+      background-color: transparent;
+      animation-name: animacaoBolada;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-delay: 0s;
+      animation-iteration-count: initial;
+      animation-direction: left;
+      animation-play-state: running;
+    }
     /* load */
     .lds-ellipsis {
       position: absolute;
@@ -293,8 +303,8 @@
       background-color: rgb(81, 252, 89);
       width: 90%; */
     /* background-image: linear-gradient(
-          45deg, rgb(8, 5, 1) 25%, 
-          transparent 25%, transparent 50%, 
+          45deg, rgb(8, 5, 1) 25%,
+          transparent 25%, transparent 50%,
           rgb(32, 29, 25) 50%, rgb(29, 28, 27) 75%,
           transparent 75%, transparent);  */
     /* animation: progressAnimationStrike 6s; */
@@ -368,11 +378,11 @@
     }
 
     /* #containerItemExpressaoLogica {
-     
+
       position: absolute;
       font-family: splurge;
       height: 40px;
-      text-shadow: 0 0 3px rgb(31, 163, 108); 
+      text-shadow: 0 0 3px rgb(31, 163, 108);
       text-shadow: -1px 0 black, 0 1px black;
       letter-spacing: 1px;
       animation: mymove 5s;
@@ -624,12 +634,13 @@
     }
 
     /* Alert */
-    .alerta-container {
+    .alerta-container,.alerta-container-comum {
       /* border:solid black 2px; */
       /* border-radius: 100px; */
       border-radius: 10px;
+      border: solid 2px white;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 1);
       top: 10px;
       bottom: 0px;
       left: 0px;
@@ -641,18 +652,26 @@
       /* margin: auto; */
       display: block;
       overflow: hidden;
-      transition: 1.2s;
+      transition: 0.5s;
+      -webkit-transition: opacity 0.5s linear;
+      transition: opacity 0.5s linear;
 
     }
-
+    .alerta-container-comum{
+      width: 300px;
+      height: 125px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.50);
+      /* text-shadow: rgb(0, 0, 0) 1px -1px, rgb(9, 9, 9) -2px 2px, rgb(0, 0, 0) 1px 1px, rgb(0, 0, 0) -1px -1px; */
+    }
     /*animação do span para criar linhas*/
-    .alerta-container span {
+    .alerta-container span, .alerta-container-comum span{
       position: absolute;
       display: block;
     }
 
     /*span 1 - borda do topo*/
-    .alerta-container span:nth-child(1) {
+    .alerta-container span:nth-child(1), .alerta-container-comum span:nth-child(1){
       top: 0;
       left: -100%;
       width: 100%;
@@ -676,7 +695,7 @@
     }
 
     /*span  2 - direita borda*/
-    .alerta-container span:nth-child(2) {
+    .alerta-container span:nth-child(2), .alerta-container-comum span:nth-child(2){
       top: -100%;
       right: 0;
       width: 3px;
@@ -698,7 +717,7 @@
     }
 
     /*span 3 - borda de baixo*/
-    .alerta-container span:nth-child(3) {
+    .alerta-container span:nth-child(3),.alerta-container-comum span:nth-child(3){
       bottom: 0;
       right: -100%;
       width: 100%;
@@ -720,7 +739,7 @@
     }
 
     /*span 4 - borda esquerda*/
-    .alerta-container span:nth-child(4) {
+    .alerta-container span:nth-child(4), .alerta-container-comum span:nth-child(4) {
       bottom: -100%;
       left: 0;
       width: 3px;
@@ -756,7 +775,7 @@
       color: white;
       height: 30px;
       width: 30px;
-      left: 460px;
+      left: 260px;
       top: 5px;
       font-size: 25px;
       margin: auto;
@@ -768,7 +787,7 @@
         0 0 100px #b61111;
     }
 
-    .alerta-container-close:hover {
+    .alerta-container-close:hover{
 
       box-shadow: 0 0 5px #03e9f4,
 
@@ -783,18 +802,35 @@
 
     /* Menu -  Resetar Caixas e sair do jogo*/
     .container-alerta-card-resetar-caixas,
-    .container-alerta-card-sair-jogo {
+     .container-alerta-card-comum {
       /* vertical-align: bottom; */
-      top: 25%;
+      top: 32px;
       position: absolute;
       width: 100%;
+      display: flex;
+      flex-direction: row;
       text-align: center;
+      align-items: center;
       font-size: 20px;
       font-family: HVD_Comic_Serif_Pro;
+      background-color: rgba(0, 0, 0, 0.25);
+/*      
+      height: 94px; */
     }
-
+    .container-alerta-card-tutorial-p1,.container-alerta-card-tutorial-p2{
+      top: 32px;
+      position: absolute;
+      width: 100%;
+      /* display: flex;
+      flex-direction: row;
+      text-align: center;
+      align-items: center; */
+      font-size: 20px;
+      font-family: HVD_Comic_Serif_Pro;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
     .card-resetar-caixas,
-    .card-sair-jogo {
+    .card-tutorial-p1,.card-tutorial-p2 {
       font-family: HVD_Comic_Serif_Pro;
       width: 100%;
       display: flex;
@@ -803,8 +839,8 @@
     }
 
     .titulo-card-resetar-caixas,
-    .titulo-card-sair-jogo {
-      font-family: HVD_Comic_Serif_Pro;
+    .titulo-card-tutorial-p1,.titulo-card-tutorial-p2, .titulo-card-comum {
+      /* font-family: Coves_Light; */
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: #000;
       color: #fffdd9;
@@ -812,15 +848,22 @@
       width: 100%;
       font-size: 50px;
       text-align: center;
-      text-shadow: 0 0 5px #03e9f4,
-        0 0 15px #03e9f4,
-        0 0 40px #03e9f4,
-        0 0 90px #b61111;
+      /* text-shadow: 0 0 5px #03e9f4,
+        0 0 5px #03e9f4,
+        0 0 20px #03e9f4,
+        0 0 40px #b61111; */
     }
-
+    .titulo-card-comum{
+      margin-top: 10px;
+      font-size: 30px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      /*     font-family: HVD_Comic_Serif_Pro; */
+      /* background-color: violet; */
+    }
     .item-card-resetar-caixas,
-    .item-card-sair-jogo {
+    .item-card-tutorial-p1,.item-card-tutorial-p2{
       display: flex;
+      /* background-color: blanchedalmond; */
       width: 100px;
       padding: 5px;
       margin: auto;
@@ -830,7 +873,7 @@
     .btn-sim-item-card-resetar-caixas,
     .btn-sim-item-card-sair-jogo,
     .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo {
+    .btn-nao-item-card-sair-jogo, .btn-proximo-item-tutorial-p1,.btn-proximo-item-tutorial-p2,.btn-voltar-item-tutorial-p2 {
       background-color: #03e9f4;
       cursor: pointer;
       font-family: HVD_Comic_Serif_Pro;
@@ -858,7 +901,7 @@
     }
 
     .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo {
+    .btn-nao-item-card-sair-jogo,.btn-voltar-item-tutorial-p2{
       box-shadow: 0 0 5px #b61111,
         0 0 25px #b61111,
         0 0 50px #b61111,
@@ -869,9 +912,9 @@
     }
 
     .btn-sim-item-card-resetar-caixas:hover,
-    .btn-sim-item-card-sair-jogo:hover,
+    .btn-sim-item-card-sair-jogo:hover, .btn-proximo-item-tutorial-p1:hover,.btn-proximo-item-tutorial-p2:hover,
     .btn-nao-item-card-resetar-caixas:hover,
-    .btn-nao-item-card-sair-jogo:hover {
+    .btn-nao-item-card-sair-jogo:hover,.btn-voltar-item-tutorial-p2:hover {
       animation: animation-pisca-buttom-sim 0s linear infinite;
       box-shadow: 0 0 5px #03e9f4,
         0 0 25px black,
@@ -883,7 +926,7 @@
     }
 
     .aux-btn-item-card-resetar-caixas,
-    .aux-btn-item-card-sair-jogo {
+    .aux-btn-item-card-tutorial-p1,.aux-btn-item-card-tutorial-p2 {
       text-align: center;
       border-color: white;
       color: white;
@@ -893,7 +936,7 @@
     }
 
     .aux-btn-item-card-resetar-caixas:hover,
-    .aux-btn-item-card-sair-jogo:hover {
+    .aux-btn-item-card-tutorial-p1:hover,.aux-btn-item-card-tutorial-p2:hover {
       border-color: goldenrod;
       box-shadow: 0 0 10px 0 goldenrod inset, 0 0 10px 4px #3498db;
     }
@@ -1164,7 +1207,7 @@
                 0 0 10px #03e9f4,
                 0 0 10px #03e9f4,
                 0 0 15px #03e9f4;
-    } 
+    }
     .item-card-button-comandos {
       /* display: flex; */
       width: 100%;
@@ -1337,7 +1380,7 @@
     #b_painel{
       background-repeat: no-repeat;
       background-size: 95% 95%;
-      
+
       background-image: url('assets/painel_menu.png');
     }
     #b_tunel{
@@ -1388,7 +1431,7 @@
       animation-play-state: running;
     }
     /* #b1{
-      
+
       opacity: 0.5;
     } */
     /* fim inventario */

@@ -76,21 +76,21 @@ function ControllerElementos() {
         $(this).css('background-image', "url('assets/play.png')");
         $(this).attr('name', 'play')
         for (let i = 0; i < 17; i++) {
-          $('#b' + (i + 1)).css('opacity',1.0)
+          $('#b' + (i + 1)).css('opacity', 1.0)
         }
         controllerFase1.autorizar_movimento = false;
-        if(controllerFase1.movimentos_validos.length>0)
-           personagem.resetar_movimento();
+        if (controllerFase1.movimentos_validos.length > 0)
+          personagem.resetar_movimento();
         controllerFase1.movimentos_validos = []
         personagem.emMovimento = false;
-    
+
       } else {
         $(this).css('background-image', "url('assets/pause.png')");
         $(this).attr('name', 'pause')
         controllerFase1.autorizar_movimento_personagem();
         //MUDAR COR PARA CINZA 
         for (let i = 0; i < 17; i++) {
-          $('#b' + (i + 1)).css('opacity',0.7)
+          $('#b' + (i + 1)).css('opacity', 0.7)
         }
       }
     });
@@ -101,9 +101,9 @@ function ControllerElementos() {
         quem_chamou_o_menu_supenso = '#b' + (i + 1);
         $('.container-inventario-menu-suspenso').css('top', $(this).position().top + $(this).height() + 4)
         $('.container-inventario-menu-suspenso').css('left', $(this).position().left)
-        if($('#play').attr('name') != 'pause')
+        if ($('#play').attr('name') != 'pause')
           $('.container-inventario-menu-suspenso').css("visibility", "visible");
-         // alert($(quem_chamou_o_menu_supenso).css('background-color')=='rgb(255, 255, 259)')
+        // alert($(quem_chamou_o_menu_supenso).css('background-color')=='rgb(255, 255, 259)')
 
       });
     }
@@ -111,44 +111,44 @@ function ControllerElementos() {
     $('#b_esquerda').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', ESQUERDA);
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = ESQUERDA;
     });
     $('#b_direita').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', DIREITA);
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = DIREITA;
     });
     $('#b_cima').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', CIMA);
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = CIMA;
     });
     $('#b_baixo').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'baixo');
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = BAIXO;
 
@@ -156,28 +156,28 @@ function ControllerElementos() {
     $('#b_painel').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'painel');
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = PAINEL;
     });
     $('#b_tunel').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'tunel');
       $(quem_chamou_o_menu_supenso).text("")
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).append('<div class="div-aux-image-painel"></div>');
       let bg = $(this).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      $(quem_chamou_o_menu_supenso +' div').css('background-image', 'url(' +bg + ')');
+      bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+      $(quem_chamou_o_menu_supenso + ' div').css('background-image', 'url(' + bg + ')');
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = TUNEL;
     });
     $('#b_remove').on('click', function () {
       $(quem_chamou_o_menu_supenso).attr('name', 'vazio');
-      $(quem_chamou_o_menu_supenso+' div').remove();
+      $(quem_chamou_o_menu_supenso + ' div').remove();
       $(quem_chamou_o_menu_supenso).text('')
       $('.container-inventario-menu-suspenso').css("visibility", "hidden");
       movimentos[quem_chamou_o_menu_supenso] = VAZIO;
@@ -274,12 +274,12 @@ function ControllerElementos() {
   //   $(id).css("background-color", "red");
   // }
   this.get_url_bakcground_image = function (id) {
-      let bg = $(id).css('background-image');
-      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-      alert(bg)
-      return bg;
+    let bg = $(id).css('background-image');
+    bg = bg.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+    alert(bg)
+    return bg;
   }
-  this.set_background_image = function (id,url) {
+  this.set_background_image = function (id, url) {
     $(id).css('background-size', '95% 95%');
     $(id).css('background-image', 'url(' + url + ')');
   }
@@ -389,32 +389,123 @@ function ControllerElementos() {
     //   </div>
     // </div> -->
   }
-  this.add_alerta_menu_sair_jogo = function () {
+  this.add_alerta_menu_tutorial_p1 = function () {
     $('.alerta-container').remove();
     $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
-    $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
-    $('.alerta-container-close').on('click', function () {
-      $('.alerta-container').remove();
-    });
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
 
     $(".alerta-container").append('\
-    <div class="container-alerta-card-sair-jogo">\
-        <div class="titulo-card-sair-jogo">Sair do Jogo?</div>\
+    <div class="container-alerta-card-tutorial-p1">\
+        <div class="titulo-card-tutorial-p1">Sair do Jogo?</div>\
         <div class="card-botoes">\
-            <div class="item-card-sair-jogo">\
-              <button class="btn-sim-item-card-sair-jogo aux-btn-card-sair-jogo">Sim</button>\
+            <div class="item-card-tutorial-p1">\
+              <button class="btn-proximo-item-tutorial-p1 aux-btn-card-tutorial-p1">Próximo</button>\
           </div>\
-          <div class="item-card-sair-jogo">\
-             <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
-         </div>\
         </div>\
     </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial-p1").on("click", this.add_alerta_menu_tutorial_p2)
 
-    $(".btn-nao-item-card-sair-jogo").on("click", function () {
+  }
+  this.add_alerta_menu_tutorial_p2 = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial-p2">\
+        <div class="titulo-card-tutorial-p2">Sair do Jogo?</div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial-p2">\
+            <button class="btn-voltar-item-tutorial-p2 aux-btn-card-tutorial-p2">Voltar</button>\
+          </div>\
+          <div class="item-card-tutorial-p2">\
+            <button class="btn-proximo-item-tutorial-p2 aux-btn-card-tutorial-p2">Próximo</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial-p2").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_final() //ficou sem contexto!
+    });
+    $(".btn-voltar-item-tutorial-p2").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p1() //ficou sem contexto!
+    });
+
+
+  }
+  this.add_alerta_menu_tutorial_final = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial-p2">\
+        <div class="titulo-card-tutorial-p2">Sair do Jogo?</div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial-p2">\
+            <button class="btn-proximo-item-tutorial-p2 aux-btn-card-tutorial-p2">Jogar</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial-p2").on("click", function (params) {
       $('.alerta-container').remove();
-    })
+      EM_JOGO = true;
+      cronometro.set_intervalo(true);
+      let c = new ControllerElementos()
+      c.add_alerta_comum("JOGO INICIADO, BOA SORTE!" )//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+      setTimeout(function () {
+         c.remove_add_alerta_comum()
+      },5000)
+    });
+  }
+  this.add_alerta_comum = function (msg) {
+    $('.alerta-container-comum').remove();
+    $("#frame").append('<a class="alerta-container-comum motionL-alerta-comum" href="#"></a>');
+    $(".alerta-container-comum").append('<span></span><span></span><span></span><span></span>');
+    $(".alerta-container-comum").append('<div class="alerta-container-close">X</div>');
+
+
+    $('.alerta-container-close').on('click', function () {
+      $('.alerta-container-comum').remove();
+    });
+
+    $(".alerta-container-comum").append('\
+    <div class="container-alerta-card-comum">\
+        <div class="titulo-card-comum">Menu</div>\
+        </div>\
+    </div>');
+    $(".titulo-card-comum").text(msg)
+    // $(".btn-nao-item-card-sair-jogo").on("click", function () {
+    //   $('.alerta-container-comum').remove();
+    // })
+
+  }
+  this.remove_add_alerta_comum = function () {
+    $('.alerta-container-comum').css('opacity', 0.1)
+    setTimeout(function () { $('.alerta-container-comum').remove(); }, 500);
 
   }
   this.alterar_nome_personagem_iventario = function (nome) {

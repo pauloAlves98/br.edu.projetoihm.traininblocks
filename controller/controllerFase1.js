@@ -26,6 +26,10 @@ function ControllerFase1() {
         //remover classe de alerta
         if (cronometro.comparar_tempo_intervalo_decrementado(cronometroTrem.hora, cronometroTrem.minuto, cronometroTrem.segundo,15)) {
             $('#tempo-restante').removeClass('alerta-trem-vindo')
+            elementos.add_alerta_comum(MSG_TREM_VINDO)//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+            setTimeout(function () {
+                elementos.remove_add_alerta_comum()
+            },14000)
            // alert("Vem")
         }
         //add classe alerta
@@ -95,8 +99,8 @@ function ControllerFase1() {
         intervalo_cronometro = setInterval(function () {
             cronometro.rodando();
         }, 1000);
-        cronometro.set_intervalo(true);
-        cronometroTrem.incrementa_relogio_intervalo(30)
+        cronometro.set_intervalo(false);
+        cronometroTrem.incrementa_relogio_intervalo(10)
 
         this.loop_game();
 
@@ -138,7 +142,7 @@ function ControllerFase1() {
         this.trem.direcaoAtual = direcao;
         this.trem.podeMudarSprite = true;
         this.trem.emMovimento = true;
-        this.trem.set_intervalo_trem_passar(10 * 3)
+        this.trem.set_intervalo_trem_passar(10 * 18)//3 MIN
         this.trem.forma.init(this.trem.x, this.trem.y, this.trem.largura - TILE_AREA * 3, this.trem.altura - TILE_AREA * 2)
         this.trem.set_trem_deve_passar(false)
         this.trem.set_movimento_antigo()
@@ -285,7 +289,11 @@ function ControllerFase1() {
             //colisao com carros!
             //dano de 
             if (this.trem.checar_saida_cenario(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)) {
-                alert("TREM PASSOU!!")
+                //alert("TREM PASSOU!!")
+                // elementos.add_alerta_comum(MSG_TREM_VIA)//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                // setTimeout(function () {
+                //     elementos.remove_add_alerta_comum()
+                // },5000)
                 this.trem.status = INATIVO
                 this.trem.resetar_movimento();
                 //atualizar hora de passar!
@@ -313,14 +321,21 @@ function ControllerFase1() {
                 veiculo.status = INATIVO
                 index.push(i);
                 this.quantidade_veiculos_ultrapassar = this.quantidade_veiculos_ultrapassar - 1;
-                alert("Você deve ajudar mais " + this.quantidade_veiculos_ultrapassar + " veiculos a ultrapassarem a via!")
+                elementos.add_alerta_comum("RESTA(M) " + this.quantidade_veiculos_ultrapassar + " VEICULOS!" )//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                setTimeout(function () {
+                    elementos.remove_add_alerta_comum()
+                },5000)
                 //fechar
             }
             if (veiculo.checar_colisao_objetos([this.trem])) {
                 veiculo.status = INATIVO
                 index.push(i);
                 personagem.dano = personagem.dano + DANO_COLISAO_VEICULO_TREM;
-                alert("Bateu! +" + DANO_COLISAO_VEICULO_TREM + "s")
+                // alert("Bateu! +" + DANO_COLISAO_VEICULO_TREM + "s")
+                elementos.add_alerta_comum(MSG_DANO_COLISAO_TREM )//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                setTimeout(function () {
+                    elementos.remove_add_alerta_comum()
+                },4000)
             } //ver se colide com o trem!
 
 
@@ -374,7 +389,11 @@ function ControllerFase1() {
                     this.autorizar_movimento = false;
                     personagem.emMovimento = false;
                     personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
-                    alert("Colisão + " + DANO_MOVIMENTO_ERRADO + " s")
+                    // alert("Colisão + " + DANO_MOVIMENTO_ERRADO + " s")
+                    elementos.add_alerta_comum(MSG_DANO_MOV_COLISAO_CENARIO)//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                    setTimeout(function () {
+                        elementos.remove_add_alerta_comum()
+                    },5000)
                     return;
                 }
                 if (direcao == PAINEL) {
@@ -389,11 +408,14 @@ function ControllerFase1() {
                         $(this.movimentos_validos[0][0] + ' div').remove()
                         movimentos[this.movimentos_validos[0][0]] = 'VAZIO'
                         $(this.movimentos_validos[0][0]).text("")
-                        alert('BARREIRA ' + this.barreiras[nBarreira].status)
+                        // alert('BARREIRA ' + this.barreiras[nBarreira].status)
 
                     } else {
                         personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
-                        alert("Movimento errado! + " + DANO_MOVIMENTO_ERRADO + " s")
+                        elementos.add_alerta_comum(MSG_DANO_MOV_ERRADO)//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                        setTimeout(function () {
+                            elementos.remove_add_alerta_comum()
+                        },5000)
                         $(this.movimentos_validos[0][0]).css('background-color', "red");
                     }
                     $('#play').css('background-image', "url('assets/play.png')");
@@ -436,7 +458,10 @@ function ControllerFase1() {
                     } else {
                         //mudar cor da barra!
                         personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO);
-                        alert("Movimento executado errado + " + DANO_MOVIMENTO_ERRADO + " s")
+                        elementos.add_alerta_comum(MSG_DANO_MOV_ERRADO)//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+                        setTimeout(function () {
+                            elementos.remove_add_alerta_comum()
+                        },5000)
                         $(this.movimentos_validos[0][0]).css('background-color', "red");
 
                     }

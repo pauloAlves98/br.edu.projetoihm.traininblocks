@@ -3,6 +3,7 @@
 var personagem = new Personagem(); //globalvar
 var viloes = new Array();
 //Outras variaveis
+var EM_JOGO = false
 var movimentos = {
     '#b1': "VAZIO", '#b2': "VAZIO", '#b3': "VAZIO", '#b4': "VAZIO", '#b5': "VAZIO", '#b6': "VAZIO",
     '#b7': "VAZIO", '#b8': "VAZIO", '#b9': "VAZIO", '#b10': "VAZIO", '#b11': "VAZIO", '#b12': "VAZIO", '#b13': "VAZIO",
@@ -49,12 +50,15 @@ function main() {
 
 function checar_loop_game() {
     //veridicar fase ativa
-    if (!controllerFase1.checar_fim_fase()) {
-        controllerFase1.loop_game();
-        window.requestAnimationFrame(checar_loop_game);
+    if(EM_JOGO){
+        if (!controllerFase1.checar_fim_fase()) {
+            controllerFase1.loop_game();
+        }
+        else
+            alert("Parabéns! Ir para fase 2");
     }
-    else
-        alert("Parabéns! Ir para fase 2");
+
+    window.requestAnimationFrame(checar_loop_game);
 
 }
 //metodo para todos os controllers
@@ -96,10 +100,12 @@ function carregar_imagens_fase_1() {
                                                         elementos.add_canvas(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)
                                                         //adicionar iventario
                                                         elementos.add_inventario();
+                                                        elementos.add_alerta_menu_tutorial_p1()
                                                         //Carregar elementos do iventario como nome do persongem!
                                                         elementos.alterar_nome_personagem_iventario("José Donald Trump");
                                                         //refatorar essa parte.!
                                                         controllerFase1.initgame();
+                                                        
                                                         checar_loop_game();
                                                     }, 2000);//2 segundos para aparecer tela de carregamento!
                                                 }
