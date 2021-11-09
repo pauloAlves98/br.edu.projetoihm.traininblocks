@@ -1,1 +1,1 @@
-audiosprite --path 'C:\Users\P\Documents\WEB\br.edu.projetoihm\audio' --output sprites -f howler --export mp3 colisao_caixa.mp3
+audiosprite --path 'C:/Users/P/Documents/WEB/br.edu.projetoihm/audio' --output sprites2 -f howler --export mp3 colisao_caixa.mp3

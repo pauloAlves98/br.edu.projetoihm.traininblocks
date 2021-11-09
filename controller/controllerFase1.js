@@ -22,6 +22,7 @@ function ControllerFase1() {
             this.trem.status = ATIVO
             this.trem.set_trem_deve_passar(true);
             this.fechar_barreiras()
+            sound_trem.play()
         }
         //remover classe de alerta
         if (cronometro.comparar_tempo_intervalo_decrementado(cronometroTrem.hora, cronometroTrem.minuto, cronometroTrem.segundo,15)) {
@@ -300,6 +301,7 @@ function ControllerFase1() {
                 //liberar movimentos
                 this.trem_deve_passar = false;
                 cronometroTrem.incrementa_relogio_intervalo(this.trem.get_intervalo_trem_passar())
+                sound_trem.stop()
             }
         }
         //CARROS

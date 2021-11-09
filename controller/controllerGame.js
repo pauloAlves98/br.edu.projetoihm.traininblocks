@@ -31,9 +31,17 @@ var sounds = new Howl({
 
 var sound_fundo = new Howl({
     src: ["audio\\tema.mp3"],
-    volume: 0.05,
+    volume: 0.10,
     html5: true,
     loop: true,
+});
+var sound_trem = new Howl({
+    src: ["audio\\som_trem3.mp3"],
+    volume: 0.05,
+    html5: true,
+    // onend: function() {
+    //     console.log('Finished!');
+    // }
 });
 //direcionador
 function main() {

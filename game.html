@@ -567,11 +567,12 @@
       /* border-bottom: 5px solid #1d1f1e; */
       text-align: center;
       font-size: 20px;
-      font-family: HVD_Comic_Serif_Pro;
+      /* font-family: HVD_Comic_Serif_Pro; */
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
 
     .card-botoes {
-      font-family: HVD_Comic_Serif_Pro;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       /* position: absolute; */
       width: 100%;
       display: flex;
@@ -655,6 +656,7 @@
       transition: 0.5s;
       -webkit-transition: opacity 0.5s linear;
       transition: opacity 0.5s linear;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
     }
     .alerta-container-comum{
@@ -817,7 +819,7 @@
 /*      
       height: 94px; */
     }
-    .container-alerta-card-tutorial-p1,.container-alerta-card-tutorial-p2{
+    .container-alerta-card-tutorial, .container-alerta-card-tutorial-p1,.container-alerta-card-tutorial-p2{
       top: 32px;
       position: absolute;
       width: 100%;
@@ -829,7 +831,7 @@
       font-family: HVD_Comic_Serif_Pro;
       background-color: rgba(0, 0, 0, 0.25);
     }
-    .card-resetar-caixas,
+    .card-resetar-caixas,.card-tutorial,
     .card-tutorial-p1,.card-tutorial-p2 {
       font-family: HVD_Comic_Serif_Pro;
       width: 100%;
@@ -838,11 +840,11 @@
       flex-wrap: wrap;
     }
 
-    .titulo-card-resetar-caixas,
+    .titulo-card-resetar-caixas,  .titulo-card-tutorial,
     .titulo-card-tutorial-p1,.titulo-card-tutorial-p2, .titulo-card-comum {
       /* font-family: Coves_Light; */
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: #000;
+      /* -webkit-text-stroke-width: 3px; */
+      /* -webkit-text-stroke-color: #000; */
       color: #fffdd9;
       color: white;
       width: 100%;
@@ -852,6 +854,17 @@
         0 0 5px #03e9f4,
         0 0 20px #03e9f4,
         0 0 40px #b61111; */
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size:40px;
+    }
+    .titulo-card-tutorial, .titulo-span-tutorial{
+      font-size:35px;
+      -webkit-text-stroke-color: transparent;
+    }
+    
+    .titulo-span-tutorial{
+            color: rgb(2, 201, 220);
+            /* font-weight: bold;   */
     }
     .titulo-card-comum{
       margin-top: 10px;
@@ -860,7 +873,7 @@
       /*     font-family: HVD_Comic_Serif_Pro; */
       /* background-color: violet; */
     }
-    .item-card-resetar-caixas,
+    .item-card-resetar-caixas,   .item-card-tutorial,
     .item-card-tutorial-p1,.item-card-tutorial-p2{
       display: flex;
       /* background-color: blanchedalmond; */
@@ -873,7 +886,7 @@
     .btn-sim-item-card-resetar-caixas,
     .btn-sim-item-card-sair-jogo,
     .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo, .btn-proximo-item-tutorial-p1,.btn-proximo-item-tutorial-p2,.btn-voltar-item-tutorial-p2 {
+    .btn-nao-item-card-sair-jogo,.btn-proximo-item-tutorial, .btn-proximo-item-tutorial-p1,.btn-proximo-item-tutorial-p2,.btn-voltar-item-tutorial-p2,.btn-voltar-item-tutorial {
       background-color: #03e9f4;
       cursor: pointer;
       font-family: HVD_Comic_Serif_Pro;
@@ -901,7 +914,7 @@
     }
 
     .btn-nao-item-card-resetar-caixas,
-    .btn-nao-item-card-sair-jogo,.btn-voltar-item-tutorial-p2{
+    .btn-nao-item-card-sair-jogo,.btn-voltar-item-tutorial-p2,.btn-voltar-item-tutorial{
       box-shadow: 0 0 5px #b61111,
         0 0 25px #b61111,
         0 0 50px #b61111,
@@ -912,9 +925,9 @@
     }
 
     .btn-sim-item-card-resetar-caixas:hover,
-    .btn-sim-item-card-sair-jogo:hover, .btn-proximo-item-tutorial-p1:hover,.btn-proximo-item-tutorial-p2:hover,
+    .btn-sim-item-card-sair-jogo:hover, .btn-proximo-item-tutorial-p1:hover,.btn-proximo-item-tutorial-p2:hover,.btn-proximo-item-tutorial:hover,
     .btn-nao-item-card-resetar-caixas:hover,
-    .btn-nao-item-card-sair-jogo:hover,.btn-voltar-item-tutorial-p2:hover {
+    .btn-nao-item-card-sair-jogo:hover,.btn-voltar-item-tutorial-p2:hover,.btn-voltar-item-tutorial:hover {
       animation: animation-pisca-buttom-sim 0s linear infinite;
       box-shadow: 0 0 5px #03e9f4,
         0 0 25px black,
@@ -925,7 +938,7 @@
       outline: 0;
     }
 
-    .aux-btn-item-card-resetar-caixas,
+    .aux-btn-item-card-resetar-caixas,.aux-btn-item-card-tutorial,
     .aux-btn-item-card-tutorial-p1,.aux-btn-item-card-tutorial-p2 {
       text-align: center;
       border-color: white;
@@ -935,7 +948,7 @@
       transition: all 150ms ease-in-out;
     }
 
-    .aux-btn-item-card-resetar-caixas:hover,
+    .aux-btn-item-card-resetar-caixas:hover,  .aux-btn-item-card-tutorial:hover,
     .aux-btn-item-card-tutorial-p1:hover,.aux-btn-item-card-tutorial-p2:hover {
       border-color: goldenrod;
       box-shadow: 0 0 10px 0 goldenrod inset, 0 0 10px 4px #3498db;
@@ -1429,6 +1442,12 @@
       animation-iteration-count: initial;
       animation-direction: left;
       animation-play-state: running;
+    }
+    .exemplo-comandos-tutorial{
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0; 
+      /* line-height: 0; */
     }
     /* #b1{
 

@@ -221,7 +221,7 @@ function ControllerElementos() {
     // $('.container-inventario-card-cronometro').css('left', 200)
     $('.container-inventario-card-objetivo').append('<div class="card-objetivo">\
                 <div class="titulo-card-objetivo">Objetivo</div>\
-                <div class="item-card-objetivo">Vá em direção aos paineis de comando e abra as porteiras necessárias para os veículos atravessarem a via!.</div>\
+                <div class="item-card-objetivo">Vá em direção aos <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> e abra as barreiras ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) necessárias para <span >10</span> os veículos atravessarem a via!</div>\
         </div>');
     //Expressão Logica Card
     // $('#inventario').append('<div class="container-inventario-card-expressao-logica"></div>');
@@ -400,18 +400,19 @@ function ControllerElementos() {
     // });
 
     $(".alerta-container").append('\
-    <div class="container-alerta-card-tutorial-p1">\
-        <div class="titulo-card-tutorial-p1">Sair do Jogo?</div>\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial">Olá, seja bem vindo ao <br> Train in <b class="titulo-span-tutorial">Blocks.</b> <br>O objetivo do jogo é ajudar os veículos a atravassarem a via.</div>\
+        <br>\
         <div class="card-botoes">\
-            <div class="item-card-tutorial-p1">\
-              <button class="btn-proximo-item-tutorial-p1 aux-btn-card-tutorial-p1">Próximo</button>\
+            <div class="item-card-tutorial">\
+              <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Próximo</button>\
           </div>\
         </div>\
     </div>');
     //     <div class="item-card-sair-jogo">\
     //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
     // </div>\
-    $(".btn-proximo-item-tutorial-p1").on("click", this.add_alerta_menu_tutorial_p2)
+    $(".btn-proximo-item-tutorial").on("click", this.add_alerta_menu_tutorial_p2)
 
   }
   this.add_alerta_menu_tutorial_p2 = function () {
@@ -425,25 +426,138 @@ function ControllerElementos() {
     // });
 
     $(".alerta-container").append('\
-    <div class="container-alerta-card-tutorial-p2">\
-        <div class="titulo-card-tutorial-p2">Sair do Jogo?</div>\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial">Para atingir o objetivo, é necessário manusear as alavancas <img   width="40px" height="60px" src = "assets/comando_painel.png" alt="alavanca"> para abrir ou fechar as barreiras (<img   width="60px" height="50px" src = "assets/barreira_inventario.png" alt="barreiras">).</div>\
         <div class="card-botoes">\
-          <div class="item-card-tutorial-p2">\
-            <button class="btn-voltar-item-tutorial-p2 aux-btn-card-tutorial-p2">Voltar</button>\
+          <div class="item-card-tutorial">\
+            <button class="btn-voltar-item-tutorial aux-btn-card-tutorial">Voltar</button>\
           </div>\
-          <div class="item-card-tutorial-p2">\
-            <button class="btn-proximo-item-tutorial-p2 aux-btn-card-tutorial-p2">Próximo</button>\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Próximo</button>\
           </div>\
         </div>\
     </div>');
     //     <div class="item-card-sair-jogo">\
     //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
     // </div>\
-    $(".btn-proximo-item-tutorial-p2").on("click", function (params) {
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p3() //ficou sem contexto!
+    });
+    $(".btn-voltar-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p1() //ficou sem contexto!
+    });
+
+
+  }
+  this.add_alerta_menu_tutorial_p3 = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial">Utilize a barra de comandos para executar os movimentos do jogo <br> <img   width="80%" height="40px" src = "assets/barra_comandos.png" alt="barra de comandos"> Aperte o botão  <img   width="40px" height="30px" src = "assets/play.png" alt="play"> quando estiver pronto! </div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial">\
+            <button class="btn-voltar-item-tutorial aux-btn-card-tutorial">Voltar</button>\
+          </div>\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Próximo</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p4() //ficou sem contexto!
+    });
+    $(".btn-voltar-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p2() //ficou sem contexto!
+    });
+
+
+  }
+  this.add_alerta_menu_tutorial_p4 = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial"> Os movimentos são:<br> <b class="exemplo-comandos-tutorial"><img width="20px" height="20px" src = "assets/seta_direita.png" alt="play">: Mover uma casa para direita</b>\
+        / <b class="exemplo-comandos-tutorial"><img width="20px" height="20px" src = "assets/seta_esquerda.png" alt="esquerda">: Mover uma casa para esquerda</b><br>\
+        <b class="exemplo-comandos-tutorial"><img width="30px" height="20px" src = "assets/seta_cima.png" alt="cima">: Mover uma casa para cima</b>\
+        /<b class="exemplo-comandos-tutorial"><img width="30px" height="20px" src = "assets/seta_cima.png" alt="baixo">: Mover uma casa para baixo</b><br>\
+       <b class="exemplo-comandos-tutorial"><img width="30px" height="20px" src = "assets/comando_painel.png" alt="alavanca">: Abrir/Fechar barreira</b><br>\
+       <b class="exemplo-comandos-tutorial"><img width="60px" height="30px" src = "assets/tunel.png" alt="tunel">: Entrar/Sair Túnel</b>\
+       </div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial">\
+            <button class="btn-voltar-item-tutorial aux-btn-card-tutorial">Voltar</button>\
+          </div>\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Próximo</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p5() //ficou sem contexto!
+    });
+    $(".btn-voltar-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p3() //ficou sem contexto!
+    });
+
+
+  }
+  this.add_alerta_menu_tutorial_p5 = function () {
+    $('.alerta-container').remove();
+    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial"> O jogador sofrerá danos em forma de tempo ao:<br> <b class="exemplo-comandos-tutorial"> *Colidir com elementos do cenário(Barreiras, cavaletes, veículos e afins)</b>\
+        <b class="exemplo-comandos-tutorial">*Existir uma colisão entre o trem e o veículo</b><br>\
+        <b class="exemplo-comandos-tutorial">*Executar erroneamente os movimentos:</b>\
+        <b class="exemplo-comandos-tutorial"><img width="30px" height="20px" src = "assets/comando_painel.png" alt="alavanca"></b>\
+       /<b class="exemplo-comandos-tutorial"><img width="60px" height="30px" src = "assets/tunel.png" alt="tunel"></b>\
+       </div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial">\
+            <button class="btn-voltar-item-tutorial aux-btn-card-tutorial">Voltar</button>\
+          </div>\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Próximo</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
       new ControllerElementos().add_alerta_menu_tutorial_final() //ficou sem contexto!
     });
-    $(".btn-voltar-item-tutorial-p2").on("click", function (params) {
-      new ControllerElementos().add_alerta_menu_tutorial_p1() //ficou sem contexto!
+    $(".btn-voltar-item-tutorial").on("click", function (params) {
+      new ControllerElementos().add_alerta_menu_tutorial_p4() //ficou sem contexto!
     });
 
 
@@ -459,22 +573,23 @@ function ControllerElementos() {
     // });
 
     $(".alerta-container").append('\
-    <div class="container-alerta-card-tutorial-p2">\
-        <div class="titulo-card-tutorial-p2">Sair do Jogo?</div>\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial">Fique atento ao relógio do jogo <b class="titulo-span-tutorial">(Hora atual)</b> e ao relógio que notifica o horário do trem vir <b class="titulo-span-tutorial">(Hora do Trem vir)</b><br> Bom jogo!</div>\
         <div class="card-botoes">\
-          <div class="item-card-tutorial-p2">\
-            <button class="btn-proximo-item-tutorial-p2 aux-btn-card-tutorial-p2">Jogar</button>\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Jogar</button>\
           </div>\
         </div>\
     </div>');
     //     <div class="item-card-sair-jogo">\
     //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
     // </div>\
-    $(".btn-proximo-item-tutorial-p2").on("click", function (params) {
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
       $('.alerta-container').remove();
       EM_JOGO = true;
       cronometro.set_intervalo(true);
       let c = new ControllerElementos()
+      // sound_fundo.play()
       c.add_alerta_comum("JOGO INICIADO, BOA SORTE!" )//personalizar alerta//add cabeçãrio//alerta dano e tutorial
       setTimeout(function () {
          c.remove_add_alerta_comum()
