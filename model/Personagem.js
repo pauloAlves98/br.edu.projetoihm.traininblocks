@@ -1,7 +1,7 @@
 //tudo que se move com deslocamento faz parte do cenario formas, caixas.
 function Personagem() {
     Elemento.call(this);
-    // this.life = 0;
+    this.life = 100;
     this.dano = 0;
     this.largura = 64 - 32;//32;
     this.altura = 45 - 10;
@@ -10,8 +10,25 @@ function Personagem() {
     this.dxForma = 16;
     this.y = 20;
     this.direcaoAntiga = ''
-    this.aplicar_dano = function () {
-        this.life -= this.dano;
+    this.movimentos_validos = []
+    this.autorizar_movimento = false;
+
+    this.autorizar_movimento_personagem = function (movimentosT) {//validar movimentos personagem.(coleta do painel)
+        for (var key in movimentosT) {//variavel movimentos em controller geral
+            var value = movimentosT[key];
+            $(key).css('background-color', "white");
+            // $(key).css('background-size', '95% 95%');
+            // $(key+' div').css('background-image', 'url()');
+            //aqui na andada!
+           
+            if (movimentosT[key] != 'VAZIO')
+                this.movimentos_validos.push([key, TILE_AREA])//metodo em personagem!
+        }
+        this.set_movimento_antigo()
+        this.autorizar_movimento = true;
+    }
+    this.aplicar_dano_life = function (dano) {
+        this.life -= dano;
         if (this.life <= 0)
             this.life = 0;
         this.atualizar_forma();
@@ -21,6 +38,7 @@ function Personagem() {
             return true;
         return false;
     }
+
     this.atualizar_forma = function () {
         this.forma.x = this.x + this.dxForma + 1;
         this.forma.y = this.y + this.forma.altura / 2 - 2;
@@ -65,7 +83,7 @@ function Personagem() {
 
     }
     this.set_direcao_antiga = function () {
-        if (this.direcaoAtual != PAINEL || this.direcaoAtual != TUNEL)
+        if (this.direcaoAtual != PAINEL || this.direcaoAtual != TUNEL || this.direcaoAtual != VAZIO)
             this.direcaoAntiga = this.direcaoAtual
         else
             this.emMovimento = false;
@@ -140,56 +158,81 @@ function Personagem() {
         return false;
     }
     this.checar_colisao_paineis = function (barreiras, direcao, deslocamento) {//retorna o indicie da barreira ou null
-        let valor_previsto_cimabai = 0;
-        let valor_previsto_diresq = 0;
-        if (direcao == DIREITA) {
-            valor_previsto_diresq = deslocamento - 1;//deslocamento futuro.
-        }
-        else if (direcao == ESQUERDA) {
-            valor_previsto_diresq = - deslocamento + 1;
-        }
-        else if (direcao == CIMA) {
-            valor_previsto_cimabai = -deslocamento + 1;
-        }
-        else if (direcao == BAIXO) {
-            valor_previsto_cimabai = deslocamento - 1;
-        }
+        // let valor_previsto_cimabai = 0;
+        // let valor_previsto_diresq = 0;
+        // if (direcao == DIREITA) {
+        //     valor_previsto_diresq = deslocamento - 1;//deslocamento futuro.
+        // }
+        // else if (direcao == ESQUERDA) {
+        //     valor_previsto_diresq = - deslocamento + 1;
+        // }
+        // else if (direcao == CIMA) {
+        //     valor_previsto_cimabai = -deslocamento + 1;
+        // }
+        // else if (direcao == BAIXO) {
+        //     valor_previsto_cimabai = deslocamento - 1;
+        // }
 
         let formaaux = new Rectangle();//inicia a projeção de uma forma
-        formaaux.init(this.forma.x + valor_previsto_diresq, this.forma.y + valor_previsto_cimabai, this.forma.largura, this.forma.altura)
+       
 
         for (let i = 0; i < barreiras.length; i++) {
             let formaB = barreiras[i].forma;
-            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura)) {
+            formaaux.init(this.forma.x - deslocamento + 1, this.forma.y + 0, this.forma.largura, this.forma.altura)//esquerda
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
                 return i;
-            }
+            //direita
+            formaaux.init(this.forma.x + deslocamento - 1, this.forma.y + 0, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
+            //cima
+            formaaux.init(this.forma.x, this.forma.y - deslocamento + 1, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
+            //baixo
+            formaaux.init(this.forma.x, this.forma.y + deslocamento - 1, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
         }
         return null;
     }
     this.checar_colisao_tunel = function (tuneis, direcao, deslocamento) {//retorna o indicie da barreira ou null
-        let valor_previsto_cimabai = 0;
-        let valor_previsto_diresq = 0;
-        if (direcao == DIREITA) {
-            valor_previsto_diresq = deslocamento - 1;//deslocamento futuro.
-        }
-        else if (direcao == ESQUERDA) {
-            valor_previsto_diresq = - deslocamento + 1;
-        }
-        else if (direcao == CIMA) {
-            valor_previsto_cimabai = -deslocamento + 1;
-        }
-        else if (direcao == BAIXO) {
-            valor_previsto_cimabai = deslocamento - 1;
-        }
+        // let valor_previsto_cimabai = 0;
+        // let valor_previsto_diresq = 0;
+        // if (direcao == DIREITA) {
+        //     valor_previsto_diresq = deslocamento - 1;//deslocamento futuro.
+        // }
+        // else if (direcao == ESQUERDA) {
+        //     valor_previsto_diresq = - deslocamento + 1;
+        // }
+        // else if (direcao == CIMA) {
+        //     valor_previsto_cimabai = -deslocamento + 1;
+        // }
+        // else if (direcao == BAIXO) {
+        //     valor_previsto_cimabai = deslocamento - 1;
+        // }
 
         let formaaux = new Rectangle();//inicia a projeção de uma forma
-        formaaux.init(this.forma.x + valor_previsto_diresq, this.forma.y + valor_previsto_cimabai, this.forma.largura, this.forma.altura)
+        // formaaux.init(this.forma.x - deslocamento + 1, this.forma.y + 0, this.forma.largura, this.forma.altura)//esquerda
 
         for (let i = 0; i < tuneis.length; i++) {
             let formaB = tuneis[i].forma;
-            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura)) {
+            formaaux.init(this.forma.x - deslocamento + 1, this.forma.y + 0, this.forma.largura, this.forma.altura)//esquerda
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
                 return i;
-            }
+            //direita
+            formaaux.init(this.forma.x + deslocamento - 1, this.forma.y + 0, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
+            //cima
+            formaaux.init(this.forma.x, this.forma.y - deslocamento + 1, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
+            //baixo
+            formaaux.init(this.forma.x, this.forma.y + deslocamento - 1, this.forma.largura, this.forma.altura)
+            if (formaaux.colisao(formaB.x, formaB.y, formaB.largura, formaB.altura))
+                return i;
+
         }
         return null;
     }
