@@ -2,7 +2,8 @@
 //personagens
 let personagem = new Personagem(); //globalvar
 //Outras variaveis
-let EM_JOGO = false
+let EM_JOGO = true;
+let EM_PAUSE = true;
 let FASE = 1;
 
 let movimentos = {
@@ -14,25 +15,25 @@ let movimentos = {
 var intervalo_sprite_persongem;//global mudança de sprite person
 var intervalo_cronometro; //global!
 //controlles
-var elementos_inventario = new ControllerElementos(personagem,movimentos); //Elementos do inventario!
+var elementos_inventario = new ControllerElementos(personagem, movimentos); //Elementos do inventario!
 var cronometro = new Cronometro(); //global
 var cronometroTrem = new Cronometro(); //global
 var controllerFase1 = new ControllerFase1(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem);
-
+var controllerFase3 = new ControllerFase3(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem);
 // var sound_fundo = new Howl({
 //     src: ["audio\\tema.mp3"],
 //     volume: 0.10,
 //     html5: true,
 //     loop: true,
 // });
-// var sound_trem = new Howl({
-//     src: ["audio\\som_trem3.mp3"],
-//     volume: 0.00,
-//     html5: true,
-//     // onend: function() {
-//     //     console.log('Finished!');
-//     // }
-// });
+var sound_trem = new Howl({
+    src: ["audio\\som_trem3.mp3"],
+    volume: 0.15,
+    html5: true,
+    // onend: function() {
+    //     console.log('Finished!');
+    // }
+});
 //direcionador
 function main() {
     elementos_inventario.add_loading();
@@ -48,17 +49,54 @@ function main() {
 
 function checar_loop_game() {
     //veridicar fase ativa
-    if(EM_JOGO){
-        if(FASE == 1){
-            if (!controllerFase1.checar_fim_fase()) {
-                controllerFase1.loop_game();
+    if (EM_JOGO) {
+
+        if (!EM_PAUSE) {
+
+            if (FASE == 1) {
+
+                if (!controllerFase1.checar_fim_fase())
+                    controllerFase1.loop_game();
+
+                else {
+                    EM_PAUSE = true;
+                    cronometro.set_intervalo(false);
+                    elementos_inventario.add_alerta_proxima_fase(2);
+                    //ADD ALERTA
                 }
-             else
-                alert("Parabéns! Ir para fase 2");
+
+            } else if (FASE == 2) {
+                if (!controllerFase1.checar_fim_fase())
+                    controllerFase1.loop_game();
+                else {
+                    EM_PAUSE = true;
+                    cronometro.set_intervalo(false);
+                    elementos_inventario.add_alerta_proxima_fase(2);
+                    //ADD ALERTA
+                }
+
+            } else if (FASE == 3) {
+                if (!controllerFase1.checar_fim_fase())
+                    controllerFase1.loop_game();
+                else {
+                    EM_PAUSE = true;
+                    cronometro.set_intervalo(false);
+                    elementos_inventario.add_alerta_proxima_fase(2); //tela cadastro pontuação!
+                    //ADD ALERTA
+                }
+
+            }
         }
+        // e em pause == false!
+
     }
     //EMJOGO FALSE = GAME_OVER
-    window.requestAnimationFrame(checar_loop_game);
+    if (personagem.checar_game_over()) {
+        EM_PAUSE = true
+        EM_JOGO = false
+        elementos_inventario.add_alerta_game_over()
+    } else
+        window.requestAnimationFrame(checar_loop_game);
 
 }
 //metodo para todos os controllers
@@ -105,7 +143,7 @@ function carregar_imagens_fase_1() {
                                                         elementos_inventario.alterar_nome_personagem_iventario("Operador");
                                                         //refatorar essa parte.!
                                                         controllerFase1.initgame();
-                                                        
+
                                                         checar_loop_game();
                                                     }, 2000);//2 segundos para aparecer tela de carregamento!
                                                 }

@@ -90,7 +90,7 @@ function Cenario(){
     }
 
     this.fechar_barreiras = function () {
-        for (let i = 0; i < this.cenario.barreiras .length; i++) {
+        for (let i = 0; i < this.barreiras .length; i++) {
             this.barreiras[i].set_status(BARREIRA_CLOSE)
             this.paineis_barreiras[i].set_status(BARREIRA_CLOSE)
             // this.cenario.barreiras [i].atualizar_sprite(this.contexto, true)
