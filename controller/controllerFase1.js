@@ -1,7 +1,7 @@
 function ControllerFase1(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem) {
     this.contexto = null;
     this.cenario = new Cenario();  //controller1
-    this.quantidade_veiculos_ultrapassar = 3;
+    this.quantidade_veiculos_ultrapassar = 25;
     this.objetivoAtual = 1;
     this.objetivos = []
 
@@ -61,8 +61,6 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//camada de colisao fase1
 
         this.contexto = document.getElementById("canvas").getContext("2d");
-        personagem.sprite.carregar_sprite(4, 5, perImg);
-        personagem.forma.init(personagem.x, personagem.altura / 2 - 2, TILE_AREA - 2, TILE_AREA - 2);
         //CENARIO
         let fase1colisao = new Camada(); //controller1
         fase1colisao.init(10, 24, 32, 32, camada_colisao_objetos, 0, this.contexto);//inicia a distribuição das formas de colisao
@@ -90,14 +88,14 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
         this.cenario.add_tunel(TILE_AREA * 22, TILE_AREA * 1, tunelImg, ESQUERDA)
         this.cenario.add_tunel(TILE_AREA * 0, TILE_AREA * 8, tunelImg, DIREITA)
         //CRONOMETRO
-        cronometro.relogio = elementos_inventario.get_cronometro();
-        cronometroTrem.relogio = elementos_inventario.get_cronometro_trem()
-        cronometroTrem.incrementa_relogio_intervalo(this.cenario.trem.get_intervalo_trem_passar())
-        cronometro.set_intervalo(false);
-        intervalo_cronometro = setInterval(function () {
-            if(!EM_PAUSE)
-              cronometro.rodando();
-        }, 1000);
+        // cronometro.relogio = elementos_inventario.get_cronometro();
+        // cronometroTrem.relogio = elementos_inventario.get_cronometro_trem()
+        // cronometroTrem.incrementa_relogio_intervalo(this.cenario.trem.get_intervalo_trem_passar())
+        // cronometro.set_intervalo(false);
+        // intervalo_cronometro = setInterval(function () {
+        //     if(!EM_PAUSE)
+        //       cronometro.rodando();
+        // }, 1000);
         this.loop_game();
         elementos_inventario.alterar_quantidade_veiculos_inventario(this.quantidade_veiculos_ultrapassar)
 
@@ -122,7 +120,7 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
         this.contexto.drawImage(this.cenario.camadasImg[0], 0, 0, this.cenario.largura, this.cenario.altura)//CHAO
         //this.contexto.drawImage(vilaoImg, 0, 0, this.cenario.largura, this.cenario.altura)
         //formas Cenario.
-        this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
+        // this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
         this.contexto.drawImage(this.cenario.camadasImg[1], 0, 0, this.cenario.largura, this.cenario.altura);//TRILHOS
         this.contexto.drawImage(this.cenario.camadasImg[2], 0, 0, this.cenario.largura, this.cenario.altura);//CAMADA CONE!
         this.contexto.globalAlpha = 0.3;
@@ -141,12 +139,12 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
         this.contexto.globalAlpha = 1.0;
         this.contexto.fillStyle = "black";
         this.contexto.font = "24px sans-serif ";
-        this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
+        // this.contexto.strokeRect(personagem.forma.x, personagem.forma.y, personagem.forma.largura, personagem.forma.altura);
         //Veiculos
         for (let i = 0; i < this.cenario.veiculos.length; i++) {
             let veiculo = this.cenario.veiculos[i];
             veiculo.atualizar_sprite(this.contexto, veiculo.direcaoAtual)//posicionar no local certo
-            this.contexto.strokeRect((veiculo.forma.x + 0), veiculo.forma.y, veiculo.forma.largura, veiculo.forma.altura);//deslocamento ja vem negativo.
+            // this.contexto.strokeRect((veiculo.forma.x + 0), veiculo.forma.y, veiculo.forma.largura, veiculo.forma.altura);//deslocamento ja vem negativo.
             //console.log(i);
         }
 
@@ -203,7 +201,7 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
         for (let i = 0; i < this.cenario.tunels.length; i++) {//enquanto for de mesmo tamnaho!
             let tunel = this.cenario.tunels[i];
             tunel.atualizar_sprite(this.contexto)
-            this.contexto.strokeRect((tunel.forma.x), tunel.forma.y, tunel.forma.largura, tunel.forma.altura);//deslocamento ja vem negativo.
+            // this.contexto.strokeRect((tunel.forma.x), tunel.forma.y, tunel.forma.largura, tunel.forma.altura);//deslocamento ja vem negativo.
             // this.contexto.strokeRect((painel.forma.x + 0), painel.forma.y, painel.forma.largura, painel.forma.altura);
             //console.log(i);
         }
@@ -344,14 +342,37 @@ function ControllerFase1(personagem, movimentos, elementos_inventario, cronometr
     this.atribuir_novo_objetivo = function() {
         //olhar o lado do personagem!
         //olhar se todos foram conluidos
+        for (let i = 0; i < this.cenario.barreiras.length; i++) { //UMA BARREIRA PODE SER ABERTA SEM ELA SER O OBJETIVO. POR ISSO A VERIFICAÇÃO PARA IDENTIFICAR QUEM JA ABRIU
+            if (this.cenario.barreiras[i].status == BARREIRA_OPEN) {
+                // this.objetivos[0][1] = true;
+                if (i == 0)
+                    this.objetivos[0][1] = true;
+                else if (i == 1)
+                    this.objetivos[1][1] = true;
+                else if (i == 2)
+                    this.objetivos[2][1] = true;
+                else if (i == 3)
+                    this.objetivos[3][1] = true;
+            }
+        }
         for(let i = 0;i<this.objetivos.length;i++){
             if(!this.objetivos[i][1]){
                 //novo
-                this.objetivoAtual = i+1;
+                //novo
+                this.objetivoAtual = i + 1;
+                let auxBarreira = 0;
+                if (i == 0) //IDENTIFICA AS BARREIRAS EQUIVALENTES AO OBJETIVO!
+                    auxBarreira = 1;
+                else if (i == 1)
+                    auxBarreira = 2;
+                else if (i == 2)
+                    auxBarreira = 3;
+                else if (i == 3)
+                    auxBarreira = 4;
                 //elemento novo objetivo
                 elementos_inventario.add_alerta_comum(this.objetivos[i][0])
                 // remove_add_alerta_comum
-                elementos_inventario.alterar_objetivo ('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  '+  this.objetivoAtual+'</span></div>')
+                elementos_inventario.alterar_objetivo('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  ' + auxBarreira + '</span></div>')
                 return true;
             }
         }

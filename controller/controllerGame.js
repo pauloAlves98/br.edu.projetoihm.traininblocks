@@ -19,6 +19,7 @@ var elementos_inventario = new ControllerElementos(personagem, movimentos); //El
 var cronometro = new Cronometro(); //global
 var cronometroTrem = new Cronometro(); //global
 var controllerFase1 = new ControllerFase1(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem);
+var controllerFase2 = new ControllerFase2(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem);
 var controllerFase3 = new ControllerFase3(personagem, movimentos, elementos_inventario, cronometro, cronometroTrem);
 // var sound_fundo = new Howl({
 //     src: ["audio\\tema.mp3"],
@@ -42,12 +43,14 @@ function main() {
     intervalo_sprite_persongem = setInterval(function () {
         personagem.podeMudarSprite = true;
     }, 1000 / 10);
+  
+
     thead_movimento_jogo()
 
     // myVar = setInterval(myTimer, 1000 / 10);
 }
 
-function checar_loop_game() {
+function checar_loop_game() {//FLUXO EXECUTADO NA VELOCIDADE DA LUZ
     //veridicar fase ativa
     if (EM_JOGO) {
 
@@ -62,26 +65,29 @@ function checar_loop_game() {
                     EM_PAUSE = true;
                     cronometro.set_intervalo(false);
                     elementos_inventario.add_alerta_proxima_fase(2);
+                    controllerFase2.initgame()
                     //ADD ALERTA
                 }
 
             } else if (FASE == 2) {
-                if (!controllerFase1.checar_fim_fase())
-                    controllerFase1.loop_game();
+                if (!controllerFase2.checar_fim_fase())
+                    controllerFase2.loop_game();
                 else {
                     EM_PAUSE = true;
                     cronometro.set_intervalo(false);
-                    elementos_inventario.add_alerta_proxima_fase(2);
+                    elementos_inventario.add_alerta_proxima_fase(3);
+                    controllerFase3.initgame()
                     //ADD ALERTA
                 }
 
             } else if (FASE == 3) {
-                if (!controllerFase1.checar_fim_fase())
-                    controllerFase1.loop_game();
+                if (!controllerFase3.checar_fim_fase())
+                    controllerFase3.loop_game();
                 else {
                     EM_PAUSE = true;
                     cronometro.set_intervalo(false);
-                    elementos_inventario.add_alerta_proxima_fase(2); //tela cadastro pontuação!
+                    alert('fim de jogo! Você ganhou!')
+                    // elementos_inventario.add_alerta_proxima_fase(2); //tela cadastro pontuação!
                     //ADD ALERTA
                 }
 
@@ -100,8 +106,15 @@ function checar_loop_game() {
 
 }
 //metodo para todos os controllers
-function thead_movimento_jogo() {
-    controllerFase1.movimentos();
+function thead_movimento_jogo() { //pra não executar na velocidade da luz!
+    if(EM_JOGO){
+        if(FASE == 1)
+            controllerFase1.movimentos();
+        else if (FASE == 2)
+            controllerFase2.movimentos();
+        else if (FASE == 3)
+             controllerFase3.movimentos();
+    }
     setTimeout(thead_movimento_jogo, 1000 / 10);//atualizar sprite
 }
 
@@ -115,6 +128,7 @@ function carregar_imagens_fase_1() {
             fase1c2Img.src = "mapas/fase1_renovada/camada2_trilhos.png";
             fase1c2Img.onload = function () {
                 fase1c3Img.src = "mapas/fase1_renovada/camada3_obstaculos.png";
+                elementos_inventario.alter_loading_porcentagem(15)
                 fase1c3Img.onload = function () {
                     tremImg.src = "assets/trem.png";
                     tremImg.onload = function () {
@@ -123,6 +137,7 @@ function carregar_imagens_fase_1() {
                             circuloImg.src = "assets/caixaenergia.png";
                             circuloImg.onload = function () {
                                 painelImg.src = "assets/painel.png";
+                                // elementos_inventario.alter_loading_porcentagem(50)
                                 painelImg.onload = function () {
                                     barreiraImg.src = "assets/barreira.png";
                                     barreiraImg.onload = function () {
@@ -132,20 +147,49 @@ function carregar_imagens_fase_1() {
                                             tunelImg.onload = function () {
                                                 carro2Img.src = "assets/carro2.png";
                                                 carro2Img.onload = function () {
-                                                    setTimeout(function () {
-                                                        elementos_inventario.remove_id('loading');
-                                                        //adicionar Canvas
-                                                        elementos_inventario.add_canvas(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)
-                                                        //adicionar iventario
-                                                        elementos_inventario.add_inventario();
-                                                        elementos_inventario.add_alerta_menu_tutorial_p1()
-                                                        //Carregar elementos_inventario do iventario como nome do persongem!
-                                                        elementos_inventario.alterar_nome_personagem_iventario("Operador");
-                                                        //refatorar essa parte.!
-                                                        controllerFase1.initgame();
+                                                    fase2c1Img.src = 'mapas/fase2/fase2camada1piso.png'
+                                                    fase2c1Img.onload = function () {
+                                                        fase2c2Img.src = 'mapas/fase2/fase2camada2obstaculos.png'
+                                                        elementos_inventario.alter_loading_porcentagem(80)
+                                                        fase2c2Img.onload = function () {
+                                                            fase2c3Img.src = 'mapas/fase2/fase2camada3pista.png'
+                                                            elementos_inventario.alter_loading_porcentagem(99)
+                                                            fase2c3Img.onload = function () {
+                                                                // elementos_inventario.alter_loading_porcentagem(100)
+                                                                setTimeout(function () {
+                                                                    
+                                                                    personagem.sprite.carregar_sprite(4, 5, perImg);
+                                                                    personagem.forma.init(personagem.x, personagem.altura / 2 - 2, TILE_AREA - 2, TILE_AREA - 2);
+                                                                    
+                                                                    elementos_inventario.remove_id('loading');
+                                                                  
+                                                                    //adicionar Canvas
+                                                                    elementos_inventario.add_canvas(TAM_WIDTH_TELA_CANVAS, TAM_HEGTH_TELA_CANVAS)
+                                                                    //adicionar iventario
+                                                                    elementos_inventario.add_inventario();
+                                                                    elementos_inventario.add_alerta_menu_tutorial_p1()
+                                                                    //Carregar elementos_inventario do iventario como nome do persongem!
+                                                                    elementos_inventario.alterar_nome_personagem_iventario("Operador");
+                                                                    //refatorar essa parte.!
+                                                                    // controllerFase1.initgame();
+                                                                    cronometro.relogio = elementos_inventario.get_cronometro();
+                                                                    cronometroTrem.relogio = elementos_inventario.get_cronometro_trem()
+                                                                    cronometroTrem.incrementa_relogio_intervalo(60 * 6)
+                                                                    cronometro.set_intervalo(false);
+                                                                    intervalo_cronometro = setInterval(function () {
+                                                                        if (!EM_PAUSE)
+                                                                            cronometro.rodando();
+                                                                    }, 1000);
+                                                                    controllerFase1.initgame()
 
-                                                        checar_loop_game();
-                                                    }, 2000);//2 segundos para aparecer tela de carregamento!
+                                                                    checar_loop_game();
+                                                                }, 2000);
+                                                            }
+                                                            //2 segundos para aparecer tela de carregamento!
+                                                        }
+
+                                                    }
+
                                                 }
                                             }
 

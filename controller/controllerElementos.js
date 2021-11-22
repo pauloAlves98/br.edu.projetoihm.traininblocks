@@ -4,14 +4,22 @@ function ControllerElementos(personagem,movimentos) {
 
   this.add_loading = function () {
     //nessa linha adicionar ao corpo a div frame!
-    $('#frame').append('<div id="loading"></div>');
+    $('#frame').append('<div id="loading">0%</div>');
     $('#loading').append('<div></div>');
     $('#loading').append('<div></div>');
     $('#loading').append('<div></div>');
     $('#loading').append('<div></div>');
     $('#loading').addClass('lds-ellipsis')
   }
-
+  this.alter_loading_porcentagem = function (valor) {
+    //nessa linha adicionar ao corpo a div frame!
+    $('#loading').text(valor+'%')
+    $('#loading').append('<div></div>');
+    $('#loading').append('<div></div>');
+    $('#loading').append('<div></div>');
+    $('#loading').append('<div></div>');
+    $('#loading').addClass('lds-ellipsis')
+  }
   this.remove_id = function (id) {
     $("#" + id).remove();
   }
@@ -297,7 +305,7 @@ function ControllerElementos(personagem,movimentos) {
 
     $(".alerta-container").append('\
     <div class="container-alerta-card-tutorial">\
-        <div class="titulo-card-tutorial">Olá, seja bem vindo ao <br> Train in <b class="titulo-span-tutorial">Blocks</b> <br><br></div>\
+        <div class="titulo-card-tutorial">Olá, seja bem vindo ao <br> Train in <b class="titulo-span-tutorial">Blocks</b><br> O jogo possui 3 (três) fases <br></div>\
         <br>\
         <div class="card-botoes">\
         <div class="item-card-tutorial">\
@@ -724,7 +732,7 @@ function ControllerElementos(personagem,movimentos) {
 
     $(".alerta-container").append('\
     <div class="container-alerta-card-tutorial">\
-        <div class="titulo-card-tutorial"> Você finalizou essa fase, clique no botão abaixo e avance para próxima! <br> <b class="titulo-span-tutorial">Fase de nº '+nova_fase+'</b></div>\
+        <div class="titulo-card-tutorial"> Você finalizou essa fase, clique no botão abaixo e avance para próxima! <br> <b class="titulo-span-tutorial">Fase de nº '+nova_fase+'/3</b></div>\
         <div class="card-botoes">\
           <div class="item-card-tutorial">\
             <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Jogar</button>\
