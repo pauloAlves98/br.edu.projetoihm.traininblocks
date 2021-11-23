@@ -277,25 +277,10 @@ function ControllerElementos(personagem,movimentos) {
     $(id).css('background-size', '95% 95%');
     $(id).css('background-image', 'url(' + url + ')');
   }
-  this.add_alerta_menu_controles = function () {
-    $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
-    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
-    $(".alerta-container").append('<div class="alerta-container-close">X</div>');
-
-    $('.alerta-container-close').on('click', function () {
-      $('.alerta-container').remove();
-    });
-
-    $(".alerta-container").append('<div class="container-alerta-card-controles">\
-       <div class="titulo-card-controles">Controles</div>\
-        <div class="item-card-controles"></div>\
-      </div>');
-  }
 
   this.add_alerta_menu_tutorial_p1 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -337,7 +322,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p2 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -386,7 +371,7 @@ function ControllerElementos(personagem,movimentos) {
 
   this.add_alerta_menu_tutorial_p3 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -434,7 +419,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p4 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -482,7 +467,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p5 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -530,7 +515,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p6 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -584,7 +569,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p7 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -634,7 +619,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_p8 = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -687,7 +672,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_menu_tutorial_final = function () {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -722,7 +707,7 @@ function ControllerElementos(personagem,movimentos) {
   }
   this.add_alerta_proxima_fase = function (nova_fase) {
     $('.alerta-container').remove();
-    $("#frame").append('<a class="alerta-container motionL" href="#"></a>');
+    $("#frame").append('<div class="alerta-container motionL"></div>');
     $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
     // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
 
@@ -757,6 +742,47 @@ function ControllerElementos(personagem,movimentos) {
     });
   }
 
+  this.add_alerta_ganhou_jogo = function (cronometro, tempoExtra) {
+    let cronometroAux = new Cronometro()
+    cronometroAux.construtor_cronometro(cronometro.get_hora(),cronometro.get_minuto(),cronometro.get_segundo())
+    cronometroAux.incrementa_relogio_intervalo_sem_atualizar_view(tempoExtra)
+
+    $('.alerta-container').remove();
+    $("#frame").append('<div class="alerta-container motionL"></div>');
+    $(".alerta-container").append('<span></span><span></span><span></span><span></span>');
+    // $(".alerta-container").append('<div class="alerta-container-close">X</div>');
+
+    // $('.alerta-container-close').on('click', function () {
+    //   $('.alerta-container').remove();
+    // });
+
+    $(".alerta-container").append('\
+    <div class="container-alerta-card-tutorial">\
+        <div class="titulo-card-tutorial"><b class="titulo-span-tutorial">Parabéns, Você venceu!</b><br><br>\
+         TEMPO DO JOGO:<b class="titulo-span-tutorial"> '+cronometro.get_tempo()+'</b><br>\
+         TEMPO EXTRA: <b class="titulo-span-tutorial"> '+tempoExtra+' s</b><br>\
+         TEMPO FINAL:<b class="titulo-span-tutorial"> '+cronometroAux.get_tempo()+'</b></div>\
+        <div class="card-botoes">\
+          <div class="item-card-tutorial">\
+            <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">Repetir</button>\
+          </div>\
+        </div>\
+    </div>');
+    //     <div class="item-card-sair-jogo">\
+    //     <button class="btn-nao-item-card-sair-jogo aux-btn-card-sair-jogo">Não</button>\
+    // </div>\
+    $(".btn-proximo-item-tutorial").on("click", function (params) {
+      $('.alerta-container').remove();
+      window.location.replace("index.html");
+      //EM_JOGO = true;
+      // let c = new ControllerElementos()
+      // // sound_fundo.play()
+      // c.add_alerta_comum("JOGO INICIADO, BOA SORTE!")//personalizar alerta//add cabeçãrio//alerta dano e tutorial
+      // setTimeout(function () {
+      //   c.remove_add_alerta_comum()
+      // }, 5000)
+    });
+  }
   this.add_alerta_game_over = function () {
     $('.alerta-container').remove();
 
@@ -782,7 +808,7 @@ function ControllerElementos(personagem,movimentos) {
     // </div>\
     $(".btn-voltar-item-tutorial").on("click", function (params) {
       $('.alerta-container').remove();
-      window.location.replace("game.html");
+      window.location.replace("index.html");
       //EM_JOGO = true;
       // let c = new ControllerElementos()
       // // sound_fundo.play()
@@ -792,10 +818,9 @@ function ControllerElementos(personagem,movimentos) {
       // }, 5000)
     });
   }
-
   this.add_alerta_comum = function (msg) {
     $('.alerta-container-comum').remove();
-    $("#frame").append('<a class="alerta-container-comum motionL-alerta-comum" href="#"></a>');
+    $("#frame").append('<div class="alerta-container-comum motionL-alerta-comum" ></div>');
     $(".alerta-container-comum").append('<span></span><span></span><span></span><span></span>');
     $(".alerta-container-comum").append('<div class="alerta-container-close">X</div>');
 

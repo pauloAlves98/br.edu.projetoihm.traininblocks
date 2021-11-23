@@ -101,7 +101,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
         personagem.lado = CIMA
         // this.loop_game();
         // elementos_inventario.alterar_quantidade_veiculos_inventario(this.quantidade_veiculos_ultrapassar)
-        elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS PARA ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) para <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
+        elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
     }
 
     this.checar_fim_fase = function () {
@@ -243,7 +243,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
                 veiculo.status = INATIVO
                 index.push(i);
                 this.quantidade_veiculos_ultrapassar = this.quantidade_veiculos_ultrapassar - 1;
-                elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS PARA ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) para <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
+                elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
                 elementos_inventario.add_alerta_comum("RESTA(M) " + this.quantidade_veiculos_ultrapassar + " VEICULOS!")//personalizar alerta//add cabeçãrio//alerta dano e tutorial
                 setTimeout(function () {
                     elementos_inventario.remove_add_alerta_comum()

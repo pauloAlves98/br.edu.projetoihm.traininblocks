@@ -6,165 +6,17 @@
     <title>GAME IHM</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css"  />
     <style>
-        @font-face {
-            font-family: 'wheaton_capitals';
-            font-style: normal;
-            font-weight: normal;
-            src: local('wheaton_capitals'), url('fonts/wheaton_capitals.otf') format('woff');
-        }
-
-        @font-face {
-            font-family: HVD_Comic_Serif_Pro;
-            src: local(HVD_Comic_Serif_Pro), url("fonts/HVD_Comic_Serif_Pro.otf");
-        }
-
-        html,
-        body {
-            /* background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.754), rgb(0, 0, 0)); */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100vh;
-            width: 100vw;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .container_menu {
-            height: 100%;
-            width: 100vw;
-            /* background-color: black; */
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            /* visibility: hidden; */
-        }
-
-        .container_imagem_fundo {
-            height: 100%;
-            width: 100%;
-            background-color: rgb(7, 7, 7);
-            position: absolute;
-            top:0;
-            left: 0;
-            opacity: 0.80;
-        }
-
-        .imagem_fundo {
-            height: 100vh;
-            width: 100vw;
-            background-size: 100% 100%;
-            background-image: url('assets/fundo_img.jpg');
-            position: absolute;
-            /* z-index: -1; */
-            top:0;
-            left: 0;
-
-        }
-
-        .container_menu_opcoes {
-            /* height: 500px;
-            width: 500px; */
-            /* background-color: black; */
-            position: relative;
-            /* border: rgb(253, 253, 253) 2px solid; */
-            font-family: HVD_Comic_Serif_Pro;
-            /* position: absolute; */
-            /* width: 100%; */
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            margin-top: 40px;
-
-        }
-
-        .titulo_menu {
-            color: white;
-            font-weight: bold;
-            position: relative;
-            font-family: wheaton_capitals;
-            /* font-weight: bold; */
-            font-size: 80px;
-            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
-            margin: 8px;
-        }
-
-        .titulo_span {
-            color: rgb(2, 201, 220);
-            font-weight: bold;
-            position: relative;
-            font-family: wheaton_capitals;
-            /* font-weight: bold; */
-            font-size: 80px;
-            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
-        }
-
-        /* botoes menu */
-        .btn-item-card-botoes-menu {
-            background-color: transparent;
-            cursor: pointer;
-            font-family: wheaton_capitals;
-            height: 60px;
-            width: 200px;
-            border: 4px rgb(255, 255, 255) solid;
-            /* background-color: goldenrod; */
-            text-align: center;
-            margin-bottom: 2px;
-            border-radius: 20px;
-            /* position: relative; */
-            text-align: center;
-            /* border-color: #3498db; */
-            color: rgb(2, 201, 220);
-            box-shadow: 0 0 40px 40px transparent inset, 0 0 0 0 #3498db;
-            -webkit-transition: all 150ms ease-in-out;
-            transition: all 150ms ease-in-out;
-            font-size: 40px;
-            text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
-            box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
-            margin-bottom: 8px;
-        }
-
-        .btn-item-card-botoes-menu:hover {
-            height: 100px;
-            width: 330px;
-            font-size: 65px;
-            background-color: transparent;
-            border-color: rgb(255, 255, 255);
-            box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-
-        }
-
-        a {
-            color: rgb(2, 201, 220);
-            text-decoration: none
-        }
-        /* mouse over link */
-        a:hover {
-            color: rgb(250, 250, 250);
-            text-decoration: none;
-        }
-
-        /* selected link */
-        a:active {
-            color:  rgb(2, 201, 220);
-            text-decoration: underline;
-        }
+   
     </style>
 </head>
 
 <body>
+    <div class="imagem_fundo"></div>
+    <div class="container_imagem_fundo"></div>
     <div class="container_menu">
-        <div class="imagem_fundo"></div>
-        <div class="container_imagem_fundo"></div>
+    
         <!-- Opções menu -->
         <div class="titulo_menu"> <span class="titulo_span"><</span> Train in <span class="titulo_span">Blocks</span> <span class="titulo_span">/></span></div>
         <div class="container_menu_opcoes">
@@ -172,10 +24,10 @@
                 <a href="game.html">Jogar</a>
             </div>
             <div class="btn-item-card-botoes-menu">
-                <a href="#">CRÉDITOS</a>
+                <a href="creditos.html">CRÉDITOS</a>
             </div>
             <div class="btn-item-card-botoes-menu">
-                <a href="#">RANKING</a>
+                <a href="index.html">RANKING</a>
             </div>
         </div>
 

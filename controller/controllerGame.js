@@ -86,7 +86,7 @@ function checar_loop_game() {//FLUXO EXECUTADO NA VELOCIDADE DA LUZ
                 else {
                     EM_PAUSE = true;
                     cronometro.set_intervalo(false);
-                    alert('fim de jogo! Você ganhou!')
+                    elementos_inventario.add_alerta_ganhou_jogo(cronometro, personagem.dano)
                     // elementos_inventario.add_alerta_proxima_fase(2); //tela cadastro pontuação!
                     //ADD ALERTA
                 }
