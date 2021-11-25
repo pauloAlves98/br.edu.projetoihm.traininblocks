@@ -101,7 +101,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
         personagem.lado = CIMA
         // this.loop_game();
         // elementos_inventario.alterar_quantidade_veiculos_inventario(this.quantidade_veiculos_ultrapassar)
-        elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
+        elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "../assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "../assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
     }
 
     this.checar_fim_fase = function () {
@@ -243,7 +243,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
                 veiculo.status = INATIVO
                 index.push(i);
                 this.quantidade_veiculos_ultrapassar = this.quantidade_veiculos_ultrapassar - 1;
-                elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
+                elementos_inventario.alterar_objetivo('<div>MOVIMENTE AS <img   width="20px" height="25px" src = "../assets/comando_painel.png" alt="alavanca"> E ABRAS AS BARREIRAS ( <img   width="50px" height="30px" src = "../assets/barreira_inventario.png" alt="barreiras">) PARA <span class="span-quantidade-veiculos" id="quantidade_veiculos">'+this.quantidade_veiculos_ultrapassar+'</span> VEÍCULOS ATRAVESSAREM A VIA</div>')
                 elementos_inventario.add_alerta_comum("RESTA(M) " + this.quantidade_veiculos_ultrapassar + " VEICULOS!")//personalizar alerta//add cabeçãrio//alerta dano e tutorial
                 setTimeout(function () {
                     elementos_inventario.remove_add_alerta_comum()
@@ -277,22 +277,20 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
 
     }
 
-   
-
     this.movimentos_personagem = function () {//CONTROLLER MOV PERSON
         if (personagem.autorizar_movimento) {//p
             //remover movivemntos já executados
             if (personagem.movimentos_validos.length <= 0) {
                 personagem.autorizar_movimento = false;
                 personagem.emMovimento = false;
-                $('#play').css('background-image', "url('assets/play.png')");
+                $('#play').css('background-image', "url('../assets/play.png')");
                 $('#play').attr('name', 'play')
                 this.resetar_cor_barra_comandos()
                 return;
             } else {
                 let direcao = movimentos[personagem.movimentos_validos[0][0]];
                 if (personagem.checar_colisao_cenario(this.cenario.camadasColisao[0].formasTile, this.cenario.barreiras , this.cenario.veiculos, this.cenario.paineis_barreiras, this.cenario.tunels, TAM_WIDTH_TELA_CANVAS, this.cenario.altura, direcao, personagem.velocidade)) {
-                    $('#play').css('background-image', "url('assets/play.png')");
+                    $('#play').css('background-image', "url('../assets/play.png')");
                     $('#play').attr('name', 'play')
                     this.resetar_cor_barra_comandos()
                     $(personagem.movimentos_validos[0][0]).css('background-color', "red");
@@ -333,7 +331,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
                         personagem.autorizar_movimento = false;
                         personagem.emMovimento = false;
                         personagem.movimentos_validos = []
-                        $('#play').css('background-image', "url('assets/play.png')");
+                        $('#play').css('background-image', "url('../assets/play.png')");
                         $('#play').attr('name', 'play')
                         this.resetar_cor_barra_comandos()
                         return;
@@ -386,7 +384,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
                         personagem.autorizar_movimento = false;
                         personagem.emMovimento = false;
                         personagem.movimentos_validos = []
-                        $('#play').css('background-image', "url('assets/play.png')");
+                        $('#play').css('background-image', "url('../assets/play.png')");
                         $('#play').attr('name', 'play')
                         this.resetar_cor_barra_comandos()
                         return;
@@ -421,7 +419,7 @@ function ControllerFase3(personagem, movimentos,  elementos_inventario, cronomet
                 personagem.direcaoAtual = direcao;
                 personagem.atualizar_forma();
                 personagem.movimentos_validos[0][1] = personagem.movimentos_validos[0][1] - personagem.velocidade;//subtrai do movimento ativo!Peccore o tile area tdo
-                console.log(personagem.movimentos_validos[0][1])
+                // console.log(personagem.movimentos_validos[0][1])
                 if (personagem.movimentos_validos[0][1] <= 0) {
                     //aqui visibility
                     movimentos[personagem.movimentos_validos[0][0]] = 'VAZIO'

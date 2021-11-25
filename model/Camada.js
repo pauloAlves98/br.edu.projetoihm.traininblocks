@@ -11,7 +11,7 @@ function Camada(){
     this.formasTile = new Array();//array de rectngles.
 
     this.init = function(rows,columns,widthTile,heightTile,camada,tileNaoEntra,ctx){//monta as formas
-        console.log("....");
+        // console.log("....");
         this.formasTile = new Array();//array de rectngles.
         this.rows = rows;//linhas na camada
         this.columns = columns;

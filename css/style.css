@@ -28,7 +28,7 @@
 
   html,
   body {
-    background-image: linear-gradient(90deg, rgba(239, 236, 255, 0.754), rgb(255, 255, 255));
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.754), rgb(17, 17, 17));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -391,6 +391,7 @@
   }
 
   .titulo-card-cronometro {
+
     color: rgb(255, 255, 255);
     /*nome da figura traduzida*/
     font-family: Coves_Light;
@@ -400,7 +401,7 @@
     width: 100%;
     /* height: 30%; */
     font-size: 20px;
-    text-align: left;
+    text-align: center;
 
     /* background-color: seagreen; */
   }
@@ -455,7 +456,7 @@
 
   /* Bottoes opcionais */
   .card-botoes {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'ApexNew-Book';
     /* position: absolute; */
     width: 100%;
     display: flex;
@@ -539,7 +540,8 @@
     transition: 0.5s;
     -webkit-transition: opacity 0.5s linear;
     transition: opacity 0.5s linear;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family:'ApexNew-Book';
+    font-size: 12px;
     z-index: 1;
 
   }
@@ -652,6 +654,7 @@
   .alerta-container-close {
     position: absolute;
     content: 'X';
+    cursor: pointer;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #000;
     color: #fffdd9;
@@ -729,17 +732,17 @@
     color: #fffdd9;
     color: white;
     width: 100%;
-    font-size: 50px;
+    font-size: 25px;
     text-align: center;
     /* text-shadow: 0 0 5px #03e9f4,
       0 0 5px #03e9f4,
       0 0 20px #03e9f4,
-      0 0 40px #b61111; */
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size:40px;
+      0 0 40px #b6impa
+      font-size:40px; */
+      font-family: 'ApexNew-Book';
   }
   .titulo-card-tutorial, .titulo-span-tutorial{
-    font-size:35px;
+    /* font-size:35px; */
     -webkit-text-stroke-color: transparent;
   }
   
@@ -760,8 +763,8 @@
   }
   .titulo-card-comum{
     margin-top: 10px;
-    font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    font-family: 'ApexNew-Book';
     /*     font-family: HVD_Comic_Serif_Pro; */
     /* background-color: violet; */
   }
@@ -778,15 +781,16 @@
   .btn-nao-item-card-sair-jogo,.btn-proximo-item-tutorial,.btn-pular-item-tutorial, .btn-proximo-item-tutorial-p1,.btn-proximo-item-tutorial-p2,.btn-voltar-item-tutorial-p2,.btn-voltar-item-tutorial {
     background-color: #03e9f4;
     cursor: pointer;
-    font-family: HVD_Comic_Serif_Pro;
+    overflow-x: hidden;
+    font-family: Coves_Light;
     height: 35px;
     width: 100%;
-    font-size: 20px;
-    color: white;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #000;
-    color: #fffdd9;
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    /* -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000; */
     border-color: white;
+    font-weight: bold;
     text-align: center;
     border-radius: 15px;
     /* margin-bottom: 2px;
@@ -794,26 +798,33 @@
     border-top-right-radius: 0px;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px; */
-    box-shadow: 0 0 5px #03e9f4,
+    /* box-shadow: 0 0 5px #03e9f4,
       0 0 25px #03e9f4,
       0 0 50px #03e9f4,
-      0 0 100px #03e9f4;
-    animation: animation-pisca-buttom-sim 3s linear infinite;
+      0 0 100px #03e9f4; */
+    /* animation: animation-pisca-buttom-sim 3s linear infinite; */
     /* animation-delay: 0.50s; */
   }
   .btn-pular-item-tutorial{
-    box-shadow: 0 0 5px #03f433,
+    /* box-shadow: 0 0 5px #03f433,
       0 0 25px #03f433,
       0 0 50px #03f433,
-      0 0 100px #03f433;
-      background-color: #03f433;
+      0 0 100px #03f433; */
+      height: 30px;
+      position: absolute;
+      left: 395px;
+      top: 230px;
+      color: white;
+      width: 100px;
+      background-color: transparent;
     animation: none;
+    font-size: 15px;
   }
   .btn-nao-item-card-sair-jogo,.btn-voltar-item-tutorial-p2,.btn-voltar-item-tutorial{
-    box-shadow: 0 0 5px #b61111,
+    /* box-shadow: 0 0 5px #b61111,
       0 0 25px #b61111,
       0 0 50px #b61111,
-      0 0 100px #b61111;
+      0 0 100px #b61111; */
     background-color: #b61111;
     animation: animation-pisca-buttom-nao 3s linear infinite;
     animation-delay: 0.50s;
@@ -849,27 +860,30 @@
 
   @keyframes animation-pisca-buttom-sim {
     0% {
-      box-shadow: 0 0 5px #03e9f4,
+      /* box-shadow: 0 0 5px #03e9f4,
         0 0 0px #03e9f4,
         0 0 0px #03e9f4,
-        0 0 0px #03e9f4;
+        0 0 0px #03e9f4; */
+        width: 40%;
 
     }
 
     25% {}
 
     50% {
-      box-shadow: 0 0 5px #03e9f4,
+      /* box-shadow: 0 0 5px #03e9f4,
         0 0 25px #03e9f4,
         0 0 50px #03e9f4,
-        0 0 100px #03e9f4;
+        0 0 100px #03e9f4; */
+        /* opacity: 0.5; */
     }
 
     100% {
-      box-shadow: 0 0 5px #03e9f4,
+      /* box-shadow: 0 0 5px #03e9f4,
         0 0 0px #03e9f4,
         0 0 0px #03e9f4,
-        0 0 0px #03e9f4;
+        0 0 0px #03e9f4; */
+        width: 100%;
     }
   }
 
@@ -1091,10 +1105,11 @@
     /* position: absolute;
     top: 0px;
     left: 0px; */
+  
     width: 100%;
     /* height: 30%; */
     font-size: 20px;
-    text-align: left;
+    text-align: center;
 
     /* background-color: seagreen; */
   }
@@ -1103,7 +1118,62 @@
     width: 100%;
     color: rgb(168, 18, 25);
   }
-
+/* Home e tutorial */
+.container-inventario-card-home {
+  /* vertical-align: bottom; */
+  /* top: 80px; */
+  /*left: 370px; */
+  border: rgb(3, 166, 241) 1px solid;
+  font-size: 12px;
+  position: absolute;
+  /* background-image: linear-gradient(80deg,rgb(117, 117, 129),rgb(218, 218, 218));  */
+  /* height: 100px; */
+  width: 70px;
+  height: 34px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 30px;
+  /* left: 20px; */
+  /* background-color: tomato; */
+}
+.card-home {
+  display: flex;
+  flex-direction: row;
+  font-family: Coves_Light;
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(143, 59, 59); */
+  /* top: 25px; */
+}
+.item-card-home {
+  /* display: flex;
+  flex-direction: row; */
+  font-family: Coves_Light;
+  /* position: absolute; */
+  width:32px;
+  height: 30px;
+  /* border: blueviolet 1px solid; */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('https://www.freeiconspng.com/uploads/home-button-icon-png-23.png');
+  /* background-color: rgb(143, 59, 59); */
+  /* top: 25px; */
+}
+.item-card-help {
+  /* display: flex;
+  flex-direction: row; */
+  font-family: Coves_Light;
+  /* position: absolute; */
+  width: 36px;
+  height: 32px;
+  /* border: rgb(30, 23, 37) 1px solid; */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('https://findicons.com/files/icons/744/juicy_fruit/256/help.png')
+  /* background-color: rgb(143, 59, 59); */
+  /* top: 25px; */
+}
   /* Objetivo */
   .container-inventario-card-objetivo {
     /* vertical-align: bottom; */
@@ -1123,6 +1193,7 @@
     font-family: Coves_Light;
     /* position: absolute; */
     width: 100%;
+  
     /* background-color: rgb(143, 59, 59); */
     /* top: 25px; */
   }
@@ -1132,7 +1203,7 @@
     font-size: 15px;
     /* border: solid 1px rgb(52, 141, 114); */
     color: rgb(197, 196, 201);
-    font-family: ApexNew-Book;
+    font-family: 'ApexNew-Book';
   }
 
   .titulo-card-objetivo {
@@ -1141,11 +1212,12 @@
     /* position: absolute;
     top: 0px;
     left: 0px; */
-    margin-left: 10px;
+    margin-left: -250px;
+  
     width: 100%;
     /* height: 30%; */
     font-size: 20px;
-    text-align: left;
+    text-align: center;
 
     /* background-color: seagreen; */
   }
@@ -1230,8 +1302,8 @@
     animation-play-state: running;
   }
   .exemplo-comandos-tutorial{
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-family: Coves_Light;
     margin: 0; 
     /* line-height: 0; */
   }
@@ -1257,6 +1329,7 @@ body {
     width: 100vw;
     margin: 0px;
     overflow: hidden;
+  
 }
 .redefinicao_credito{
     overflow-x: hidden;
@@ -1337,6 +1410,16 @@ body {
     /* font-size: 80px; */
     text-shadow: rgb(0, 0, 0) 4px -4px, rgb(9, 9, 9) -4px 4px, rgb(0, 0, 0) 4px 4px, rgb(0, 0, 0) -4px -4px;
 }
+.fonte-50 {
+ font-size: 50px;
+}
+.fonte-14 {
+  font-size: 50px;
+}
+.titulo_link{
+
+  color: rgb(2, 201, 220);
+}
 @media only screen and (max-width: 880px) {
     .titulo_menu{
         font-size: 60px;
@@ -1411,7 +1494,13 @@ a:active {
     text-decoration: underline;
 }
 /* Creditos imagem */
-
+.imagem_voltar_home{
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: 95% 95%;
+  background-image: url('https://lh3.googleusercontent.com/proxy/0r8Ni5kY5-o8EaCMMU_08TMRvGDgnZwe8wNHQayFGMUtRVKxOxD4CtUpoDa_I7uU7-dD2tIr32xEH-2Uhcqtjzvqg112Zpd38OL_Tk2LPdRqp-NEILQVRCBWvT5L3t4');
+}
 .imagem_credito,.imagem_credito_1,.imagem_credito_2,.imagem_credito_3,
 .imagem_credito_4,.imagem_credito_5,.imagem_credito_6,.imagem_credito_7,.imagem_credito_8,
 .imagem_credito_9,.imagem_credito_10{

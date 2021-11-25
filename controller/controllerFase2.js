@@ -111,7 +111,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
         // elementos_inventario.alterar_quantidade_veiculos_inventario(this.quantidade_veiculos_ultrapassar)
         //objetivos
         this.objetivos = [['ABRA A BARREIRA 2', false], ['ABRA A BARREIRA 1', false], ['ABRA A BARREIRA 3', false], ['ABRA A BARREIRA 5', false], ['ABRA A BARREIRA 4', false], ['ABRA A BARREIRA 6', false]]
-        elementos_inventario.alterar_objetivo('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  ' + 2 + '</span></div>')
+        elementos_inventario.alterar_objetivo('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "../assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "../assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  ' + 2 + '</span></div>')
     }
 
     this.checar_fim_fase = function () {
@@ -320,6 +320,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
             //atribuir novo objetivo! c
 
@@ -331,6 +334,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
         } else if (this.objetivoAtual == 3) {
             if (this.cenario.barreiras[2].status == BARREIRA_OPEN) {
@@ -340,6 +346,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
         }
         else if (this.objetivoAtual == 4) {
@@ -350,6 +359,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
 
         }
@@ -361,6 +373,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
 
         }
@@ -372,6 +387,9 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 elementos_inventario.add_alerta_comum('OBJETIVO NÃO ALCANÇADO')
                 personagem.aplicar_dano_life(DANO_MOVIMENTO_ERRADO_LIFE)
                 personagem.acrecentar_dano(DANO_MOVIMENTO_ERRADO_LIFE)
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
             }
 
         }
@@ -418,8 +436,11 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
 
                 //elemento novo objetivo
                 elementos_inventario.add_alerta_comum(this.objetivos[i][0])
+                setTimeout(function () {
+                    elementos_inventario.remove_add_alerta_comum()
+        }, 5000)
                 // remove_add_alerta_comum
-                elementos_inventario.alterar_objetivo('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  ' + auxBarreira + '</span></div>')
+                elementos_inventario.alterar_objetivo('<div>VÁ EM DIREÇÃO  A ALAVANCA <img width="20px" height="25px" src = "../assets/comando_painel.png" alt="alavanca"> E ABRA A BARREIRA <img   width="50px" height="30px" src = "../assets/barreira_inventario.png" alt="barreiras"> DE Nº <span class="span-quantidade-veiculos" id="quantidade_veiculos">  ' + auxBarreira + '</span></div>')
                 return true;
             }
         }
@@ -433,7 +454,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
             if (personagem.movimentos_validos.length <= 0) {//FIM DE MOVIMENTOS
                 personagem.autorizar_movimento = false;
                 personagem.emMovimento = false;
-                $('#play').css('background-image', "url('assets/play.png')");
+                $('#play').css('background-image', "url('../assets/play.png')");
                 $('#play').attr('name', 'play')
                 this.resetar_cor_barra_comandos()
                 this.checar_objetivos()
@@ -442,7 +463,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
             } else {
                 let direcao = movimentos[personagem.movimentos_validos[0][0]];
                 if (personagem.checar_colisao_cenario(this.cenario.camadasColisao[0].formasTile, this.cenario.barreiras, this.cenario.veiculos, this.cenario.paineis_barreiras, this.cenario.tunels, TAM_WIDTH_TELA_CANVAS, this.cenario.altura, direcao, personagem.velocidade)) {
-                    $('#play').css('background-image', "url('assets/play.png')");
+                    $('#play').css('background-image', "url('../assets/play.png')");
                     $('#play').attr('name', 'play')
                     this.resetar_cor_barra_comandos()
                     $(personagem.movimentos_validos[0][0]).css('background-color', "red");
@@ -492,7 +513,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                         // return;
                     }
 
-                    $('#play').css('background-image', "url('assets/play.png')");
+                    $('#play').css('background-image', "url('../assets/play.png')");
                     $('#play').attr('name', 'play')
                     this.resetar_cor_barra_comandos()
                     //movimentos[personagem.movimentos_validos[0][0]] = VAZIO
@@ -544,7 +565,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                         personagem.autorizar_movimento = false;
                         personagem.emMovimento = false;
                         personagem.movimentos_validos = []
-                        $('#play').css('background-image', "url('assets/play.png')");
+                        $('#play').css('background-image', "url('../assets/play.png')");
                         $('#play').attr('name', 'play')
                         this.resetar_cor_barra_comandos()
                         this.checar_objetivos()
@@ -580,7 +601,7 @@ function ControllerFase2(personagem, movimentos, elementos_inventario, cronometr
                 personagem.direcaoAtual = direcao;
                 personagem.atualizar_forma();
                 personagem.movimentos_validos[0][1] = personagem.movimentos_validos[0][1] - personagem.velocidade;//subtrai do movimento ativo!Peccore o tile area tdo
-                console.log(personagem.movimentos_validos[0][1])
+                // console.log(personagem.movimentos_validos[0][1])
                 if (personagem.movimentos_validos[0][1] <= 0) {
                     //aqui visibility
                     movimentos[personagem.movimentos_validos[0][0]] = 'VAZIO'

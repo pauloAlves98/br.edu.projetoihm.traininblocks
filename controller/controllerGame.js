@@ -28,7 +28,7 @@ var controllerFase3 = new ControllerFase3(personagem, movimentos, elementos_inve
 //     loop: true,
 // });
 var sound_trem = new Howl({
-    src: ["audio\\som_trem3.mp3"],
+    src: ["..\\audio\\som_trem3.mp3"],
     volume: 0.15,
     html5: true,
     // onend: function() {
@@ -119,40 +119,40 @@ function thead_movimento_jogo() { //pra não executar na velocidade da luz!
 }
 
 function carregar_imagens_fase_1() {
-    perImg.src = "assets/polic.png";
+    perImg.src = "../assets/polic.png";
     // bordaInventarioImg.src = "assets/fundo2.png";
     perImg.onload = function () {
         //inicio load
-        fase1c1Img.src = "mapas/fase1_renovada/camada1_livre.png";
+        fase1c1Img.src = "../mapas/fase1_renovada/camada1_livre.png"; // ocontroller é importado dentro de view
         fase1c1Img.onload = function () {
-            fase1c2Img.src = "mapas/fase1_renovada/camada2_trilhos.png";
+            fase1c2Img.src = "../mapas/fase1_renovada/camada2_trilhos.png";
             fase1c2Img.onload = function () {
-                fase1c3Img.src = "mapas/fase1_renovada/camada3_obstaculos.png";
+                fase1c3Img.src = "../mapas/fase1_renovada/camada3_obstaculos.png";
                 elementos_inventario.alter_loading_porcentagem(15)
                 fase1c3Img.onload = function () {
-                    tremImg.src = "assets/trem.png";
+                    tremImg.src = "../assets/trem.png";
                     tremImg.onload = function () {
-                        pegadasImg.src = "assets/pegadas.png";
+                        pegadasImg.src = "../assets/pegadas.png";
                         pegadasImg.onload = function () {
-                            circuloImg.src = "assets/caixaenergia.png";
+                            circuloImg.src = "../assets/caixaenergia.png";
                             circuloImg.onload = function () {
-                                painelImg.src = "assets/painel.png";
+                                painelImg.src = "../assets/painel.png";
                                 // elementos_inventario.alter_loading_porcentagem(50)
                                 painelImg.onload = function () {
-                                    barreiraImg.src = "assets/barreira.png";
+                                    barreiraImg.src = "../assets/barreira.png";
                                     barreiraImg.onload = function () {
-                                        carro1Img.src = "assets/carro1.png";
+                                        carro1Img.src = "../assets/carro1.png";
                                         carro1Img.onload = function () {
-                                            tunelImg.src = 'assets/tunel.png';
+                                            tunelImg.src = '../assets/tunel.png';
                                             tunelImg.onload = function () {
-                                                carro2Img.src = "assets/carro2.png";
+                                                carro2Img.src = "../assets/carro2.png";
                                                 carro2Img.onload = function () {
-                                                    fase2c1Img.src = 'mapas/fase2/fase2camada1piso.png'
+                                                    fase2c1Img.src = '../mapas/fase2/fase2camada1piso.png'
                                                     fase2c1Img.onload = function () {
-                                                        fase2c2Img.src = 'mapas/fase2/fase2camada2obstaculos.png'
+                                                        fase2c2Img.src = '../mapas/fase2/fase2camada2obstaculos.png'
                                                         elementos_inventario.alter_loading_porcentagem(80)
                                                         fase2c2Img.onload = function () {
-                                                            fase2c3Img.src = 'mapas/fase2/fase2camada3pista.png'
+                                                            fase2c3Img.src = '../mapas/fase2/fase2camada3pista.png'
                                                             elementos_inventario.alter_loading_porcentagem(99)
                                                             fase2c3Img.onload = function () {
                                                                 // elementos_inventario.alter_loading_porcentagem(100)

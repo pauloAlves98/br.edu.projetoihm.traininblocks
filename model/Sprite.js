@@ -20,7 +20,7 @@ function Sprite(){
 
         //console.log(per.naturalWidth);
        // this.folheto.src = this.source;
-        console.log(this.folheto.naturalWidth);
+        // console.log(this.folheto.naturalWidth);
         // this.folheto.onload = function(width,height){
         //     console.log(this.naturalWidth);
         // }
