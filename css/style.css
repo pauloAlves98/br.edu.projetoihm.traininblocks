@@ -28,7 +28,7 @@
 
   html,
   body {
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.754), rgb(17, 17, 17));
+    background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0));
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -263,7 +263,7 @@ function ControllerElementos(personagem, movimentos) {
     // $('.container-inventario-card-cronometro').css('left', 200)
     $('.container-inventario-card-home').append('<div class="card-home">\
               <a class="item-card-home"></a>\
-              <a class="item-card-help" target="_blank" href="https://youtube.com"></a>\
+              <a class="item-card-help" target="_blank" href="https://youtu.be/BPvVLv-h4rU"></a>\
     </div>');
 
     $('.item-card-home').on('click', function () {
@@ -307,7 +307,7 @@ function ControllerElementos(personagem, movimentos) {
         <div class="titulo-card-tutorial">Olá, seja Bem Vindo ao <br> Train in <b class="titulo-span-tutorial">Blocks</b>!<br> O jogo possui 3 (três) fases <br>\
         Veja o tutorial:<br>\
         </div>\
-        <a class="titulo_link" href="https://youtube.com" target="_blank">click aqui: youtube.com</a><br><br>\
+        <a class="titulo_link" target="_blank" href="https://youtu.be/BPvVLv-h4rU" target="_blank">https://youtu.be/BPvVLv-h4rUm</a><br><br>\
         <div class="card-botoes">\
        <div class="item-card-tutorial">\
               <button class="btn-proximo-item-tutorial aux-btn-card-tutorial">&gt;</button>\
