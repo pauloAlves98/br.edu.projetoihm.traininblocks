@@ -31,6 +31,11 @@ O jogo se passa em cenários constituídos por veículos, túneis, barreiras, ob
 #### Jogando
 <img src="assets/jogando.png" width="500">
 
+## Tecnologias Utilizadas
+
+- <img src="https://img.icons8.com/color/48/000000/javascript--v1.png"/> JavaScript
+- <img src="https://img.icons8.com/color/48/000
+
 ## Universidade 🎓
 
 Unidade Acadêmica de Serra Talhada/Universidade Federal Rural de Pernambuco (UAST-UFRPE)
