@@ -15,7 +15,7 @@ Acesse o jogo através do link: https://pauloalves98.github.io/br.edu.projetoihm
 
 ## Descrição do jogo 🎮
 
-O jogo se passa em cenários constituídos por veículos, túneis, barreiras, obstáculos e um trem que atravessa a via em determinados períodos de tempo. O personagem principal é um operador que manipula alavancas contidas na ferrovia, podendo deixá-las abertas ou fechadas. O jogador deve ficar atento aos objetivos/desafios impostos pelo jogo para evitar danos ao personagem principal. Ao fim, o jogador terá um desempenho avaliado com base em seu desempenho.
+O jogo se passa em cenários constituídos por veículos, túneis, barreiras, obstáculos e um trem que atravessa a via em determinados períodos de tempo. O personagem principal é um operador que manipula alavancas contidas na ferrovia, podendo deixá-las abertas ou fechadas. O jogador deve ficar atento aos objetivos/desafios impostos pelo jogo para evitar danos ao personagem principal. Ao fim, o jogador terá seu desempenho avaliado.
 
 ### Capturas de tela 📸
 
