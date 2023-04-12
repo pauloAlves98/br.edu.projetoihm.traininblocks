@@ -34,4 +34,4 @@ O jogo se passa em cenários constituídos por veículos, túneis, barreiras, ob
 ## Universidade 🎓
 
 Unidade Acadêmica de Serra Talhada/Universidade Federal Rural de Pernambuco (UAST-UFRPE)
-<img src="https://user-images.githubusercontent.com/40782426/231604362-d0c5e2af-8bf7-447f-a574-1c679b885e8d.png" width="500">
+<img src="https://user-images.githubusercontent.com/40782426/231604362-d0c5e2af-8bf7-447f-a574-1c679b885e8d.png" width="300">
